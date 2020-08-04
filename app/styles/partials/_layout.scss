@@ -37,3 +37,15 @@
   height: 100%;
   width: 100%;
 }
+
+.hex-grid {
+  display: flex;
+
+  &__cell {
+    fill: $blue;
+  }
+
+  &__svg {
+    width: 100%;
+  }
+}
