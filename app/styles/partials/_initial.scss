@@ -18,6 +18,7 @@
 
 html {
   box-sizing: border-box;
+  height: 100%;
 }
  
 *,
@@ -30,6 +31,12 @@ html {
 
 body {
   background: #000;
-  font-family: 'Maven Pro', Arial, sans-serif;
   color: #fff;
+  font-family: 'Maven Pro', Arial, sans-serif;
+  min-height: 100vh;
+  height: 100%;
+}
+
+svg {
+  width: 100%;
 }
