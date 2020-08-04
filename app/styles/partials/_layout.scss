@@ -1,0 +1,39 @@
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  left: 0;
+  padding: 50px 40px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+ 
+  &__logo {
+    align-items: center;
+    display: flex;
+    fill: #fff;
+    flex-grow: 1;
+    height: 50px;
+    justify-content: start;
+  }
+
+  &__svg {
+    height: 100%;
+  }
+
+  &__link {
+    color: #fff;
+    font-size: 1.1rem;
+    text-decoration: none;
+
+    &:not(:last-child) {
+      margin-right: 50px;
+    }
+  }
+}
+
+.wrapper {
+  background-color: $navy;
+  height: 100%;
+  width: 100%;
+}
