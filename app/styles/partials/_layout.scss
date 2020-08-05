@@ -40,6 +40,7 @@
 
 .hex-grid {
   display: flex;
+  flex-wrap: wrap;
 
   &__cell {
     fill: $blue;
