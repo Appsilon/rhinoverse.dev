@@ -1,0 +1,44 @@
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  left: 0;
+  padding: 50px 40px;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+ 
+  &__logo {
+    align-items: center;
+    display: flex;
+    fill: #fff;
+    flex-grow: 1;
+    height: 50px;
+    justify-content: start;
+    pointer-events: all;
+  }
+
+  &__svg {
+    height: 100%;
+  }
+
+  &__link {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    pointer-events: all;
+
+    &:not(:last-child) {
+      margin-right: 50px;
+    }
+  }
+}
+
+.wrapper {
+  background: $blue;
+  height: 100%;
+  width: 100%;
+}
