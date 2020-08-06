@@ -1,5 +1,5 @@
 .hex-grid {
-  background-color: $navy;
+  background: rgba($color: $navy, $alpha: 0.7);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -13,37 +13,24 @@
 
   .cell {
     @include flex-center;
-    //pointer-events: none;
+    pointer-events: none;
     position: relative;
 
     &__blank {
       fill: $blue;
-      //pointer-events: none;
+      pointer-events: none;
       //transition: padding 0.5s;
+      transition: fill 0.2s;
       width: 100%;
       position: relative;
 
-      &::before {
-        @include flex-center;
-        content: 'gfdsfds';
-        background-color: #fff;
-        position: absolute;
-        z-index: 99999;
-        width: 100px;
-        height: 100px;
-        left: 0;
-        top: 0;
-
-      }
-
       &--labelled {
         cursor: pointer;
-        filter: drop-shadow( 0 0 15px rgba(0,0,0,0.4));
+        filter: drop-shadow( 0 0 15px rgba(0,0,0,0.3));
       }
 
       & path {
-        //pointer-events: all;
-        box-shadow: 0 0 50px rgba($color: #000, $alpha: 0.5);
+        pointer-events: all;
       }
 
       &--shiny-semantic { fill: $color-shiny-semantic; };

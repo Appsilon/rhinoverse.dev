@@ -4,6 +4,7 @@
   justify-content: space-between;
   left: 0;
   padding: 50px 40px;
+  pointer-events: none;
   position: fixed;
   top: 0;
   width: 100%;
@@ -16,6 +17,7 @@
     flex-grow: 1;
     height: 50px;
     justify-content: start;
+    pointer-events: all;
   }
 
   &__svg {
@@ -25,7 +27,9 @@
   &__link {
     color: #fff;
     font-size: 1rem;
+    font-weight: 500;
     text-decoration: none;
+    pointer-events: all;
 
     &:not(:last-child) {
       margin-right: 50px;
@@ -34,29 +38,7 @@
 }
 
 .wrapper {
-  background-color: $navy;
+  background: $blue;
   height: 100%;
   width: 100%;
-}
-
-.hex-grid {
-  background-color: $navy;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-
-  &__row {
-    display: flex;
-    width: 100%;
-    margin: 0;
-  }
-
-  &__cell {
-    @include flex-center;
-    fill: $blue;
-  }
-
-  &__svg {
-    width: 100%;
-  }
 }
