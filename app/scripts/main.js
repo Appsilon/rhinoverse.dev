@@ -72,3 +72,69 @@ desktopHexData.forEach((hex, index) => {
 
 
 });
+
+const hexPaths = document.querySelectorAll('.cell__blank--labelled path');
+const allCells = document.querySelectorAll('.cell');
+const allLabelledCells = document.querySelectorAll('.cell__blank--labelled');
+const infoSections = document.querySelectorAll('.info');
+
+// Events
+
+[...hexPaths].forEach(path => {
+  // on click event
+  path.addEventListener('click', function(e) {
+    if (this.tagName === 'path') {
+      const cell = this.parentNode;
+      const { id } = cell.dataset;
+      const currentInfo = document.querySelector(`.info--${id}`);
+  
+      // handle cells appearance
+      [...allLabelledCells].forEach(cell =>
+        cell.setAttribute('class', 'cell__blank cell__blank--labelled'));
+      cell.classList.add('active');
+      cell.classList.add(`cell__blank--${id}`);
+  
+      // handle info section appearance
+      [...infoSections].forEach(section => section.classList.remove('info--visible'));
+      currentInfo.classList.add('info--visible');
+    }
+  });
+  // on mouse over event
+  path.addEventListener('mouseover', function(e) {
+    if (this.tagName === 'path') {
+      const cell = this.parentNode;
+      const { id } = cell.dataset;
+  
+      cell.classList.add(`cell__blank--${id}`);
+    }
+  });
+  // on mouse out event
+  path.addEventListener('mouseout', function(e) {
+    if (this.tagName === 'path') {
+      const cell = this.parentNode;
+      const { id } = cell.dataset;
+  
+      if (!cell.classList.contains('active')) {
+        cell.classList.remove(`cell__blank--${id}`);
+      }
+    }
+  });
+});
+
+/* [...allCells].forEach(cell => {
+  cell.addEventListener('mouseover', function() {
+    //this.firstElementChild.style.padding = '10px';
+    this.style.transform = 'scale(0.9)';
+  });
+  cell.addEventListener('mouseout', function() {
+    //this.firstElementChild.style.padding = '';
+    this.firstElementChild.style.padding = '';
+    this.style.transform = '';
+  });
+}); */
+
+//${iconId ? ` cell__blank--${iconId}` : ''}
+
+/* window.addEventListener('click', function(e) {
+  console.log(e.target);
+}); */
