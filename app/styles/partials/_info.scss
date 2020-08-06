@@ -6,8 +6,13 @@
   left: 150px;
   max-width: 400px;
   position: absolute;
+  visibility: hidden;
   width: 100%;
   z-index: 1;
+
+  &--visible {
+    visibility: visible;
+  }
 
   &__heading {
     align-self: stretch;
@@ -32,5 +37,11 @@
     padding: 1rem 2rem;
     text-decoration: none;
     text-transform: uppercase;
+
+    &--shiny-semantic { background-color: $color-shiny-semantic; }
+    &--semantic-dashboard { background-color: $color-semantic-dashboard; }
+    &--shiny-info { background-color: $color-shiny-info; }
+    &--shiny-router { background-color: $color-shiny-router; }
+    &--shiny-i18n { background-color: $color-shiny-i18n; }
   }
 }
