@@ -1,0 +1,84 @@
+.hex-grid {
+  background-color: $navy;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+
+  &__row {
+    display: flex;
+    width: 100%;
+    margin: 0;
+  }
+
+  .cell {
+    @include flex-center;
+    //pointer-events: none;
+    position: relative;
+
+    &__blank {
+      fill: $blue;
+      //pointer-events: none;
+      //transition: padding 0.5s;
+      width: 100%;
+      position: relative;
+
+      &::before {
+        @include flex-center;
+        content: 'gfdsfds';
+        background-color: #fff;
+        position: absolute;
+        z-index: 99999;
+        width: 100px;
+        height: 100px;
+        left: 0;
+        top: 0;
+
+      }
+
+      &--labelled {
+        cursor: pointer;
+        filter: drop-shadow( 0 0 15px rgba(0,0,0,0.4));
+      }
+
+      & path {
+        //pointer-events: all;
+        box-shadow: 0 0 50px rgba($color: #000, $alpha: 0.5);
+      }
+
+      &--shiny-semantic { fill: $color-shiny-semantic; };
+      &--semantic-dashboard { fill: $color-semantic-dashboard; };
+      &--shiny-info { fill: $color-shiny-info; };
+      &--shiny-router { fill: $color-shiny-router; };
+      &--shiny-i18n { fill: $color-shiny-i18n; };
+    }
+
+    &__label {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      position: absolute;
+      fill: none;
+      //max-height: 50%;
+      height: 100%;
+      stroke: #fff;
+      stroke-width: 1.5;
+      width: 100%;
+      pointer-events: none;
+    }
+
+    &__logo {
+      display: flex;
+      pointer-events: none;
+      flex-grow: 1;
+      width: 100%;
+    }
+
+    &__title {
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+    }
+  }
+}
