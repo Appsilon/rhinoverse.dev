@@ -1,15 +1,11 @@
-import { desktopHexData } from './hex.js';
+//import { desktopHexData } from './desktopHexData.js';
+//import { mobileHexData } from './mobileHexData.js';
 
 const hexGrid = document.getElementById('hex-grid');
-const totalInBigRow = desktopHexData.reduce((max, curr) =>
-  curr.column > max.column ? curr : max).column;
-const totalInSmallRow = totalInBigRow - 1;
-const newRowMargin = `${-1 / (totalInSmallRow  * 2) / Math.sqrt(3) * 100 - 0.2}%`;
-const newBigRowWidth = `${(totalInBigRow) / totalInSmallRow * 100}%`;
-const newBigRowLeftMargin = `${-1 / (totalInSmallRow * 2) * 100}%`;
 const MAX_GAP = 50;
 const BASE_WIDTH = 10;
-
+const BREAKPOINT = 768;
+let isMobile = window.innerWidth < BREAKPOINT;
 
 const getCellWidth = (total) => `${1 / (total) * 100}%`
 
@@ -17,12 +13,17 @@ const getCellWidth = (total) => `${1 / (total) * 100}%`
 const getCell = (hex, totalInBigRow, totalInSmallRow) => {
   const { column, row, gap, isAnimated, iconId, isDetached } = hex;
   const cell = document.createElement('div');
+  const blankCellClass = `"
+    cell__blank${iconId ? ' cell__blank--labelled' : ''}
+    ${iconId === 'shiny-semantic' ? 'cell__blank--shiny-semantic active' : ''}
+    ${isDetached ? 'cell__blank--detached' : 'cell__blank--attached'}
+  "`;
+
   cell.className = 'cell';
   cell.style.padding = `${MAX_GAP * gap}px`;
-
   cell.innerHTML = `
     <svg
-      class="cell__blank${iconId ? ' cell__blank--labelled' : ''} ${iconId === 'shiny-semantic' ? 'cell__blank--shiny-semantic active' : ''}"
+      class=${blankCellClass}
       ${iconId ? ` data-id=${iconId}` : ''}
       viewBox="0 0 100 115.47"
     >
@@ -44,40 +45,54 @@ const getCell = (hex, totalInBigRow, totalInSmallRow) => {
     cell.lastElementChild.style.height = labelWidth;
   }
 
-
   cell.style.width = row % 2 === 0
   ? getCellWidth(totalInBigRow)
   : getCellWidth(totalInSmallRow);
   return cell;
 }
 
-// generate hexagonal grid
-desktopHexData.forEach((hex, index) => {
-  const { column, row } = hex;
+// generate hexagonal grid on desktop ------------------------------------------
+const generateHexGrid = (data) => {
+  const totalInBigRow = data.reduce((max, curr) =>
+  curr.column > max.column ? curr : max).column;
+  const totalInSmallRow = totalInBigRow - 1;
+  const newRowMargin = `${-1 / (totalInSmallRow  * 2) / Math.sqrt(3) * 100 - 0.2}%`;
+  const newBigRowWidth = `${(totalInBigRow) / totalInSmallRow * 100}%`;
+  const newBigRowLeftMargin = `${-1 / (totalInSmallRow * 2) * 100}%`;
+  
+  hexGrid.innerHTML = '';
+  
+  data.forEach((hex, index) => {
+    const { column, row } = hex;
+  
+    // create new row wrapping hexagonal cells
+    if (column === 1) {
+      const newRow = document.createElement('div');
+      newRow.className = 'hex-grid__row';
+      newRow.style.marginTop = newRowMargin;
 
-  // create new row wrapping hexagonal cells
-  if (column === 1) {
-    const newRow = document.createElement('div');
-    newRow.className = 'hex-grid__row';
-    newRow.style.marginTop = newRowMargin;
-    if (row % 2 === 0) {
-      newRow.style.width = newBigRowWidth;
-      newRow.style.marginLeft = newBigRowLeftMargin;
+      if (row % 2 === 0) {
+        newRow.style.width = newBigRowWidth;
+        newRow.style.marginLeft = newBigRowLeftMargin;
+      }
+
+      //if (row === 7) newRow.style.marginBottom = newRowMargin; // to refactor !!
+      hexGrid.appendChild(newRow);
     }
-    if (row === 5) newRow.style.marginBottom = newRowMargin; // to refactor !!
-    hexGrid.appendChild(newRow);
-  }
+  
+    const lastRow = hexGrid.lastElementChild;
+    lastRow.appendChild(getCell(hex, totalInBigRow, totalInSmallRow));
+  });
+}
 
-  const lastRow = hexGrid.lastElementChild;
-  lastRow.appendChild(getCell(hex, totalInBigRow, totalInSmallRow));
+// generate hexagonal grid on page load
+isMobile ? generateHexGrid(mobileHexData) : generateHexGrid(desktopHexData);
 
-
-});
-
-const hexPaths = document.querySelectorAll('.cell__blank--labelled path');
-const allCells = document.querySelectorAll('.cell');
-const allLabelledCells = document.querySelectorAll('.cell__blank--labelled');
-const infoSections = document.querySelectorAll('.info');
+// create variables after grid generation
+let hexPaths = document.querySelectorAll('.cell__blank--labelled path');
+let allCells = document.querySelectorAll('.cell');
+let allLabelledCells = document.querySelectorAll('.cell__blank--labelled');
+let infoSections = document.querySelectorAll('.info');
 
 // Events
 
@@ -91,7 +106,7 @@ const infoSections = document.querySelectorAll('.info');
   
       // handle cells appearance
       [...allLabelledCells].forEach(cell =>
-        cell.setAttribute('class', 'cell__blank cell__blank--labelled'));
+        cell.setAttribute('class', 'cell__blank cell__blank--labelled cell__blank--detached'));
       cell.classList.add('active');
       cell.classList.add(`cell__blank--${id}`);
   
@@ -139,3 +154,14 @@ const infoSections = document.querySelectorAll('.info');
 /* window.addEventListener('click', function(e) {
   console.log(e.target);
 }); */
+
+window.addEventListener('resize', function() {
+  if (window.innerWidth < BREAKPOINT && !isMobile) {
+    isMobile = true;
+    generateHexGrid(mobileHexData);
+  }
+  if (window.innerWidth >= BREAKPOINT && isMobile) {
+    isMobile = false;
+    generateHexGrid(desktopHexData);
+  }
+});
