@@ -1,59 +1,47 @@
-.header {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  left: 0;
-  padding: 50px 40px;
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 2;
-
-  &--mobile {
-    display: none;
-  }
-
-  @media only screen and (max-width: 768px) {
-    &--desktop {
-      display: none;
-    }
-    &--mobile {
-      display: flex;
-    }
-  }
- 
-  &__logo {
-    align-items: center;
-    display: flex;
-    fill: #fff;
-    flex-grow: 1;
-    height: 50px;
-    justify-content: start;
-    pointer-events: all;
-    transition: fill 0.15s;
-
-    &:hover {
-      fill: $navy;
-    }
-  }
-
-  &__svg {
-    height: 100%;
-  }
-
-  &__link {
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 500;
-    text-decoration: none;
-    pointer-events: all;
-
-    &:not(:last-child) {
-      margin-right: 50px;
-    }
-  }
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
 }
+ 
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+ 
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: 'Maven Pro', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  height: 100%;
+  min-height: 100vh;
+}
+
+/* svg {
+  width: 100%;
+} */
 
 .wrapper {
   background: $navy;
@@ -66,16 +54,5 @@
     & {
       overflow-y: auto;
     }
-  }
-}
-
-.burger-button {
-  @include button;
-  fill: #fff;
-  pointer-events: all;
-  width: 30px;
-
-  &__svg {
-    width: 100%;
   }
 }
