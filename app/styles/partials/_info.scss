@@ -14,11 +14,11 @@
     visibility: visible;
   }
 
-  @media only screen and (max-width: 768px) {
+/*   @media only screen and (max-width: 768px) {
     & {
       display: none;
     }
-  }
+  } */
 
   &__heading {
     align-self: stretch;

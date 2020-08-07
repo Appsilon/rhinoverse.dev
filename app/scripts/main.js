@@ -1,18 +1,19 @@
 //import { desktopHexData } from './desktopHexData.js';
 //import { mobileHexData } from './mobileHexData.js';
+//import * as packagesData from './packages';
 
 const MAX_GAP = 50;
 const BASE_WIDTH = 10;
 const BREAKPOINT = 768;
 const hexGrid = document.getElementById('hex-grid');
 const menu = document.getElementById('menu');
+const infoWrapper = document.getElementById('wrapper-info');
 const burgerButton = document.getElementById('burger-button');
-let infoSections = document.querySelectorAll('.info');
 let isMobile = window.innerWidth < BREAKPOINT;
 
 const getCellWidth = (total) => `${1 / (total) * 100}%`
 
-// get one hexagonal cell
+// get one hexagonal cell ------------------------------------------------------
 const getCell = (hex, totalInBigRow, totalInSmallRow) => {
   const { column, row, gap, isAnimated, iconId, isDetached } = hex;
   const cell = document.createElement('div');
@@ -90,15 +91,50 @@ const generateHexGrid = (data) => {
   });
 }
 
+// generate info sections
+const generateInfo = () => {
+  
+  libraries.forEach(library => {
+    const { id, heading, paragraphs, repoLink, demoLink } = library;
+    
+    const section = document.createElement('section');
+    section.className = `info info--${id} ${id === 'shiny-semantic' ? 'info--visible' : ''}`
+
+    const title = document.createElement('h2');
+    title.className = 'info__heading';
+    title.textContent = heading;
+    section.appendChild(title);
+
+    paragraphs.forEach(paragraph => {
+      const text = document.createElement('p');
+      text.className = 'info__text';
+      text.textContent = paragraph;
+      section.appendChild(text);
+    });
+
+    const repoButton = document.createElement('a');
+    repoButton.className = `info__button info__button--${id}`;
+    repoButton.href = repoLink;
+    repoButton.target = '_black';
+    repoButton.rel = 'noopener noreferrer';
+    repoButton.textContent = 'Github Repo';
+
+    section.appendChild(repoButton);
+    infoWrapper.appendChild(section);
+  });
+}
+
 // generate hexagonal grid on page load
 isMobile ? generateHexGrid(mobileHexData) : generateHexGrid(desktopHexData);
+generateInfo();
 
 // create variables after grid generation
 let hexPaths = document.querySelectorAll('.cell__blank--labelled path');
 let allCells = document.querySelectorAll('.cell');
+let infoSections = document.querySelectorAll('.info');
 let allLabelledCells = document.querySelectorAll('.cell__blank--labelled');
 
-// Events
+// Events ----------------------------------------------------------------------
 
 [...hexPaths].forEach(path => {
   // on click event
