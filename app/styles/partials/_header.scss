@@ -8,7 +8,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
 
   @media only screen and (min-width: $media-breakpoint) {
     padding: 50px 40px;
@@ -32,22 +32,44 @@
 }
 
 .menu {
-  display: none;
+  @include flex-center;
+  background-color: $navy;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  min-height: 300px;
+  position: fixed;
+  padding-top: 50px;
+  top: 0;
+  transform: translate3d(0, -100%, 0);
+  transition: transform $menu-transition, visibility 0s $menu-transition;
+  visibility: hidden;
+  width: 100%;
+  z-index: -1;
+
+  &--visible {
+    transform: translate3d(0, 0, 0);
+    transition: transform $menu-transition, visibility 0s;
+    visibility: visible;
+  }
 
   @media only screen and (min-width: $media-breakpoint) {
-    display: flex;
+    background: none;
+    flex-direction: row;
+    min-height: auto;
+    padding: 0;
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
   }
 
   &__link {
     color: #fff;
     font-size: 1rem;
     font-weight: 500;
-    text-decoration: none;
+    padding: 10px;
     pointer-events: all;
-
-    &:not(:last-child) {
-      margin-right: 50px;
-    }
+    text-decoration: none;
   }
 }
 
@@ -56,6 +78,10 @@
   fill: #fff;
   pointer-events: all;
   width: 24px;
+
+  &--active {
+    fill: $blue;
+  }
 
   @media only screen and (min-width: $media-breakpoint) {
     display: none;

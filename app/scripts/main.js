@@ -1,10 +1,13 @@
 //import { desktopHexData } from './desktopHexData.js';
 //import { mobileHexData } from './mobileHexData.js';
 
-const hexGrid = document.getElementById('hex-grid');
 const MAX_GAP = 50;
 const BASE_WIDTH = 10;
 const BREAKPOINT = 768;
+const hexGrid = document.getElementById('hex-grid');
+const menu = document.getElementById('menu');
+const burgerButton = document.getElementById('burger-button');
+let infoSections = document.querySelectorAll('.info');
 let isMobile = window.innerWidth < BREAKPOINT;
 
 const getCellWidth = (total) => `${1 / (total) * 100}%`
@@ -92,7 +95,6 @@ isMobile ? generateHexGrid(mobileHexData) : generateHexGrid(desktopHexData);
 let hexPaths = document.querySelectorAll('.cell__blank--labelled path');
 let allCells = document.querySelectorAll('.cell');
 let allLabelledCells = document.querySelectorAll('.cell__blank--labelled');
-let infoSections = document.querySelectorAll('.info');
 
 // Events
 
@@ -164,4 +166,9 @@ window.addEventListener('resize', function() {
     isMobile = false;
     generateHexGrid(desktopHexData);
   }
+});
+
+burgerButton.addEventListener('click', function() {
+  menu.classList.toggle('menu--visible');
+  burgerButton.classList.toggle('burger-button--active');
 });
