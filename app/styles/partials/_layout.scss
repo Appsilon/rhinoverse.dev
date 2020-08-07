@@ -43,8 +43,15 @@
 }
 
 .wrapper {
-  background: $blue;
+  background: $navy;
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  @media only screen and (max-width: 768px) {
+    & {
+      overflow-y: auto;
+    }
+  }
 }

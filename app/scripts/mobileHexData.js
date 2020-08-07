@@ -77,7 +77,7 @@ const mobileHexData = [
   {
     column: 3,
     row: 3,
-    gap: 0.2,
+    gap: 0,
     isAnimated: false,
     iconId: null,
     isDetached: false
@@ -94,7 +94,7 @@ const mobileHexData = [
   {
     column: 2,
     row: 4,
-    gap: 0.25,
+    gap: 0.2,
     isAnimated: false,
     iconId: 'semantic-dashboard',
     isDetached: false
@@ -102,7 +102,7 @@ const mobileHexData = [
   {
     column: 3,
     row: 4,
-    gap: 0.3,
+    gap: 0.2,
     isAnimated: false,
     iconId: null,
     isDetached: false
@@ -110,9 +110,125 @@ const mobileHexData = [
   {
     column: 3,
     row: 4,
-    gap: 0.15,
+    gap: 0,
     isAnimated: false,
     iconId: null,
     isDetached: false
-  }
+  },
+  ////////////////////////////////////////////////////////////////////// 5th row
+  {
+    column: 1,
+    row: 5,
+    gap: 0.35,
+    isAnimated: false,
+    iconId: null,
+    isDetached: false
+  },
+  {
+    column: 2,
+    row: 5,
+    gap: 0.35,
+    isAnimated: false,
+    iconId: 'shiny-info',
+    isDetached: false
+  },
+  {
+    column: 3,
+    row: 5,
+    gap: 0.35,
+    isAnimated: false,
+    iconId: null,
+    isDetached: false
+  },
+  ////////////////////////////////////////////////////////////////////// 6th row
+  {
+    column: 1,
+    row: 6,
+    gap: 0.5,
+    isAnimated: false,
+    iconId: null,
+    isDetached: false
+  },
+  {
+    column: 2,
+    row: 6,
+    gap: 0.5,
+    isAnimated: false,
+    iconId: null,
+    isDetached: false
+  },
+  {
+    column: 3,
+    row: 6,
+    gap: 0.5,
+    isAnimated: false,
+    iconId: 'shiny-router',
+    isDetached: false
+  },
+  {
+    column: 4,
+    row: 6,
+    gap: 0.5,
+    isAnimated: false,
+    iconId: null,
+    isDetached: false
+  },
+  ////////////////////////////////////////////////////////////////////// 7th row
+  {
+    column: 1,
+    row: 7,
+    gap: 0.65,
+    isAnimated: false,
+    iconId: null,
+    isDetached: false
+  },
+  {
+    column: 2,
+    row: 7,
+    gap: 0.65,
+    isAnimated: false,
+    iconId: 'shiny-i18n',
+    isDetached: false
+  },
+  {
+    column: 3,
+    row: 7,
+    gap: 0.65,
+    isAnimated: false,
+    iconId: null,
+    isDetached: false
+  },
+  ////////////////////////////////////////////////////////////////////// 8th row
+  {
+    column: 1,
+    row: 8,
+    gap: 0.8,
+    isAnimated: false,
+    iconId: null,
+    isDetached: false
+  },
+  {
+    column: 2,
+    row: 8,
+    gap: 0.8,
+    isAnimated: false,
+    iconId: null,
+    isDetached: false
+  },
+  {
+    column: 3,
+    row: 8,
+    gap: 0.8,
+    isAnimated: false,
+    iconId: null,
+    isDetached: false
+  },
+  {
+    column: 4,
+    row: 8,
+    gap: 0.8,
+    isAnimated: false,
+    iconId: null,
+    isDetached: false
+  },
 ];
