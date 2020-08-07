@@ -16,6 +16,7 @@ const getCellWidth = (total) => `${1 / (total) * 100}%`
 const getCell = (hex, totalInBigRow, totalInSmallRow) => {
   const { column, row, gap, isAnimated, iconId, isDetached } = hex;
   const cell = document.createElement('div');
+  const cellTitle = iconId ? iconId.replace('-', '.') : '';
   const blankCellClass = `"
     cell__blank
     ${iconId ? ` cell__blank--labelled cell__blank--${iconId}` : ''}
@@ -23,8 +24,8 @@ const getCell = (hex, totalInBigRow, totalInSmallRow) => {
     ${isDetached ? 'cell__blank--detached' : 'cell__blank--attached'}
   "`;
 
-  cell.className = 'cell';
-  cell.style.padding = `${MAX_GAP * gap}px`;
+  cell.className = `cell${iconId ? ' cell--labelled' : ''}`;
+  //cell.style.padding = `${MAX_GAP * gap}px`;
   cell.innerHTML = `
     <svg
       class=${blankCellClass}
@@ -42,7 +43,7 @@ const getCell = (hex, totalInBigRow, totalInSmallRow) => {
         <svg class="cell__logo" viewBox="0 0 200 100">
           <use href="svg/vectors.svg#${iconId}"></use>
         </svg>
-        <p class="cell__title">${iconId}</p>
+        <p class="cell__title">${cellTitle}</p>
       </div>
     `;
     const labelWidth = `${(1 - gap) * (100 - BASE_WIDTH) + BASE_WIDTH}%`;
@@ -80,7 +81,7 @@ const generateHexGrid = (data) => {
         newRow.style.marginLeft = newBigRowLeftMargin;
       }
 
-      //if (row === 7) newRow.style.marginBottom = newRowMargin; // to refactor !!
+      if (row === 8) newRow.style.marginBottom = newRowMargin; // to refactor !!
       hexGrid.appendChild(newRow);
     }
   
@@ -107,11 +108,11 @@ let allLabelledCells = document.querySelectorAll('.cell__blank--labelled');
       const { id } = cell.dataset;
       const currentInfo = document.querySelector(`.info--${id}`);
   
-      // handle cells appearance
-      [...allLabelledCells].forEach(cell =>
-        cell.setAttribute('class', 'cell__blank cell__blank--labelled cell__blank--detached'));
-      cell.classList.add('active');
-      cell.classList.add(`cell__blank--${id}`);
+      // handle cells appearance on desktop
+      if (!isMobile) {
+        [...allLabelledCells].forEach(cell => cell.classList.remove('active'));
+        cell.classList.add('active');
+      }
   
       // handle info section appearance
       [...infoSections].forEach(section => section.classList.remove('info--visible'));
@@ -120,21 +121,11 @@ let allLabelledCells = document.querySelectorAll('.cell__blank--labelled');
   });
   // on mouse over event
   path.addEventListener('mouseover', function(e) {
-    if (this.tagName === 'path') {
-      const cell = this.parentNode;
-      const { id } = cell.dataset;
-  
-      cell.classList.add('hovered');
-    }
+    if (this.tagName === 'path') this.parentNode.classList.add('hovered');
   });
   // on mouse out event
   path.addEventListener('mouseout', function(e) {
-    if (this.tagName === 'path') {
-      const cell = this.parentNode;
-      const { id } = cell.dataset;
-  
-      cell.classList.remove('hovered');
-    }
+    if (this.tagName === 'path') this.parentNode.classList.remove('hovered');
   });
 });
 

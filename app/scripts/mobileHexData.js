@@ -72,7 +72,7 @@ const mobileHexData = [
     gap: 0.1,
     isAnimated: false,
     iconId: 'shiny-semantic',
-    isDetached: false
+    isDetached: true
   },
   {
     column: 3,
@@ -97,7 +97,7 @@ const mobileHexData = [
     gap: 0.2,
     isAnimated: false,
     iconId: 'semantic-dashboard',
-    isDetached: false
+    isDetached: true
   },
   {
     column: 3,
@@ -105,7 +105,7 @@ const mobileHexData = [
     gap: 0.2,
     isAnimated: false,
     iconId: null,
-    isDetached: false
+    isDetached: true
   },
   {
     column: 3,
@@ -122,7 +122,7 @@ const mobileHexData = [
     gap: 0.35,
     isAnimated: false,
     iconId: null,
-    isDetached: false
+    isDetached: true
   },
   {
     column: 2,
@@ -130,7 +130,7 @@ const mobileHexData = [
     gap: 0.35,
     isAnimated: false,
     iconId: 'shiny-info',
-    isDetached: false
+    isDetached: true
   },
   {
     column: 3,
@@ -138,7 +138,7 @@ const mobileHexData = [
     gap: 0.35,
     isAnimated: false,
     iconId: null,
-    isDetached: false
+    isDetached: true
   },
   ////////////////////////////////////////////////////////////////////// 6th row
   {
@@ -147,7 +147,7 @@ const mobileHexData = [
     gap: 0.5,
     isAnimated: false,
     iconId: null,
-    isDetached: false
+    isDetached: true
   },
   {
     column: 2,
@@ -155,7 +155,7 @@ const mobileHexData = [
     gap: 0.5,
     isAnimated: false,
     iconId: null,
-    isDetached: false
+    isDetached: true
   },
   {
     column: 3,
@@ -163,7 +163,7 @@ const mobileHexData = [
     gap: 0.5,
     isAnimated: false,
     iconId: 'shiny-router',
-    isDetached: false
+    isDetached: true
   },
   {
     column: 4,
@@ -171,7 +171,7 @@ const mobileHexData = [
     gap: 0.5,
     isAnimated: false,
     iconId: null,
-    isDetached: false
+    isDetached: true
   },
   ////////////////////////////////////////////////////////////////////// 7th row
   {
@@ -180,7 +180,7 @@ const mobileHexData = [
     gap: 0.65,
     isAnimated: false,
     iconId: null,
-    isDetached: false
+    isDetached: true
   },
   {
     column: 2,
@@ -188,7 +188,7 @@ const mobileHexData = [
     gap: 0.65,
     isAnimated: false,
     iconId: 'shiny-i18n',
-    isDetached: false
+    isDetached: true
   },
   {
     column: 3,
@@ -196,7 +196,7 @@ const mobileHexData = [
     gap: 0.65,
     isAnimated: false,
     iconId: null,
-    isDetached: false
+    isDetached: true
   },
   ////////////////////////////////////////////////////////////////////// 8th row
   {
@@ -205,7 +205,7 @@ const mobileHexData = [
     gap: 0.8,
     isAnimated: false,
     iconId: null,
-    isDetached: false
+    isDetached: true
   },
   {
     column: 2,
@@ -213,7 +213,7 @@ const mobileHexData = [
     gap: 0.8,
     isAnimated: false,
     iconId: null,
-    isDetached: false
+    isDetached: true
   },
   {
     column: 3,
@@ -221,7 +221,7 @@ const mobileHexData = [
     gap: 0.8,
     isAnimated: false,
     iconId: null,
-    isDetached: false
+    isDetached: true
   },
   {
     column: 4,
@@ -229,6 +229,6 @@ const mobileHexData = [
     gap: 0.8,
     isAnimated: false,
     iconId: null,
-    isDetached: false
+    isDetached: true
   },
 ];
