@@ -17,7 +17,8 @@ const getCell = (hex, totalInBigRow, totalInSmallRow) => {
   const { column, row, gap, isAnimated, iconId, isDetached } = hex;
   const cell = document.createElement('div');
   const blankCellClass = `"
-    cell__blank${iconId ? ' cell__blank--labelled' : ''}
+    cell__blank
+    ${iconId ? ` cell__blank--labelled cell__blank--${iconId}` : ''}
     ${iconId === 'shiny-semantic' ? 'cell__blank--shiny-semantic active' : ''}
     ${isDetached ? 'cell__blank--detached' : 'cell__blank--attached'}
   "`;
@@ -123,7 +124,7 @@ let allLabelledCells = document.querySelectorAll('.cell__blank--labelled');
       const cell = this.parentNode;
       const { id } = cell.dataset;
   
-      cell.classList.add(`cell__blank--${id}`);
+      cell.classList.add('hovered');
     }
   });
   // on mouse out event
@@ -132,9 +133,7 @@ let allLabelledCells = document.querySelectorAll('.cell__blank--labelled');
       const cell = this.parentNode;
       const { id } = cell.dataset;
   
-      if (!cell.classList.contains('active')) {
-        cell.classList.remove(`cell__blank--${id}`);
-      }
+      cell.classList.remove('hovered');
     }
   });
 });

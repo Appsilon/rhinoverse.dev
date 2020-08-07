@@ -43,11 +43,29 @@
         pointer-events: all;
       }
 
-      &--shiny-semantic { fill: $color-shiny-semantic; };
-      &--semantic-dashboard { fill: $color-semantic-dashboard; };
-      &--shiny-info { fill: $color-shiny-info; };
-      &--shiny-router { fill: $color-shiny-router; };
-      &--shiny-i18n { fill: $color-shiny-i18n; };
+      $packages: (
+        'shiny-semantic': $color-shiny-semantic,
+        'semantic-dashboard': $color-semantic-dashboard,
+        'shiny-info': $color-shiny-info,
+        'shiny-router': $color-shiny-router,
+        'shiny-i18n': $color-shiny-i18n
+      );
+
+      @each $name, $color in $packages {        
+        &--#{$name} {
+          fill: $color;
+  
+          @media only screen and (min-width: $media-breakpoint) {
+            & {
+              fill: $blue;
+              &.active,
+              &.hovered {
+                fill: $color;
+              }
+            }
+          }
+        }
+      }
     }
 
     &__label {

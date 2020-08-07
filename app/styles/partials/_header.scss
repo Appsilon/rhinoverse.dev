@@ -61,13 +61,14 @@
     position: relative;
     transform: translate3d(0, 0, 0);
     visibility: visible;
+    width: auto;
   }
 
   &__link {
     color: #fff;
     font-size: 1rem;
     font-weight: 500;
-    padding: 10px;
+    padding: 10px 20px;
     pointer-events: all;
     text-decoration: none;
   }
