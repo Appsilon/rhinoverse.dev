@@ -59,9 +59,9 @@
   }
 
   &__description {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
     padding: 60px 30px;
 
     @media only screen and (min-width: 768px) {
@@ -88,15 +88,14 @@
       border-bottom: 3px solid #fff;
       font-size: 2.5rem;
       padding-bottom: 1rem;
-      margin-bottom: 1.5rem;
-      
+      margin-bottom: 1.5rem;      
     }
   }
 
   &__text {
     color: #000;
     font-size: 1rem;
-    margin-bottom: 1rem;
+    grid-column: 1 / span 2;
     padding: 0;
 
     @media only screen and (min-width: 768px) {
@@ -106,11 +105,13 @@
 
   &__button {
     @include button;
+    @include flex-center;
     color: #fff;
     font-weight: 700;
     font-size: 1.1rem;
     margin-top: 1rem;
     padding: 1rem 2rem;
+    text-align: center;
     text-decoration: none;
     text-transform: uppercase;
 

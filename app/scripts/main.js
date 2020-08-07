@@ -132,17 +132,24 @@ const generateInfo = () => {
       description.appendChild(text);
     });
     const repoButton = document.createElement('a');
-    repoButton.className = `info__button info__button--${id}`;
+    repoButton.className = `info__button info__button--${id} info__button--repo`;
     repoButton.href = repoLink;
     repoButton.target = '_black';
     repoButton.rel = 'noopener noreferrer';
     repoButton.textContent = 'Github Repo';
 
+    const demoButton = document.createElement('a');
+    demoButton.className = `info__button info__button--${id} info__button--demo`;
+    demoButton.href = demoLink;
+    demoButton.target = '_black';
+    demoButton.rel = 'noopener noreferrer';
+    demoButton.textContent = 'Demo';
+
     const backButton = document.createElement('button');
     backButton.className = `info__button info__button--${id} info__button--back`;
     backButton.textContent = 'Go Back';
 
-    description.append(repoButton, backButton);
+    description.append(repoButton, demoButton, backButton);
     section.append(hero, description);
     infoWrapper.appendChild(section);
   });
