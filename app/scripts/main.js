@@ -138,7 +138,11 @@ const generateInfo = () => {
     repoButton.rel = 'noopener noreferrer';
     repoButton.textContent = 'Github Repo';
 
-    description.appendChild(repoButton);
+    const backButton = document.createElement('button');
+    backButton.className = `info__button info__button--${id} info__button--back`;
+    backButton.textContent = 'Go Back';
+
+    description.append(repoButton, backButton);
     section.append(hero, description);
     infoWrapper.appendChild(section);
   });
@@ -154,6 +158,7 @@ let hexPaths = document.querySelectorAll('.cell__blank--labelled path');
 let allCells = document.querySelectorAll('.cell');
 let infoSections = document.querySelectorAll('.info');
 let allLabelledCells = document.querySelectorAll('.cell__blank--labelled');
+const backButtons = document.querySelectorAll('.info__button--back');
 
 // Events ----------------------------------------------------------------------
 
@@ -203,6 +208,11 @@ burgerButton.addEventListener('click', function() {
   menu.classList.toggle('menu--visible');
   burgerButton.classList.toggle('burger-button--active');
 });
+
+[...backButtons].forEach(button => button.addEventListener('click', function() {
+  const infoSection = this.parentNode.parentNode;
+  infoSection.classList.remove('info--visible');
+}));
 
 
 

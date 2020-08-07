@@ -10,7 +10,7 @@
   top: 0;
   visibility: hidden;
   width: 100%;
-  z-index: 3;
+  z-index: 2;
 
   &--visible {
     visibility: visible;
@@ -42,7 +42,8 @@
     @include flex-center;
     background-color: #fff;
     flex-direction: column;
-    padding: 60px 30px;
+    padding: 30px;
+    padding-top: 70px;
     width: 100%;
 
     &--shiny-semantic { background-color: $color-shiny-semantic; }
@@ -104,6 +105,7 @@
   }
 
   &__button {
+    @include button;
     color: #fff;
     font-weight: 700;
     font-size: 1.1rem;
@@ -117,20 +119,11 @@
     &--shiny-info { background-color: $color-shiny-info; }
     &--shiny-router { background-color: $color-shiny-router; }
     &--shiny-i18n { background-color: $color-shiny-i18n; }
-  }
-}
 
-.close-button {
-  @include button;
-  position: fixed;
-  top: 50px;
-  right: 0;
-  stroke: #fff;
-  stroke-width: 10;
-  width: 50px;
-  z-index: 3;
-
-  &__svg {
-    width: 100%;
+    @media only screen and (min-width: 768px) {
+      &--back {
+        display: none;
+      }
+    }
   }
 }
