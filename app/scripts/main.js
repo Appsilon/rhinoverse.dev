@@ -34,7 +34,7 @@ const getCell = (hex, totalInBigRow, totalInSmallRow) => {
   if (iconId) {
     cell.innerHTML += `
       <div class="cell__label">
-        <svg class="cell__logo" viewBox="0 0 100 100">
+        <svg class="cell__logo" viewBox="0 0 200 100">
           <use href="svg/vectors.svg#${iconId}"></use>
         </svg>
         <p class="cell__title">${iconId}</p>
