@@ -1,38 +1,106 @@
 .info {
   align-items: flex-start;
-  bottom: 100px;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
-  left: 150px;
-  max-width: 400px;
+  height: 100%;
+  left: 0;
+  overflow-y: auto;
   position: fixed;
+  top: 0;
   visibility: hidden;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
 
   &--visible {
     visibility: visible;
   }
 
-/*   @media only screen and (max-width: 768px) {
+  @media only screen and (min-width: 768px) {
     & {
+      align-items: flex-start;
+      background: none;
+      bottom: 100px;
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      left: 150px;
+      max-width: 400px;
+      position: fixed;
+      top: auto;
+      visibility: hidden;
+      width: 100%;
+      z-index: 2;
+
+      &--visible {
+        visibility: visible;
+      }
+    }
+  }
+
+  &__hero {
+    @include flex-center;
+    background-color: #fff;
+    flex-direction: column;
+    padding: 60px 30px;
+    width: 100%;
+
+    &--shiny-semantic { background-color: $color-shiny-semantic; }
+    &--semantic-dashboard { background-color: $color-semantic-dashboard; }
+    &--shiny-info { background-color: $color-shiny-info; }
+    &--shiny-router { background-color: $color-shiny-router; }
+    &--shiny-i18n { background-color: $color-shiny-i18n; }
+
+    @media only screen and (min-width: 768px) {
+      background: none;
+      padding: 0;
+    }
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 60px 30px;
+
+    @media only screen and (min-width: 768px) {
+      padding: 0;
+    }
+  }
+
+  &__svg {
+    fill: #fff;
+    max-width: 250px;
+    width: 100%;
+
+    @media only screen and (min-width: 768px) {
       display: none;
     }
-  } */
+  }
 
   &__heading {
-    align-self: stretch;
-    border-bottom: 3px solid #fff;
-    font-size: 2.5rem;
+    font-size: 1.3rem;
     font-weight: 500;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
+
+    @media only screen and (min-width: 768px) {
+      align-self: stretch;
+      border-bottom: 3px solid #fff;
+      font-size: 2.5rem;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      
+    }
   }
 
   &__text {
+    color: #000;
     font-size: 1rem;
     margin-bottom: 1rem;
     padding: 0;
+
+    @media only screen and (min-width: 768px) {
+      color: #fff;
+    }
   }
 
   &__button {
@@ -49,5 +117,20 @@
     &--shiny-info { background-color: $color-shiny-info; }
     &--shiny-router { background-color: $color-shiny-router; }
     &--shiny-i18n { background-color: $color-shiny-i18n; }
+  }
+}
+
+.close-button {
+  @include button;
+  position: fixed;
+  top: 50px;
+  right: 0;
+  stroke: #fff;
+  stroke-width: 10;
+  width: 50px;
+  z-index: 3;
+
+  &__svg {
+    width: 100%;
   }
 }

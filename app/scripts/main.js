@@ -91,27 +91,46 @@ const generateHexGrid = (data) => {
   });
 }
 
-// generate info sections
+const handleInfoVisibility = () => {
+  const firstInfoSection = document.querySelector('.info');
+  isMobile
+  ? firstInfoSection.classList.remove('info--visible')
+  : firstInfoSection.classList.add('info--visible');
+}
+
+// generate info sections ------------------------------------------------------
 const generateInfo = () => {
   
   libraries.forEach(library => {
     const { id, heading, paragraphs, repoLink, demoLink } = library;
     
     const section = document.createElement('section');
-    section.className = `info info--${id} ${id === 'shiny-semantic' ? 'info--visible' : ''}`
+    section.className = `info info--${id}`
 
+    // hero section
+    const hero = document.createElement('div');
+    hero.className = `info__hero info__hero--${id}`;
+    const svg = document.createElement('svg');
+    svg.innerHTML = `
+      <svg class="cell__logo" viewBox="0 0 200 100">
+        <use href="svg/vectors.svg#${id}"></use>
+      </svg>
+    `;
+    svg.className = 'info__svg';
     const title = document.createElement('h2');
     title.className = 'info__heading';
     title.textContent = heading;
-    section.appendChild(title);
+    hero.append(svg, title);
 
+    // description section
+    const description = document.createElement('div');
+    description.className = 'info__description';
     paragraphs.forEach(paragraph => {
       const text = document.createElement('p');
       text.className = 'info__text';
       text.textContent = paragraph;
-      section.appendChild(text);
+      description.appendChild(text);
     });
-
     const repoButton = document.createElement('a');
     repoButton.className = `info__button info__button--${id}`;
     repoButton.href = repoLink;
@@ -119,7 +138,8 @@ const generateInfo = () => {
     repoButton.rel = 'noopener noreferrer';
     repoButton.textContent = 'Github Repo';
 
-    section.appendChild(repoButton);
+    description.appendChild(repoButton);
+    section.append(hero, description);
     infoWrapper.appendChild(section);
   });
 }
@@ -127,6 +147,7 @@ const generateInfo = () => {
 // generate hexagonal grid on page load
 isMobile ? generateHexGrid(mobileHexData) : generateHexGrid(desktopHexData);
 generateInfo();
+handleInfoVisibility()
 
 // create variables after grid generation
 let hexPaths = document.querySelectorAll('.cell__blank--labelled path');
@@ -165,6 +186,26 @@ let allLabelledCells = document.querySelectorAll('.cell__blank--labelled');
   });
 });
 
+window.addEventListener('resize', function() {
+  if (window.innerWidth < BREAKPOINT && !isMobile) {
+    isMobile = true;
+    generateHexGrid(mobileHexData);
+    handleInfoVisibility();
+  }
+  if (window.innerWidth >= BREAKPOINT && isMobile) {
+    isMobile = false;
+    generateHexGrid(desktopHexData);
+    handleInfoVisibility();
+  }
+});
+
+burgerButton.addEventListener('click', function() {
+  menu.classList.toggle('menu--visible');
+  burgerButton.classList.toggle('burger-button--active');
+});
+
+
+
 /* [...allCells].forEach(cell => {
   cell.addEventListener('mouseover', function() {
     //this.firstElementChild.style.padding = '10px';
@@ -182,19 +223,3 @@ let allLabelledCells = document.querySelectorAll('.cell__blank--labelled');
 /* window.addEventListener('click', function(e) {
   console.log(e.target);
 }); */
-
-window.addEventListener('resize', function() {
-  if (window.innerWidth < BREAKPOINT && !isMobile) {
-    isMobile = true;
-    generateHexGrid(mobileHexData);
-  }
-  if (window.innerWidth >= BREAKPOINT && isMobile) {
-    isMobile = false;
-    generateHexGrid(desktopHexData);
-  }
-});
-
-burgerButton.addEventListener('click', function() {
-  menu.classList.toggle('menu--visible');
-  burgerButton.classList.toggle('burger-button--active');
-});

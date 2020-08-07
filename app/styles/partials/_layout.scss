@@ -39,20 +39,15 @@ body {
   min-height: 100vh;
 }
 
-/* svg {
-  width: 100%;
-} */
-
 .wrapper {
   background: $blue;
   height: 100%;
   width: 100%;
   overflow-x: hidden;
-  overflow-y: hidden;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (min-width: 768px) {
     & {
-      overflow-y: auto;
+      overflow-y: hidden;
     }
   }
 }
