@@ -120,7 +120,7 @@ const generateInfo = () => {
       </svg>
     `;
     svg.className = 'info__svg';
-    const title = document.createElement('h2');
+    const title = document.createElement('h3');
     title.className = 'info__heading';
     title.textContent = heading;
     hero.append(svg, title);

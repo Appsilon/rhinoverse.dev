@@ -24,8 +24,8 @@
       display: flex;
       flex-direction: column;
       height: auto;
-      left: 150px;
-      max-width: 400px;
+      left: $info-left-offset;
+      max-width: $info-max-width;
       position: fixed;
       top: auto;
       visibility: hidden;

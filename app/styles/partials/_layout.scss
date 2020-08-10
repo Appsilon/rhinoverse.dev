@@ -42,12 +42,32 @@ body {
 .wrapper {
   background: $blue;
   height: 100%;
-  width: 100%;
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
 
   @media only screen and (min-width: 768px) {
     & {
       overflow-y: hidden;
+    }
+  }
+
+  &__title {
+    font-size: 4.5vw;
+    font-weight: 500;
+    left: 0;
+    position: absolute;
+    padding: 0 30px;
+    top: 27vw;
+    opacity: 0.8;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+
+    @media only screen and (min-width: 768px) {
+      & {
+        display: none;
+      }
     }
   }
 }

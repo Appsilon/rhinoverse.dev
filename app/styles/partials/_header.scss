@@ -1,9 +1,10 @@
 .header {
   align-items: center;
+  background-color: $blue;
   display: flex;
   justify-content: space-between;
   left: 0;
-  padding: 20px;
+  padding: 10px 20px;
   pointer-events: none;
   position: fixed;
   top: 0;
@@ -11,15 +12,20 @@
   z-index: 3;
 
   @media only screen and (min-width: $media-breakpoint) {
+    background: none;
     padding: 50px 40px;
   }
  
   &__logo {
     @include flex-center;
     fill: #fff;
-    height: 40px;
+    height: 35px;
     pointer-events: all;
     transition: fill $hover-transition;
+
+    @media only screen and (min-width: $media-breakpoint) {
+      height: 40px;
+    }
 
     &:hover {
       fill: $navy;
@@ -78,7 +84,7 @@
   @include button;
   fill: #fff;
   pointer-events: all;
-  width: 24px;
+  width: 18px;
 
   &--active {
     fill: $blue;
