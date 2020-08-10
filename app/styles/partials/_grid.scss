@@ -64,23 +64,14 @@ $packages: (
       @each $name, $color in $packages {
         &--#{$name} {
 
+          &.active,
+          &.hovered {
+            fill: $color;
+          }
+
           @media only screen and (max-width: $media-breakpoint) {
             
             fill: $color;
-            &.active,
-            &.hovered {
-              fill: $color;
-            }
-          }
-
-
-    
-          @media only screen and (min-width: $media-breakpoint) {
-            
-            &.active,
-            &.hovered {
-              fill: $color;
-            }
           }
         }
       }

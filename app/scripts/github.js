@@ -1,4 +1,4 @@
-const getStarsTotal = (repos, library) => {
+const getStarsTotal = (repos) => {
   
   const libs = [
     'shiny.semantic',
@@ -8,16 +8,19 @@ const getStarsTotal = (repos, library) => {
     'shiny.i18n'
   ];
 
-  const opensourceRepos = libs.map(lib => repos.find(repo => repo.name === lib));
+  // get an array of repositories specified above
+  const opensourceRepos = libs.map(lib => repos.find(repo => repo.name === lib) || lib);
 
+  // create nodes with fetched values in info sections
   opensourceRepos.forEach(repo => {
-    if (repo) {
+    if (repo.name) {
       const repoId = repo.name.replace('.', '-');
-      const starsOutput = document.querySelector(`.info__stars--${repoId}`);
+      const starsOutput = document.querySelector(`.stars--${repoId} .stars__output`);
       starsOutput.innerHTML = repo.stargazers_count;
-      
     } else {
-
+      const repoId = repo.replace('.', '-');
+      const stars = document.querySelector(`.stars--${repoId}`);
+      stars.classList.add('stars--hidden');
     }
   });
 }

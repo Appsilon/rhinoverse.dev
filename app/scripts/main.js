@@ -141,8 +141,20 @@ const generateInfo = () => {
       texts.appendChild(text);
     });
 
-    const githubStars = document.createElement('div');
-    githubStars.className = `info__stars info__stars--${id}`;
+    // github stars section
+    const stars = document.createElement('div');
+    const starsLabel = document.createElement('p');
+    const starsOutput = document.createElement('p');
+    const starsSvg = document.createElement('svg');
+    starsSvg.innerHTML = `
+      <svg class="stars__svg" viewBox="0 0 100 100">
+        <use href="svg/vectors.svg#star"></use>
+      </svg>
+    `;
+    stars.className = `stars stars--${id}`;
+    starsLabel.className = 'stars__label';
+    starsOutput.className = 'stars__output';
+    starsLabel.textContent = 'Github Stars';
 
     const repoButton = document.createElement('a');
     repoButton.className = `info__button info__button--${id} info__button--github`;
@@ -162,7 +174,8 @@ const generateInfo = () => {
     backButton.className = `info__button info__button--${id} info__button--back`;
     backButton.textContent = 'Back';
 
-    description.append(texts, githubStars, repoButton, demoButton, backButton);
+    stars.append(starsLabel, starsOutput, starsSvg);
+    description.append(texts, stars, repoButton, demoButton, backButton);
     section.append(hero, description);
     infoWrapper.appendChild(section);
   });
