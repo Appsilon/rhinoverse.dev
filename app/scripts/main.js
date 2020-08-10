@@ -141,6 +141,9 @@ const generateInfo = () => {
       texts.appendChild(text);
     });
 
+    const githubStars = document.createElement('div');
+    githubStars.className = `info__stars info__stars--${id}`;
+
     const repoButton = document.createElement('a');
     repoButton.className = `info__button info__button--${id} info__button--github`;
     repoButton.href = repoLink;
@@ -159,7 +162,7 @@ const generateInfo = () => {
     backButton.className = `info__button info__button--${id} info__button--back`;
     backButton.textContent = 'Back';
 
-    description.append(texts, repoButton, demoButton, backButton);
+    description.append(texts, githubStars, repoButton, demoButton, backButton);
     section.append(hero, description);
     infoWrapper.appendChild(section);
   });
