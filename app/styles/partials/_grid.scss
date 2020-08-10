@@ -90,13 +90,16 @@
 
     &__title {
       color: #fff;
-      font-weight: 500;
-      font-size: 0.8rem;
+      font-weight: 400;
+      font-size: 3.5vw;
       margin-top: 0.5rem;
       text-align: center;
       width: 80%;
       z-index: 2;
-      word-wrap: normal;
+
+      & > span {
+        display: inline-block;
+      }
   
       @media only screen and (min-width: $media-breakpoint) {
         & {

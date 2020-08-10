@@ -12,6 +12,9 @@ const burgerButton = document.getElementById('burger-button');
 let isMobile = window.innerWidth < BREAKPOINT;
 
 const getCellWidth = (total) => `${1 / (total) * 100}%`
+const getSpannedTitle = (title) => {
+  return title.split('.').map(span => `<span>${span}</span>`).join('.');
+}
 
 // get one hexagonal cell ------------------------------------------------------
 const getCell = (hex, totalInBigRow, totalInSmallRow) => {
@@ -44,7 +47,7 @@ const getCell = (hex, totalInBigRow, totalInSmallRow) => {
         <svg class="cell__logo" viewBox="0 0 200 100">
           <use href="svg/vectors.svg#${iconId}"></use>
         </svg>
-        <p class="cell__title">${cellTitle}</p>
+        <p class="cell__title">${getSpannedTitle(cellTitle)}</p>
       </div>
     `;
     const labelWidth = `${(1 - gap) * (100 - BASE_WIDTH) + BASE_WIDTH}%`;
