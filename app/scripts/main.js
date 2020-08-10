@@ -18,7 +18,7 @@ const getSpannedTitle = (title) => {
 
 // get one hexagonal cell ------------------------------------------------------
 const getCell = (hex, totalInBigRow, totalInSmallRow) => {
-  const { column, row, gap, isAnimated, iconId, isDetached } = hex;
+  const { row, gap, iconId, isDetached, zPosition } = hex;
   const cell = document.createElement('div');
   const cellTitle = iconId ? iconId.replace('-', '.') : '';
   const blankCellClass = `"
@@ -26,6 +26,7 @@ const getCell = (hex, totalInBigRow, totalInSmallRow) => {
     ${iconId ? ` cell__blank--labelled cell__blank--${iconId}` : ''}
     ${iconId === 'shiny-semantic' ? 'cell__blank--shiny-semantic active' : ''}
     ${isDetached ? 'cell__blank--detached' : 'cell__blank--attached'}
+    ${zPosition ? `cell__blank--${zPosition}` : ''}
   "`;
 
   cell.className = `cell${iconId ? ' cell--labelled' : ''}`;

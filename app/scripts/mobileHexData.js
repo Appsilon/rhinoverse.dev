@@ -4,7 +4,6 @@ const mobileHexData = [
     column: 1,
     row: 1,
     gap: 0,
-    isAnimated: false,
     iconId: null,
     isDetached: false
   },
@@ -12,7 +11,6 @@ const mobileHexData = [
     column: 2,
     row: 1,
     gap: 0,
-    isAnimated: false,
     iconId: null,
     isDetached: false
   },
@@ -20,7 +18,6 @@ const mobileHexData = [
     column: 3,
     row: 1,
     gap: 0,
-    isAnimated: false,
     iconId: null,
     isDetached: false
   },
@@ -29,7 +26,6 @@ const mobileHexData = [
     column: 1,
     row: 2,
     gap: 0,
-    isAnimated: false,
     iconId: null,
     isDetached: false
   },
@@ -37,7 +33,6 @@ const mobileHexData = [
     column: 2,
     row: 2,
     gap: 0,
-    isAnimated: false,
     iconId: null,
     isDetached: false
   },
@@ -45,7 +40,6 @@ const mobileHexData = [
     column: 3,
     row: 2,
     gap: 0,
-    isAnimated: false,
     iconId: null,
     isDetached: false
   },
@@ -53,7 +47,6 @@ const mobileHexData = [
     column: 4,
     row: 2,
     gap: 0,
-    isAnimated: false,
     iconId: null,
     isDetached: false
   },
@@ -62,7 +55,6 @@ const mobileHexData = [
     column: 1,
     row: 3,
     gap: 0,
-    isAnimated: false,
     iconId: null,
     isDetached: false
   },
@@ -70,15 +62,14 @@ const mobileHexData = [
     column: 2,
     row: 3,
     gap: 0.1,
-    isAnimated: false,
     iconId: 'shiny-semantic',
-    isDetached: true
+    isDetached: true,
+    zPosition: 'under1'
   },
   {
     column: 3,
     row: 3,
     gap: 0,
-    isAnimated: false,
     iconId: null,
     isDetached: false
   },
@@ -87,7 +78,6 @@ const mobileHexData = [
     column: 1,
     row: 4,
     gap: 0,
-    isAnimated: false,
     iconId: null,
     isDetached: false
   },
@@ -95,23 +85,22 @@ const mobileHexData = [
     column: 2,
     row: 4,
     gap: 0.2,
-    isAnimated: false,
     iconId: 'semantic-dashboard',
-    isDetached: true
+    isDetached: true,
+    zPosition: 'under2'
   },
   {
     column: 3,
     row: 4,
     gap: 0.2,
-    isAnimated: false,
     iconId: null,
-    isDetached: true
+    isDetached: true,
+    zPosition: 'under2'
   },
   {
     column: 3,
     row: 4,
     gap: 0,
-    isAnimated: false,
     iconId: null,
     isDetached: false
   },
@@ -120,115 +109,115 @@ const mobileHexData = [
     column: 1,
     row: 5,
     gap: 0.35,
-    isAnimated: false,
     iconId: null,
-    isDetached: true
+    isDetached: true,
+    zPosition: 'under2'
   },
   {
     column: 2,
     row: 5,
     gap: 0.35,
-    isAnimated: false,
     iconId: 'shiny-info',
-    isDetached: true
+    isDetached: true,
+    zPosition: 'under3'
   },
   {
     column: 3,
     row: 5,
     gap: 0.35,
-    isAnimated: false,
     iconId: null,
-    isDetached: true
+    isDetached: true,
+    zPosition: 'under2'
   },
   ////////////////////////////////////////////////////////////////////// 6th row
   {
     column: 1,
     row: 6,
     gap: 0.5,
-    isAnimated: false,
     iconId: null,
-    isDetached: true
+    isDetached: true,
+    zPosition: 'under2'
   },
   {
     column: 2,
     row: 6,
     gap: 0.5,
-    isAnimated: false,
     iconId: null,
-    isDetached: true
+    isDetached: true,
+    zPosition: 'under3'
   },
   {
     column: 3,
     row: 6,
     gap: 0.5,
-    isAnimated: false,
     iconId: 'shiny-router',
-    isDetached: true
+    isDetached: true,
+    zPosition: 'under3'
   },
   {
     column: 4,
     row: 6,
     gap: 0.5,
-    isAnimated: false,
     iconId: null,
-    isDetached: true
+    isDetached: true,
+    zPosition: 'under2'
   },
   ////////////////////////////////////////////////////////////////////// 7th row
   {
     column: 1,
     row: 7,
     gap: 0.65,
-    isAnimated: false,
     iconId: null,
-    isDetached: true
+    isDetached: true,
+    zPosition: 'under3'
   },
   {
     column: 2,
     row: 7,
     gap: 0.65,
-    isAnimated: false,
     iconId: 'shiny-i18n',
-    isDetached: true
+    isDetached: true,
+    zPosition: 'under4'
   },
   {
     column: 3,
     row: 7,
     gap: 0.65,
-    isAnimated: false,
     iconId: null,
-    isDetached: true
+    isDetached: true,
+    zPosition: 'under3'
   },
   ////////////////////////////////////////////////////////////////////// 8th row
   {
     column: 1,
     row: 8,
     gap: 0.8,
-    isAnimated: false,
     iconId: null,
-    isDetached: true
+    isDetached: true,
+    zPosition: 'under3'
   },
   {
     column: 2,
     row: 8,
     gap: 0.8,
-    isAnimated: false,
     iconId: null,
-    isDetached: true
+    isDetached: true,
+    zPosition: 'under4'
   },
   {
     column: 3,
     row: 8,
     gap: 0.8,
-    isAnimated: false,
     iconId: null,
-    isDetached: true
+    isDetached: true,
+    zPosition: 'under4'
   },
   {
     column: 4,
     row: 8,
     gap: 0.8,
-    isAnimated: false,
     iconId: null,
-    isDetached: true
+    isDetached: true,
+    zPosition: 'under3'
   },
 ];
