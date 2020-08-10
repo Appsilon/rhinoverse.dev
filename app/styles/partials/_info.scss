@@ -60,9 +60,12 @@
 
   &__description {
     display: grid;
-    gap: 20px;
+    column-gap: 15px;
     grid-template-columns: repeat(2, 1fr);
-    padding: 60px 30px;
+    grid-template-rows: auto auto 1fr;
+    height: 100%;
+    padding: 30px;
+    width: 100%;
 
     @media only screen and (min-width: 768px) {
       padding: 0;
@@ -92,34 +95,90 @@
     }
   }
 
-  &__text {
-    color: #000;
+  &__texts {
+    color: $navy;
     font-size: 1rem;
     grid-column: 1 / span 2;
-    padding: 0;
+    margin-top: 1.5rem;
+    padding-bottom: 2rem;
+    text-align: left;
 
     @media only screen and (min-width: 768px) {
       color: #fff;
     }
   }
 
+  &__text:first-child {
+    font-weight: 500;
+  }
+
+  &__text:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
   &__button {
     @include button;
     @include flex-center;
+    border: 2px solid #fff;
     color: #fff;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-top: 1rem;
-    padding: 1rem 2rem;
+    padding: 0.7rem 2rem;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
+    transition: background-color $hover-transition, border-color $hover-transition;
 
-    &--shiny-semantic { background-color: $color-shiny-semantic; }
-    &--semantic-dashboard { background-color: $color-semantic-dashboard; }
-    &--shiny-info { background-color: $color-shiny-info; }
-    &--shiny-router { background-color: $color-shiny-router; }
-    &--shiny-i18n { background-color: $color-shiny-i18n; }
+    @media only screen and (min-width: 768px) {
+      padding: 0.8rem 2rem;
+    }
+
+    $packages: (
+      'shiny-semantic': $color-shiny-semantic,
+      'semantic-dashboard': $color-semantic-dashboard,
+      'shiny-info': $color-shiny-info,
+      'shiny-router': $color-shiny-router,
+      'shiny-i18n': $color-shiny-i18n
+    );
+
+    @each $name, $color in $packages {
+      &--#{$name}.info__button--github {
+        background-color: $color;
+        border-color: transparent;
+
+        @media only screen and (min-width: 768px) {
+          background-color: $color;
+        }
+      }
+
+      &--#{$name}.info__button--demo {
+        border-color: $color;
+        color: $color;
+
+        @media only screen and (min-width: 768px) {
+          border-color: #fff;
+          color: #fff;
+        }
+      }
+
+      /* &--#{$name}.info__button--back {
+        border-bottom-color: $color;
+        color: $color;
+      } */
+    }
+
+    &--back {
+      align-self: end;
+      border-color: $gray-light;
+      color: $gray-light;
+      grid-column: 1 / span 2;
+    }
+
+    &:hover {
+      border: none;
+      background-color: $navy;
+    }
 
     @media only screen and (min-width: 768px) {
       &--back {

@@ -125,18 +125,24 @@ const generateInfo = () => {
     // description section
     const description = document.createElement('div');
     description.className = 'info__description';
+
+    // text section
+    const texts = document.createElement('div');
+    texts.className = 'info__texts';
+
     paragraphs.forEach(paragraph => {
       const text = document.createElement('p');
       text.className = 'info__text';
       text.textContent = paragraph;
-      description.appendChild(text);
+      texts.appendChild(text);
     });
+
     const repoButton = document.createElement('a');
-    repoButton.className = `info__button info__button--${id} info__button--repo`;
+    repoButton.className = `info__button info__button--${id} info__button--github`;
     repoButton.href = repoLink;
     repoButton.target = '_black';
     repoButton.rel = 'noopener noreferrer';
-    repoButton.textContent = 'Github Repo';
+    repoButton.textContent = 'Github';
 
     const demoButton = document.createElement('a');
     demoButton.className = `info__button info__button--${id} info__button--demo`;
@@ -147,9 +153,9 @@ const generateInfo = () => {
 
     const backButton = document.createElement('button');
     backButton.className = `info__button info__button--${id} info__button--back`;
-    backButton.textContent = 'Go Back';
+    backButton.textContent = 'Back';
 
-    description.append(repoButton, demoButton, backButton);
+    description.append(texts, repoButton, demoButton, backButton);
     section.append(hero, description);
     infoWrapper.appendChild(section);
   });

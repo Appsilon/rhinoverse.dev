@@ -19,7 +19,7 @@
     fill: #fff;
     height: 40px;
     pointer-events: all;
-    transition: fill 0.15s;
+    transition: fill $hover-transition;
 
     &:hover {
       fill: $navy;
