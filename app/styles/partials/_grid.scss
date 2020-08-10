@@ -116,3 +116,25 @@ $packages: (
     }
   }
 }
+
+.logo {
+  animation: logo 5s infinite alternate ease-in-out;
+  fill: none;
+  stroke: white;
+  stroke-width: 2;
+  width: 50%;
+
+  &__triangle {
+    animation: triangle 5s infinite alternate ease-in-out;
+    stroke-width: 3;    
+  }
+
+  &__outer {
+    animation: outer 5s infinite alternate ease-in-out;
+  }
+
+  &__circle {
+    stroke: none;
+    fill: #fff;
+  }
+}

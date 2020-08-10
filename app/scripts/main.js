@@ -43,14 +43,34 @@ const getCell = (hex, totalInBigRow, totalInSmallRow) => {
 
   // svg logo with a title
   if (iconId) {
-    cell.innerHTML += `
-      <div class="cell__label">
-        <svg class="cell__logo" viewBox="0 0 200 100">
-          <use href="svg/vectors.svg#${iconId}"></use>
-        </svg>
-        <p class="cell__title">${getSpannedTitle(cellTitle)}</p>
-      </div>
-    `;
+    if (iconId === 'shiny-tools-logo') {
+      cell.innerHTML += `
+        <div class="cell__label">
+          <svg class="logo" viewBox="0 0 100 100">
+            <polyline class="logo__triangle" points="88.971,27.5 50,95 11.029,27.5 88.971,27.5" />
+            <polyline class="logo__outer" points="88.971,27.5 88.971,72.5 50,95" />
+            <polyline class="logo__outer" points="50,95 11.029,72.5 11.029,27.5 " />
+            <polyline class="logo__outer" points="11.029,27.5 50,5 88.971,27.5" />
+            <polyline class="logo__inner" points="88.971,27.5 50,50" />
+            <polyline class="logo__inner" points="50,95 50,50" />
+            <polyline class="logo__inner" points="11.029,27.5 50,50" />
+            <circle class="logo__circle" cx="88.971" cy="27.5" r="5" />
+            <circle class="logo__circle" cx="11.029" cy="27.5" r="5" />
+            <circle class="logo__circle" cx="50" cy="95" r="5" />
+            <circle class="logo__circle" cx="50" cy="50" r="5" />
+          </svg>
+        </div>
+      `;
+    } else {
+      cell.innerHTML += `
+        <div class="cell__label">
+          <svg class="cell__logo" viewBox="0 0 200 100">
+            <use href="svg/vectors.svg#${iconId}"></use>
+          </svg>
+          <p class="cell__title">${getSpannedTitle(cellTitle)}</p>
+        </div>
+      `;
+    }
     const labelWidth = `${(1 - gap) * (100 - BASE_WIDTH) + BASE_WIDTH}%`;
     cell.lastElementChild.style.height = labelWidth;
   }

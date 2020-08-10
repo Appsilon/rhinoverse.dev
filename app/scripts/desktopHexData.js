@@ -79,7 +79,7 @@ const desktopHexData = [
     column: 4,
     row: 2,
     gap: 0,
-    iconId: null,
+    iconId: 'shiny-tools-logo',
     isDetached: false
   },
   {
