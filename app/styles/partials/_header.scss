@@ -1,19 +1,19 @@
 .header {
   align-items: center;
-  background-color: $blue;
   display: flex;
+  height: $header-height-mobile;
   justify-content: space-between;
   left: 0;
-  padding: 10px 20px;
+  padding: 0 20px;
   pointer-events: none;
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 3;
+  z-index: 4;
 
   @media only screen and (min-width: $media-breakpoint) {
-    background: none;
-    padding: 50px 40px;
+    height: $header-height-desktop;
+    padding: 0 40px;
   }
  
   &__logo {
@@ -96,5 +96,19 @@
 
   &__svg {
     width: 100%;
+  }
+}
+
+.top-background {
+  background-color: $blue;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $header-height-mobile;
+  z-index: 3;
+
+  @media only screen and (min-width: $media-breakpoint) {
+    display: none;
   }
 }
