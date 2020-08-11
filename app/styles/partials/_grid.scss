@@ -1,8 +1,8 @@
 .hex-grid {
-  background: rgba($color: $navy, $alpha: 0.9);
+  background: $navy;
   display: flex;
   flex-direction: column;
-  //overflow: hidden;
+  overflow: hidden;
   position: relative;
 
   &__row {
@@ -16,6 +16,11 @@
     pointer-events: none;
     position: relative;
 
+    &--labelled:hover {
+      transform: scale(1.05);
+      z-index: 2;
+    }
+
     &__blank {
       fill: $blue;
       pointer-events: none;
@@ -28,26 +33,41 @@
       }
 
       &--attached {
-        z-index: 1;
+        
       }
 
       &--detached {
         filter: drop-shadow( 0 0 15px rgba(0,0,0,0.3));
-
-        &:hover {
-          transform: scale(1.1);
-        }
+        z-index: 1;        
       }
 
       & path {
         pointer-events: all;
       }
 
-      &--shiny-semantic { fill: $color-shiny-semantic; };
-      &--semantic-dashboard { fill: $color-semantic-dashboard; };
-      &--shiny-info { fill: $color-shiny-info; };
-      &--shiny-router { fill: $color-shiny-router; };
-      &--shiny-i18n { fill: $color-shiny-i18n; };
+      $packages: (
+        'shiny-semantic': $color-shiny-semantic,
+        'semantic-dashboard': $color-semantic-dashboard,
+        'shiny-info': $color-shiny-info,
+        'shiny-router': $color-shiny-router,
+        'shiny-i18n': $color-shiny-i18n
+      );
+
+      @each $name, $color in $packages {        
+        &--#{$name} {
+          fill: $color;
+  
+          @media only screen and (min-width: $media-breakpoint) {
+            & {
+              fill: $blue;
+              &.active,
+              &.hovered {
+                fill: $color;
+              }
+            }
+          }
+        }
+      }
     }
 
     &__label {
@@ -57,7 +77,6 @@
       flex-direction: column;
       position: absolute;
       fill: #fff;
-      height: 100%;
       width: 100%;
       pointer-events: none;
     }
@@ -71,10 +90,22 @@
 
     &__title {
       color: #fff;
-      font-weight: 700;
-      font-size: 1rem;
+      font-weight: 400;
+      font-size: 3.5vw;
       margin-top: 0.5rem;
-      display: none;
+      text-align: center;
+      width: 80%;
+      z-index: 2;
+
+      & > span {
+        display: inline-block;
+      }
+  
+      @media only screen and (min-width: $media-breakpoint) {
+        & {
+          display: none;
+        }
+      }
     }
   }
 }

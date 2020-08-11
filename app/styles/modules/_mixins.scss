@@ -3,3 +3,10 @@
   display: flex;
   justify-content: center;
 }
+
+@mixin button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}

@@ -17,17 +17,6 @@ const isProd = process.env.NODE_ENV === 'production';
 const isTest = process.env.NODE_ENV === 'test';
 const isDev = !isProd && !isTest;
 
-/*  
-function es(){
-  return gulp.src('./src/index.js')
-    .pipe(terser())
-    .pipe(gulp.dest('./build'))
-}
-
-gulp.task('default', es);
- */
-
-
 var gulp = require('gulp');
 var ghPages = require('gulp-gh-pages');
  

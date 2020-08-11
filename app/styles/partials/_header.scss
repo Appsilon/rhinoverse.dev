@@ -1,0 +1,114 @@
+.header {
+  align-items: center;
+  display: flex;
+  height: $header-height-mobile;
+  justify-content: space-between;
+  left: 0;
+  padding: 0 20px;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 4;
+
+  @media only screen and (min-width: $media-breakpoint) {
+    height: $header-height-desktop;
+    padding: 0 40px;
+  }
+ 
+  &__logo {
+    @include flex-center;
+    fill: #fff;
+    height: 35px;
+    pointer-events: all;
+    transition: fill $hover-transition;
+
+    @media only screen and (min-width: $media-breakpoint) {
+      height: 40px;
+    }
+
+    &:hover {
+      fill: $navy;
+    }
+  }
+
+  &__svg {
+    height: 100%;
+  }
+}
+
+.menu {
+  @include flex-center;
+  background-color: $navy;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  min-height: 300px;
+  position: fixed;
+  padding-top: 50px;
+  top: 0;
+  transform: translate3d(0, -100%, 0);
+  transition: transform $menu-transition, visibility 0s $menu-transition;
+  visibility: hidden;
+  width: 100%;
+  z-index: -1;
+
+  &--visible {
+    transform: translate3d(0, 0, 0);
+    transition: transform $menu-transition, visibility 0s;
+    visibility: visible;
+  }
+
+  @media only screen and (min-width: $media-breakpoint) {
+    background: none;
+    flex-direction: row;
+    min-height: auto;
+    padding: 0;
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+    width: auto;
+  }
+
+  &__link {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px 20px;
+    pointer-events: all;
+    text-decoration: none;
+  }
+}
+
+.burger-button {
+  @include button;
+  fill: #fff;
+  pointer-events: all;
+  width: 18px;
+
+  &--active {
+    fill: $blue;
+  }
+
+  @media only screen and (min-width: $media-breakpoint) {
+    display: none;
+  }
+
+  &__svg {
+    width: 100%;
+  }
+}
+
+.top-background {
+  background-color: $blue;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $header-height-mobile;
+  z-index: 3;
+
+  @media only screen and (min-width: $media-breakpoint) {
+    display: none;
+  }
+}

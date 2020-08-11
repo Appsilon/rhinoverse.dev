@@ -1,26 +1,35 @@
 //import { desktopHexData } from './desktopHexData.js';
 //import { mobileHexData } from './mobileHexData.js';
+//import * as packagesData from './packages';
 
-const hexGrid = document.getElementById('hex-grid');
 const MAX_GAP = 50;
 const BASE_WIDTH = 10;
 const BREAKPOINT = 768;
+const hexGrid = document.getElementById('hex-grid');
+const menu = document.getElementById('menu');
+const infoWrapper = document.getElementById('wrapper-info');
+const burgerButton = document.getElementById('burger-button');
 let isMobile = window.innerWidth < BREAKPOINT;
 
 const getCellWidth = (total) => `${1 / (total) * 100}%`
+const getSpannedTitle = (title) => {
+  return title.split('.').map(span => `<span>${span}</span>`).join('.');
+}
 
-// get one hexagonal cell
+// get one hexagonal cell ------------------------------------------------------
 const getCell = (hex, totalInBigRow, totalInSmallRow) => {
   const { column, row, gap, isAnimated, iconId, isDetached } = hex;
   const cell = document.createElement('div');
+  const cellTitle = iconId ? iconId.replace('-', '.') : '';
   const blankCellClass = `"
-    cell__blank${iconId ? ' cell__blank--labelled' : ''}
+    cell__blank
+    ${iconId ? ` cell__blank--labelled cell__blank--${iconId}` : ''}
     ${iconId === 'shiny-semantic' ? 'cell__blank--shiny-semantic active' : ''}
     ${isDetached ? 'cell__blank--detached' : 'cell__blank--attached'}
   "`;
 
-  cell.className = 'cell';
-  cell.style.padding = `${MAX_GAP * gap}px`;
+  cell.className = `cell${iconId ? ' cell--labelled' : ''}`;
+  //cell.style.padding = `${MAX_GAP * gap}px`;
   cell.innerHTML = `
     <svg
       class=${blankCellClass}
@@ -38,7 +47,7 @@ const getCell = (hex, totalInBigRow, totalInSmallRow) => {
         <svg class="cell__logo" viewBox="0 0 200 100">
           <use href="svg/vectors.svg#${iconId}"></use>
         </svg>
-        <p class="cell__title">${iconId}</p>
+        <p class="cell__title">${getSpannedTitle(cellTitle)}</p>
       </div>
     `;
     const labelWidth = `${(1 - gap) * (100 - BASE_WIDTH) + BASE_WIDTH}%`;
@@ -76,7 +85,7 @@ const generateHexGrid = (data) => {
         newRow.style.marginLeft = newBigRowLeftMargin;
       }
 
-      //if (row === 7) newRow.style.marginBottom = newRowMargin; // to refactor !!
+      if (row === 8) newRow.style.marginBottom = newRowMargin; // to refactor !!
       hexGrid.appendChild(newRow);
     }
   
@@ -85,16 +94,89 @@ const generateHexGrid = (data) => {
   });
 }
 
+const handleInfoVisibility = () => {
+  const firstInfoSection = document.querySelector('.info');
+  isMobile
+  ? firstInfoSection.classList.remove('info--visible')
+  : firstInfoSection.classList.add('info--visible');
+}
+
+// generate info sections ------------------------------------------------------
+const generateInfo = () => {
+  
+  libraries.forEach(library => {
+    const { id, heading, paragraphs, repoLink, demoLink } = library;
+    
+    const section = document.createElement('section');
+    section.className = `info info--${id}`
+
+    // hero section
+    const hero = document.createElement('div');
+    hero.className = `info__hero info__hero--${id}`;
+    const svg = document.createElement('svg');
+    svg.innerHTML = `
+      <svg class="cell__logo" viewBox="0 0 200 100">
+        <use href="svg/vectors.svg#${id}"></use>
+      </svg>
+    `;
+    svg.className = 'info__svg';
+    const title = document.createElement('h3');
+    title.className = 'info__heading';
+    title.textContent = heading;
+    hero.append(svg, title);
+
+    // description section
+    const description = document.createElement('div');
+    description.className = 'info__description';
+
+    // text section
+    const texts = document.createElement('div');
+    texts.className = 'info__texts';
+
+    paragraphs.forEach(paragraph => {
+      const text = document.createElement('p');
+      text.className = 'info__text';
+      text.textContent = paragraph;
+      texts.appendChild(text);
+    });
+
+    const repoButton = document.createElement('a');
+    repoButton.className = `info__button info__button--${id} info__button--github`;
+    repoButton.href = repoLink;
+    repoButton.target = '_black';
+    repoButton.rel = 'noopener noreferrer';
+    repoButton.textContent = 'Github';
+
+    const demoButton = document.createElement('a');
+    demoButton.className = `info__button info__button--${id} info__button--demo`;
+    demoButton.href = demoLink;
+    demoButton.target = '_black';
+    demoButton.rel = 'noopener noreferrer';
+    demoButton.textContent = 'Demo';
+
+    const backButton = document.createElement('button');
+    backButton.className = `info__button info__button--${id} info__button--back`;
+    backButton.textContent = 'Back';
+
+    description.append(texts, repoButton, demoButton, backButton);
+    section.append(hero, description);
+    infoWrapper.appendChild(section);
+  });
+}
+
 // generate hexagonal grid on page load
 isMobile ? generateHexGrid(mobileHexData) : generateHexGrid(desktopHexData);
+generateInfo();
+handleInfoVisibility()
 
 // create variables after grid generation
 let hexPaths = document.querySelectorAll('.cell__blank--labelled path');
 let allCells = document.querySelectorAll('.cell');
-let allLabelledCells = document.querySelectorAll('.cell__blank--labelled');
 let infoSections = document.querySelectorAll('.info');
+let allLabelledCells = document.querySelectorAll('.cell__blank--labelled');
+const backButtons = document.querySelectorAll('.info__button--back');
 
-// Events
+// Events ----------------------------------------------------------------------
 
 [...hexPaths].forEach(path => {
   // on click event
@@ -104,11 +186,11 @@ let infoSections = document.querySelectorAll('.info');
       const { id } = cell.dataset;
       const currentInfo = document.querySelector(`.info--${id}`);
   
-      // handle cells appearance
-      [...allLabelledCells].forEach(cell =>
-        cell.setAttribute('class', 'cell__blank cell__blank--labelled cell__blank--detached'));
-      cell.classList.add('active');
-      cell.classList.add(`cell__blank--${id}`);
+      // handle cells appearance on desktop
+      if (!isMobile) {
+        [...allLabelledCells].forEach(cell => cell.classList.remove('active'));
+        cell.classList.add('active');
+      }
   
       // handle info section appearance
       [...infoSections].forEach(section => section.classList.remove('info--visible'));
@@ -117,25 +199,38 @@ let infoSections = document.querySelectorAll('.info');
   });
   // on mouse over event
   path.addEventListener('mouseover', function(e) {
-    if (this.tagName === 'path') {
-      const cell = this.parentNode;
-      const { id } = cell.dataset;
-  
-      cell.classList.add(`cell__blank--${id}`);
-    }
+    if (this.tagName === 'path') this.parentNode.classList.add('hovered');
   });
   // on mouse out event
   path.addEventListener('mouseout', function(e) {
-    if (this.tagName === 'path') {
-      const cell = this.parentNode;
-      const { id } = cell.dataset;
-  
-      if (!cell.classList.contains('active')) {
-        cell.classList.remove(`cell__blank--${id}`);
-      }
-    }
+    if (this.tagName === 'path') this.parentNode.classList.remove('hovered');
   });
 });
+
+window.addEventListener('resize', function() {
+  if (window.innerWidth < BREAKPOINT && !isMobile) {
+    isMobile = true;
+    generateHexGrid(mobileHexData);
+    handleInfoVisibility();
+  }
+  if (window.innerWidth >= BREAKPOINT && isMobile) {
+    isMobile = false;
+    generateHexGrid(desktopHexData);
+    handleInfoVisibility();
+  }
+});
+
+burgerButton.addEventListener('click', function() {
+  menu.classList.toggle('menu--visible');
+  burgerButton.classList.toggle('burger-button--active');
+});
+
+[...backButtons].forEach(button => button.addEventListener('click', function() {
+  const infoSection = this.parentNode.parentNode;
+  infoSection.classList.remove('info--visible');
+}));
+
+
 
 /* [...allCells].forEach(cell => {
   cell.addEventListener('mouseover', function() {
@@ -154,14 +249,3 @@ let infoSections = document.querySelectorAll('.info');
 /* window.addEventListener('click', function(e) {
   console.log(e.target);
 }); */
-
-window.addEventListener('resize', function() {
-  if (window.innerWidth < BREAKPOINT && !isMobile) {
-    isMobile = true;
-    generateHexGrid(mobileHexData);
-  }
-  if (window.innerWidth >= BREAKPOINT && isMobile) {
-    isMobile = false;
-    generateHexGrid(desktopHexData);
-  }
-});

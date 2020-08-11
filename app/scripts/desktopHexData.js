@@ -397,7 +397,7 @@ const desktopHexData = [
     gap: 0,
     isAnimated: true,
     iconId: null,
-    isDetached: false
+    isDetached: true
   },
   {
     column: 6,
@@ -405,7 +405,7 @@ const desktopHexData = [
     gap: 0,
     isAnimated: true,
     iconId: null,
-    isDetached: false
+    isDetached: true
   },
   {
     column: 7,
@@ -413,6 +413,70 @@ const desktopHexData = [
     gap: 0,
     isAnimated: true,
     iconId: null,
+    isDetached: true
+  },
+  {
+    column: 1,
+    row: 8,
+    gap: 0,
+    isAnimated: true,
+    iconId: null,
     isDetached: false
+  },
+  {
+    column: 2,
+    row: 8,
+    gap: 0,
+    isAnimated: true,
+    iconId: null,
+    isDetached: false
+  },
+  {
+    column: 3,
+    row: 8,
+    gap: 0,
+    isAnimated: true,
+    iconId: null,
+    isDetached: false
+  },
+  {
+    column: 4,
+    row: 8,
+    gap: 0,
+    isAnimated: true,
+    iconId: null,
+    isDetached: false
+  },
+  {
+    column: 5,
+    row: 8,
+    gap: 0,
+    isAnimated: true,
+    iconId: null,
+    isDetached: true
+  },
+  {
+    column: 6,
+    row: 8,
+    gap: 0,
+    isAnimated: true,
+    iconId: null,
+    isDetached: true
+  },
+  {
+    column: 7,
+    row: 8,
+    gap: 0,
+    isAnimated: true,
+    iconId: null,
+    isDetached: true
+  },
+  {
+    column: 8,
+    row: 8,
+    gap: 0,
+    isAnimated: true,
+    iconId: null,
+    isDetached: true
   }
 ];

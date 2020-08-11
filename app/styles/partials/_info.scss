@@ -1,47 +1,199 @@
 .info {
   align-items: flex-start;
-  bottom: 100px;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
-  left: 150px;
-  max-width: 400px;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  overflow-y: auto;
   position: fixed;
+  top: 0;
+  transform: scale3d(0,0,0);
+  transition: opacity $info-transition, transform $info-transition, visibility 0s $info-transition;
   visibility: hidden;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
 
   &--visible {
+    opacity: 1;
+    transform: scale3d(1,1,1);
+    transition: opacity $info-transition, transform $info-transition, visibility 0s;
     visibility: visible;
   }
 
-  &__heading {
-    align-self: stretch;
-    border-bottom: 3px solid #fff;
-    font-size: 2.5rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
+  @media only screen and (min-width: 768px) {
+    & {
+      align-items: flex-start;
+      background: none;
+      bottom: 100px;
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      left: $info-left-offset;
+      max-width: $info-max-width;
+      opacity: 0;
+      position: fixed;
+      top: auto;
+      transform: translate3d(-200%,0,0);
+      visibility: hidden;
+      width: 100%;
+      z-index: 2;
+
+      &--visible {
+        opacity: 1;
+        transform: translate3d(0,0,0);
+        visibility: visible;
+      }
+    }
   }
 
-  &__text {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    padding: 0;
-  }
-
-  &__button {
-    color: #fff;
-    font-weight: 700;
-    font-size: 1.1rem;
-    margin-top: 1rem;
-    padding: 1rem 2rem;
-    text-decoration: none;
-    text-transform: uppercase;
+  &__hero {
+    @include flex-center;
+    background-color: #fff;
+    flex-direction: column;
+    padding: 30px;
+    padding-top: 70px;
+    width: 100%;
 
     &--shiny-semantic { background-color: $color-shiny-semantic; }
     &--semantic-dashboard { background-color: $color-semantic-dashboard; }
     &--shiny-info { background-color: $color-shiny-info; }
     &--shiny-router { background-color: $color-shiny-router; }
     &--shiny-i18n { background-color: $color-shiny-i18n; }
+
+    @media only screen and (min-width: 768px) {
+      background: none;
+      padding: 0;
+    }
+  }
+
+  &__description {
+    display: grid;
+    column-gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto 1fr;
+    height: 100%;
+    padding: 30px;
+    width: 100%;
+
+    @media only screen and (min-width: 768px) {
+      padding: 0;
+    }
+  }
+
+  &__svg {
+    fill: #fff;
+    max-width: 250px;
+    width: 100%;
+
+    @media only screen and (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  &__heading {
+    font-size: 1.3rem;
+    font-weight: 500;
+
+    @media only screen and (min-width: 768px) {
+      align-self: stretch;
+      border-bottom: 3px solid #fff;
+      font-size: 2.5rem;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;      
+    }
+  }
+
+  &__texts {
+    color: $navy;
+    font-size: 1rem;
+    grid-column: 1 / span 2;
+    margin-top: 1.5rem;
+    padding-bottom: 2rem;
+    text-align: left;
+
+    @media only screen and (min-width: 768px) {
+      color: #fff;
+    }
+  }
+
+  &__text:first-child {
+    font-weight: 500;
+  }
+
+  &__text:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  &__button {
+    @include button;
+    @include flex-center;
+    border: 2px solid #fff;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 1rem;
+    padding: 0.7rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color $hover-transition, border-color $hover-transition;
+
+    @media only screen and (min-width: 768px) {
+      padding: 0.8rem 2rem;
+    }
+
+    $packages: (
+      'shiny-semantic': $color-shiny-semantic,
+      'semantic-dashboard': $color-semantic-dashboard,
+      'shiny-info': $color-shiny-info,
+      'shiny-router': $color-shiny-router,
+      'shiny-i18n': $color-shiny-i18n
+    );
+
+    @each $name, $color in $packages {
+      &--#{$name}.info__button--github {
+        background-color: $color;
+        border-color: transparent;
+
+        @media only screen and (min-width: 768px) {
+          background-color: $color;
+        }
+      }
+
+      &--#{$name}.info__button--demo {
+        border-color: $color;
+        color: $color;
+
+        @media only screen and (min-width: 768px) {
+          border-color: #fff;
+          color: #fff;
+        }
+      }
+
+      /* &--#{$name}.info__button--back {
+        border-bottom-color: $color;
+        color: $color;
+      } */
+    }
+
+    &--back {
+      align-self: end;
+      border-color: $gray-light;
+      color: $gray-light;
+      grid-column: 1 / span 2;
+    }
+
+    &:hover {
+      border: none;
+      background-color: $navy;
+    }
+
+    @media only screen and (min-width: 768px) {
+      &--back {
+        display: none;
+      }
+    }
   }
 }
