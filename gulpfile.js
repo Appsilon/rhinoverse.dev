@@ -1,5 +1,6 @@
 // generated on 2020-08-04 using generator-webapp 4.0.0-8
 const { src, dest, watch, series, parallel, lastRun } = require('gulp');
+const terser = require('gulp-terser');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const browserSync = require('browser-sync');
 const del = require('del');
@@ -15,6 +16,25 @@ const port = argv.port || 9000;
 const isProd = process.env.NODE_ENV === 'production';
 const isTest = process.env.NODE_ENV === 'test';
 const isDev = !isProd && !isTest;
+
+/*  
+function es(){
+  return gulp.src('./src/index.js')
+    .pipe(terser())
+    .pipe(gulp.dest('./build'))
+}
+
+gulp.task('default', es);
+ */
+
+
+var gulp = require('gulp');
+var ghPages = require('gulp-gh-pages');
+ 
+gulp.task('deploy', function() {
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages());
+});
 
 function styles() {
   return src('app/styles/*.scss', {
@@ -66,7 +86,7 @@ function lintTest() {
 function html() {
   return src('app/*.html')
     .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
-    .pipe($.if(/\.js$/, $.uglify({compress: {drop_console: true}})))
+    .pipe($.if(/\.js$/, $.terser({compress: {drop_console: true}})))
     .pipe($.if(/\.css$/, $.postcss([cssnano({safe: true, autoprefixer: false})])))
     .pipe($.if(/\.html$/, $.htmlmin({
       collapseWhitespace: true,
@@ -85,6 +105,11 @@ function images() {
   return src('app/images/**/*', { since: lastRun(images) })
     .pipe($.imagemin())
     .pipe(dest('dist/images'));
+};
+
+function svg() {
+  return src('app/svg/**/*', { since: lastRun(svg) })
+    .pipe(dest('dist/svg'));
 };
 
 function fonts() {
@@ -116,6 +141,7 @@ const build = series(
     lint,
     series(parallel(styles, scripts), html),
     images,
+    svg,
     fonts,
     extras
   ),
@@ -137,6 +163,7 @@ function startAppServer() {
   watch([
     'app/*.html',
     'app/images/**/*',
+    'app/svg/**/*',
     '.tmp/fonts/**/*'
   ]).on('change', server.reload);
 
