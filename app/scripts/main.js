@@ -11,7 +11,7 @@ const infoWrapper = document.getElementById('wrapper-info');
 const burgerButton = document.getElementById('burger-button');
 let isMobile = window.innerWidth < BREAKPOINT;
 
-const getCellWidth = (total) => `${1 / (total) * 100}%`
+const getCellWidth = (total) => `calc(${1 / (total) * 100}% + 2px)`;
 const getSpannedTitle = (title) => {
   return title.split('.').map(span => `<span>${span}</span>`).join('.');
 }
