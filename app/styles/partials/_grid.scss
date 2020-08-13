@@ -14,6 +14,10 @@ $packages: (
   position: relative;
   z-index: 0;
 
+  @media only screen and (min-width: $media-breakpoint) {
+    max-height: 1080px;
+  }
+
   &__row {
     display: flex;
     width: 100%;
@@ -26,7 +30,7 @@ $packages: (
     pointer-events: none;
     position: relative;
 
-    &--labelled:hover {
+    &--interactive:hover {
       transform: scale(1.05);
       z-index: 2;
     }
@@ -39,7 +43,7 @@ $packages: (
       width: 100%;
       position: relative;
 
-      &--labelled {
+      &--interactive {
         cursor: pointer;
       }
 
@@ -67,6 +71,7 @@ $packages: (
           &.active,
           &.hovered {
             fill: $color;
+            z-index: 1;
           }
 
           @media only screen and (max-width: $media-breakpoint) {

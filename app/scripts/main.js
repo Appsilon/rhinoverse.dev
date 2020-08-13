@@ -18,18 +18,19 @@ const getSpannedTitle = (title) => {
 
 // get one hexagonal cell ------------------------------------------------------
 const getCell = (hex, totalInBigRow, totalInSmallRow) => {
-  const { row, gap, iconId, isDetached, zPosition } = hex;
+  const { row, gap, iconId, isDetached, isInteractive, zPosition } = hex;
   const cell = document.createElement('div');
   const cellTitle = iconId ? iconId.replace('-', '.') : '';
   const blankCellClass = `"
     cell__blank
-    ${iconId ? ` cell__blank--labelled cell__blank--${iconId}` : ''}
+    ${isInteractive ? 'cell__blank--interactive' : ''}
+    ${iconId ? `cell__blank--${iconId}` : ''}
     ${iconId === 'shiny-semantic' ? 'cell__blank--shiny-semantic active' : ''}
     ${isDetached ? 'cell__blank--detached' : 'cell__blank--attached'}
     ${zPosition ? `cell__blank--${zPosition}` : ''}
   "`;
 
-  cell.className = `cell${iconId ? ' cell--labelled' : ''}`;
+  cell.className = `cell${isInteractive ? ' cell--interactive' : ''}`;
   //cell.style.padding = `${MAX_GAP * gap}px`;
   cell.innerHTML = `
     <svg
@@ -92,7 +93,7 @@ const generateHexGrid = (data) => {
   
   hexGrid.innerHTML = '';
   
-  data.forEach((hex, index) => {
+  data.forEach(hex => {
     const { column, row } = hex;
   
     // create new row wrapping hexagonal cells
@@ -207,10 +208,10 @@ generateInfo();
 handleInfoVisibility()
 
 // create variables after grid generation
-let hexPaths = document.querySelectorAll('.cell__blank--labelled path');
+let hexPaths = document.querySelectorAll('.cell__blank--interactive path');
 let allCells = document.querySelectorAll('.cell');
 let infoSections = document.querySelectorAll('.info');
-let allLabelledCells = document.querySelectorAll('.cell__blank--labelled');
+let allInteractiveCells = document.querySelectorAll('.cell__blank--interactive');
 const backButtons = document.querySelectorAll('.info__button--back');
 
 // Events ----------------------------------------------------------------------
@@ -225,7 +226,7 @@ const backButtons = document.querySelectorAll('.info__button--back');
   
       // handle cells appearance on desktop
       if (!isMobile) {
-        [...allLabelledCells].forEach(cell => cell.classList.remove('active'));
+        [...allInteractiveCells].forEach(cell => cell.classList.remove('active'));
         cell.classList.add('active');
       }
   

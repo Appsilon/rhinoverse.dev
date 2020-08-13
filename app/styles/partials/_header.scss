@@ -77,6 +77,11 @@
     padding: 10px 20px;
     pointer-events: all;
     text-decoration: none;
+    transition: color $hover-transition;
+
+    &:hover {
+      color: $navy;
+    }
   }
 }
 

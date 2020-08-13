@@ -5,6 +5,7 @@ const desktopHexData = [
     gap: 0.35,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under3'
   },
   {
@@ -13,6 +14,7 @@ const desktopHexData = [
     gap: 0.25,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under2'
   },
   {
@@ -21,6 +23,7 @@ const desktopHexData = [
     gap: 0.15,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under1'
   },
   {
@@ -28,6 +31,7 @@ const desktopHexData = [
     row: 1,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -35,6 +39,7 @@ const desktopHexData = [
     row: 1,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -42,6 +47,7 @@ const desktopHexData = [
     row: 1,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -49,6 +55,7 @@ const desktopHexData = [
     row: 1,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -57,6 +64,7 @@ const desktopHexData = [
     gap: 0.3,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under2'
   },
   {
@@ -65,6 +73,7 @@ const desktopHexData = [
     gap: 0.25,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under1'
   },
   {
@@ -73,6 +82,7 @@ const desktopHexData = [
     gap: 0.15,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under1'
   },
   {
@@ -80,6 +90,7 @@ const desktopHexData = [
     row: 2,
     gap: 0,
     iconId: 'shiny-tools-logo',
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -88,6 +99,7 @@ const desktopHexData = [
     gap: 0.3,
     iconId: 'semantic-dashboard',
     isDetached: true,
+    isInteractive: true,
     zPosition: 'under1'
   },
   {
@@ -96,6 +108,7 @@ const desktopHexData = [
     gap: 0.2,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under1'
   },
   {
@@ -103,6 +116,7 @@ const desktopHexData = [
     row: 2,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -110,6 +124,7 @@ const desktopHexData = [
     row: 2,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -117,6 +132,7 @@ const desktopHexData = [
     row: 3,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -124,6 +140,7 @@ const desktopHexData = [
     row: 3,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -131,6 +148,7 @@ const desktopHexData = [
     row: 3,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -139,6 +157,7 @@ const desktopHexData = [
     gap: 0.2,
     iconId: 'shiny-semantic',
     isDetached: true,
+    isInteractive: true,
     zPosition: 'under1'
   },
   {
@@ -147,6 +166,7 @@ const desktopHexData = [
     gap: 0.6,
     iconId: 'shiny-router',
     isDetached: true,
+    isInteractive: true,
     zPosition: 'under2'
   },
   {
@@ -155,6 +175,7 @@ const desktopHexData = [
     gap: 0.5,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under2'
   },
   {
@@ -163,6 +184,7 @@ const desktopHexData = [
     gap: 0.3,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under2'
   },
   {
@@ -170,6 +192,7 @@ const desktopHexData = [
     row: 4,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -177,6 +200,7 @@ const desktopHexData = [
     row: 4,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -184,6 +208,7 @@ const desktopHexData = [
     row: 4,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -191,6 +216,7 @@ const desktopHexData = [
     row: 4,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -199,6 +225,7 @@ const desktopHexData = [
     gap: 0.4,
     iconId: 'shiny-info',
     isDetached: true,
+    isInteractive: true,
     zPosition: 'under2'
   },
   {
@@ -207,6 +234,7 @@ const desktopHexData = [
     gap: 0.7,
     iconId: 'shiny-i18n',
     isDetached: true,
+    isInteractive: true,
     zPosition: 'under3'
   },
   {
@@ -215,6 +243,7 @@ const desktopHexData = [
     gap: 0.85,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under3'
   },
   {
@@ -223,6 +252,7 @@ const desktopHexData = [
     gap: 1,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under4'
   },
   {
@@ -230,6 +260,7 @@ const desktopHexData = [
     row: 5,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -237,6 +268,7 @@ const desktopHexData = [
     row: 5,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -244,6 +276,7 @@ const desktopHexData = [
     row: 5,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -251,6 +284,7 @@ const desktopHexData = [
     row: 5,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -259,6 +293,7 @@ const desktopHexData = [
     gap: 0.2,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under2'
   },
   {
@@ -267,6 +302,7 @@ const desktopHexData = [
     gap: 0.6,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under3'
   },
   {
@@ -275,6 +311,7 @@ const desktopHexData = [
     gap: 1,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under4'
   },
   {
@@ -282,6 +319,7 @@ const desktopHexData = [
     row: 6,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -289,6 +327,7 @@ const desktopHexData = [
     row: 6,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -296,6 +335,7 @@ const desktopHexData = [
     row: 6,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -303,6 +343,7 @@ const desktopHexData = [
     row: 6,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -310,6 +351,7 @@ const desktopHexData = [
     row: 6,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -318,6 +360,7 @@ const desktopHexData = [
     gap: 0.1,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under2'
   },
   {
@@ -326,6 +369,7 @@ const desktopHexData = [
     gap: 0.3,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under3'
   },
   {
@@ -334,6 +378,7 @@ const desktopHexData = [
     gap: 0.6,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under4'
   },
   {
@@ -341,6 +386,7 @@ const desktopHexData = [
     row: 7,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -348,6 +394,7 @@ const desktopHexData = [
     row: 7,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -355,6 +402,7 @@ const desktopHexData = [
     row: 7,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -362,6 +410,7 @@ const desktopHexData = [
     row: 7,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -370,6 +419,7 @@ const desktopHexData = [
     gap: 0,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under1'
   },
   {
@@ -378,6 +428,7 @@ const desktopHexData = [
     gap: 0,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under2'
   },
   {
@@ -386,6 +437,7 @@ const desktopHexData = [
     gap: 0,
     iconId: null,
     isDetached: true,
+    isInteractive: false,
     zPosition: 'under3'
   },
   {
@@ -393,6 +445,7 @@ const desktopHexData = [
     row: 8,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -400,6 +453,7 @@ const desktopHexData = [
     row: 8,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -407,6 +461,7 @@ const desktopHexData = [
     row: 8,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -414,6 +469,7 @@ const desktopHexData = [
     row: 8,
     gap: 0,
     iconId: null,
+    isInteractive: false,
     isDetached: false
   },
   {
@@ -421,27 +477,35 @@ const desktopHexData = [
     row: 8,
     gap: 0,
     iconId: null,
-    isDetached: true
+    isDetached: true,
+    isInteractive: false,
+    zPosition: 'under1'
   },
   {
     column: 6,
     row: 8,
     gap: 0,
     iconId: null,
-    isDetached: true
+    isDetached: true,
+    isInteractive: false,
+    zPosition: 'under2'
   },
   {
     column: 7,
     row: 8,
     gap: 0,
     iconId: null,
-    isDetached: true
+    isDetached: true,
+    isInteractive: false,
+    zPosition: 'under3'
   },
   {
     column: 8,
     row: 8,
     gap: 0,
     iconId: null,
-    isDetached: true
+    isDetached: true,
+    isInteractive: false,
+    zPosition: 'under4'
   }
 ];
