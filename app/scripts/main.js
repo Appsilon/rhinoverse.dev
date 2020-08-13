@@ -79,6 +79,7 @@ const getCell = (hex, totalInBigRow, totalInSmallRow) => {
   cell.style.width = row % 2 === 0
   ? getCellWidth(totalInBigRow)
   : getCellWidth(totalInSmallRow);
+
   return cell;
 }
 

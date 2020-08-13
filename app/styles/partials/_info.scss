@@ -30,18 +30,19 @@ $packages: (
     visibility: visible;
   }
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $media-breakpoint) {
     & {
       align-items: flex-start;
       background: none;
+      bottom: 5vh;
       display: flex;
       flex-direction: column;
       height: auto;
       left: 6%;
       max-width: $info-max-width;
       opacity: 0;
-      position: absolute;
-      top: 30vw;
+      position: fixed;
+      top: auto;
       transform: translate3d(-200%,0,0);
       visibility: hidden;
       width: 100%;

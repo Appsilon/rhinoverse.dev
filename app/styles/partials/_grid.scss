@@ -37,6 +37,7 @@ $packages: (
     }
 
     &__blank {
+      @include flex-center;
       fill: $blue;
       overflow: hidden;
       pointer-events: none;
