@@ -49,9 +49,9 @@ const media = [
   { breakpoint: 1200, data: hexXl }
 ];
 const hexGrid = document.getElementById('hex-grid');
-const menu = document.getElementById('menu');
 const infoWrapper = document.getElementById('wrapper-info');
-const burgerButton = document.getElementById('burger-button');
+//const menu = document.getElementById('menu');
+//const burgerButton = document.getElementById('burger-button');
 const currentMedia = getMedia();
 const currentMediaData = currentMedia.data;
 let currentMediaBreakpoint = currentMedia.breakpoint;
@@ -143,7 +143,7 @@ const generateHexGrid = (data) => {
 
 const handleInfoVisibility = () => {
   const infoSections = document.querySelectorAll('.info');
-  infoSections.forEach((section, index) => {
+  [...infoSections].forEach((section, index) => {
     if (currentMediaBreakpoint >= mobileBreakpoint && index === 0) {
       section.classList.add('info--visible');
     } else {
@@ -200,10 +200,17 @@ const generateInfo = () => {
       'button',
       'Back'
     );
-    hero.append(svg, title);
-    stars.append(starsLabel, starsOutput);
-    description.append(texts, stars, repoButton, demoButton, backButton);
-    section.append(hero, description);
+    hero.appendChild(svg);
+    hero.appendChild(title);
+    stars.appendChild(starsLabel);
+    stars.appendChild(starsOutput);
+    description.appendChild(texts);
+    description.appendChild(stars);
+    description.appendChild(repoButton);
+    description.appendChild(demoButton);
+    description.appendChild(backButton);
+    section.appendChild(hero);
+    section.appendChild(description);
     infoWrapper.appendChild(section);
   });
 }
