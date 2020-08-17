@@ -1,4 +1,4 @@
-const hexSm = [
+export const hexSm = [
   ////////////////////////////////////////////////////////////////////// 1st row
   { column: 1, row: 1, zPosition: 'under3' },
   { column: 2, row: 1, zPosition: 'under2' },

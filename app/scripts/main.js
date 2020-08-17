@@ -1,6 +1,10 @@
-//import { desktopHexData } from './desktopHexData.js';
-//import { mobileHexData } from './mobileHexData.js';
-//import * as packagesData from './packages';
+import { hexXs } from './hexXs';
+import { hexSm } from './hexSm';
+import { hexMd } from './hexMd';
+import { hexLg } from './hexLg';
+import { hexXl } from './hexXl';
+import { libraries } from './libraries';
+import '@babel/polyfill';
 
 // calculate hex cell width as css calc() function
 const getCellWidth = (total) => `calc(${1 / (total) * 100}% + 2px)`;

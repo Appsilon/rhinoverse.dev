@@ -1,4 +1,4 @@
-const hexXs = [
+export const hexXs = [
   ////////////////////////////////////////////////////////////////////// 1st row
   { column: 1, row: 1, zPosition: 'under3' },
   { column: 2, row: 1, zPosition: 'under3' },
@@ -13,7 +13,7 @@ const hexXs = [
   {
     column: 2,
     row: 3,
-    text: 'Welcome to the world of...',
+    text: 'Welcome to the world of ...',
     zPosition: 'under1'
   },
   { column: 3, row: 3 },
@@ -28,7 +28,7 @@ const hexXs = [
   {
     column: 3,
     row: 5,
-    text: '...shiny.tools!',
+    text: '... shiny.tools!',
     zPosition: 'under1'
   },
   { column: 4, row: 5 },

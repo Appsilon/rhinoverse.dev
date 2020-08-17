@@ -1,4 +1,4 @@
-const libraries = [
+export const libraries = [
   {
     'id': 'shiny-semantic',
     'heading': 'shiny.semantic',
