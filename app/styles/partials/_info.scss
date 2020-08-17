@@ -30,15 +30,15 @@ $packages: (
     visibility: visible;
   }
 
-  @media only screen and (min-width: $media-breakpoint) {
+  @media only screen and (min-width: $media-lg) {
     & {
       align-items: flex-start;
       background: none;
-      bottom: 5vh;
+      bottom: 80px;
       display: flex;
       flex-direction: column;
       height: auto;
-      left: 6%;
+      left: $info-left-offset;
       max-width: $info-max-width;
       opacity: 0;
       position: fixed;
