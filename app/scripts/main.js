@@ -2,26 +2,14 @@
 //import { mobileHexData } from './mobileHexData.js';
 //import * as packagesData from './packages';
 
-const media = [
-  { breakpoint: 0, data: hexXs },
-  { breakpoint: 480, data: hexSm },
-  { breakpoint: 768, data: hexMd },
-  { breakpoint: 1024, data: hexLg },
-  { breakpoint: 1200, data: hexXl }
-];
-const hexGrid = document.getElementById('hex-grid');
-const menu = document.getElementById('menu');
-const infoWrapper = document.getElementById('wrapper-info');
-const burgerButton = document.getElementById('burger-button');
-
 // calculate hex cell width as css calc() function
 const getCellWidth = (total) => `calc(${1 / (total) * 100}% + 2px)`;
 const getSpannedTitle = (title) => {
   return title.split('.').map(span => `<span>${span}</span>`).join('.');
 }
-const getMediaData = (width) => {
+const getMedia = (width) => {
   return media.reduce((prev, curr) => 
-  width >= curr.breakpoint ? curr : prev, media[0]).data;
+  width >= curr.breakpoint ? curr : prev, media[0]);
 }
 const getSvgIcon = (type, iconId, className, width, height) => {
   return `
@@ -48,6 +36,21 @@ const getSvgIcon = (type, iconId, className, width, height) => {
     </svg>
   `
 }
+
+const media = [
+  { breakpoint: 0, data: hexXs },
+  { breakpoint: 480, data: hexSm },
+  { breakpoint: 768, data: hexMd },
+  { breakpoint: 1024, data: hexLg },
+  { breakpoint: 1200, data: hexXl }
+];
+const hexGrid = document.getElementById('hex-grid');
+const menu = document.getElementById('menu');
+const infoWrapper = document.getElementById('wrapper-info');
+const burgerButton = document.getElementById('burger-button');
+const currentMedia = getMedia(window.innerWidth);
+const currentMediaData = currentMedia.data;
+let currentMediaBreakpoint = currentMedia.breakpoint;
 
 // get one hexagonal cell ------------------------------------------------------
 const getCell = (hexCell) => {
@@ -205,60 +208,58 @@ const generateInfo = () => {
   });
 }
 
-// generate hexagonal grid on page load ----------------------------------------
-const data = getMediaData(window.innerWidth);
-generateHexGrid(data);
-generateInfo();
-handleInfoVisibility()
-
-// create variables after grid generation
-let hexPaths = document.querySelectorAll('.cell__blank--interactive path');
-let allCells = document.querySelectorAll('.cell');
-let infoSections = document.querySelectorAll('.info');
-let allInteractiveCells = document.querySelectorAll('.cell__blank--interactive');
-const backButtons = document.querySelectorAll('.info__button--back');
-
-// Events ----------------------------------------------------------------------
-
-[...hexPaths].forEach(path => {
-  // on click event
-  path.addEventListener('click', function(e) {
-    if (this.tagName === 'path') {
-      const cell = this.parentNode;
-      const { id } = cell.dataset;
-      const currentInfo = document.querySelector(`.info--${id}`);
+// add events to newly generated DOM nodes based on media data
+const addMediaEvents = () => {
+  let hexPaths = document.querySelectorAll('.cell__blank--interactive path');
+  let infoSections = document.querySelectorAll('.info');
+  let allInteractiveCells = document.querySelectorAll('.cell__blank--interactive');
   
-      // handle cells appearance on desktop
-      if (!isMobile) {
-        [...allInteractiveCells].forEach(cell => cell.classList.remove('active'));
-        cell.classList.add('active');
+  [...hexPaths].forEach(path => {
+    // on click event
+    path.addEventListener('click', function(e) {
+      if (this.tagName === 'path') {
+        const cell = this.parentNode;
+        const { id } = cell.dataset;
+        const currentInfo = document.querySelector(`.info--${id}`);
+    
+        // handle cells appearance on desktop
+        if (!isMobile) {
+          [...allInteractiveCells].forEach(cell => cell.classList.remove('active'));
+          cell.classList.add('active');
+        }
+    
+        // handle info section appearance
+        [...infoSections].forEach(section => section.classList.remove('info--visible'));
+        currentInfo.classList.add('info--visible');
       }
-  
-      // handle info section appearance
-      [...infoSections].forEach(section => section.classList.remove('info--visible'));
-      currentInfo.classList.add('info--visible');
-    }
+    });
+    // on mouse over event
+    path.addEventListener('mouseover', function(e) {
+      if (this.tagName === 'path') this.parentNode.classList.add('hovered');
+    });
+    // on mouse out event
+    path.addEventListener('mouseout', function(e) {
+      if (this.tagName === 'path') this.parentNode.classList.remove('hovered');
+    });
   });
-  // on mouse over event
-  path.addEventListener('mouseover', function(e) {
-    if (this.tagName === 'path') this.parentNode.classList.add('hovered');
-  });
-  // on mouse out event
-  path.addEventListener('mouseout', function(e) {
-    if (this.tagName === 'path') this.parentNode.classList.remove('hovered');
-  });
-});
+}
+
+const addContent = (data) => {
+  generateHexGrid(data);
+  generateInfo();
+  handleInfoVisibility();
+  addMediaEvents();
+}
+
+// generate hexagonal grid on page load ----------------------------------------
+addContent(currentMediaData);
 
 window.addEventListener('resize', function() {
-  if (window.innerWidth < BREAKPOINT && !isMobile) {
-    isMobile = true;
-    generateHexGrid(mobileHexData);
-    handleInfoVisibility();
-  }
-  if (window.innerWidth >= BREAKPOINT && isMobile) {
-    isMobile = false;
-    generateHexGrid(desktopHexData);
-    handleInfoVisibility();
+  const currentMedia = getMedia(window.innerWidth);
+  if (currentMedia.breakpoint !== currentMediaBreakpoint) {
+    currentMediaBreakpoint = currentMedia.breakpoint;
+    const currentMediaData = currentMedia.data;
+    addContent(currentMediaData);
   }
 });
 
@@ -267,6 +268,7 @@ burgerButton.addEventListener('click', function() {
   burgerButton.classList.toggle('burger-button--active');
 });
 
+const backButtons = document.querySelectorAll('.info__button--back');
 [...backButtons].forEach(button => button.addEventListener('click', function() {
   const infoSection = this.parentNode.parentNode;
   infoSection.classList.remove('info--visible');
