@@ -51,14 +51,13 @@ const burgerButton = document.getElementById('burger-button');
 const currentMedia = getMedia();
 const currentMediaData = currentMedia.data;
 let currentMediaBreakpoint = currentMedia.breakpoint;
-const mobileBreakpoint = 800;
+const mobileBreakpoint = 700;
 
 // get one hexagonal cell ------------------------------------------------------
 const getCell = (hexCell) => {
   const {
     iconId = null,
     text = null,
-    isDetached = false,
     isInteractive = false,
     zPosition = null
   } = hexCell;
@@ -69,7 +68,7 @@ const getCell = (hexCell) => {
     ${isInteractive ? 'cell__blank--interactive' : ''}
     ${iconId ? `cell__blank--${iconId}` : ''}
     ${iconId === 'shiny-semantic' ? 'cell__blank--shiny-semantic active' : ''}
-    ${isDetached ? 'cell__blank--detached' : 'cell__blank--attached'}
+    ${zPosition ? 'cell__blank--detached' : 'cell__blank--attached'}
     ${zPosition ? `cell__blank--${zPosition}` : ''}
   "`;
   cell.className = `cell${isInteractive ? ' cell--interactive' : ''}`;
@@ -260,10 +259,10 @@ window.addEventListener('resize', function() {
   }
 });
 
-burgerButton.addEventListener('click', function() {
+/* burgerButton.addEventListener('click', function() {
   menu.classList.toggle('menu--visible');
   burgerButton.classList.toggle('burger-button--active');
-});
+}); */
 
 const backButtons = document.querySelectorAll('.info__button--back');
 [...backButtons].forEach(button => button.addEventListener('click', function() {

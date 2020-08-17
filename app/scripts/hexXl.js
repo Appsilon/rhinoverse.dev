@@ -3,25 +3,21 @@ const hexXl = [
   {
     column: 1,
     row: 1,
-    isDetached: true,
     zPosition: 'under4'
   },
   {
     column: 2,
     row: 1,
-    isDetached: true,
     zPosition: 'under3'
   },
   {
     column: 3,
     row: 1,
-    isDetached: true,
     zPosition: 'under2'
   },
   {
     column: 4,
     row: 1,
-    isDetached: true,
     zPosition: 'under1'
   },
   { column: 4, row: 1 },
@@ -33,25 +29,21 @@ const hexXl = [
   {
     column: 1,
     row: 2,
-    isDetached: true,
     zPosition: 'under2'
   },
   {
     column: 2,
     row: 2,
-    isDetached: true,
     zPosition: 'under2'
   },
   {
     column: 3,
     row: 2,
-    isDetached: true,
     zPosition: 'under1'
   },
   {
     column: 4,
     row: 2,
-    isDetached: true,
     zPosition: 'under1'
   },
   { column: 5, row: 2, iconId: 'shiny-tools-logo' },
@@ -59,14 +51,12 @@ const hexXl = [
     column: 6,
     row: 2,
     iconId: 'semantic-dashboard',
-    isDetached: true,
     isInteractive: true,
     zPosition: 'under1'
   },
   {
     column: 7,
     row: 2,
-    isDetached: true,
     zPosition: 'under1'
   },
   { column: 8, row: 2 },
@@ -81,7 +71,6 @@ const hexXl = [
     column: 5,
     row: 3,
     iconId: 'shiny-semantic',
-    isDetached: true,
     isInteractive: true,
     zPosition: 'under1'
   },
@@ -89,20 +78,17 @@ const hexXl = [
     column: 6,
     row: 3,
     iconId: 'shiny-info',
-    isDetached: true,
     isInteractive: true,
     zPosition: 'under2'
   },
   {
     column: 7,
     row: 3,
-    isDetached: true,
     zPosition: 'under2'
   },
   {
     column: 8,
     row: 3,
-    isDetached: true,
     zPosition: 'under2'
   },
   { column: 10, row: 3 },
@@ -115,14 +101,12 @@ const hexXl = [
   {
     column: 6,
     row: 4,
-    isDetached: true,
     zPosition: 'under2'
   },
   {
     column: 7,
     row: 4,
     iconId: 'shiny-router',
-    isDetached: true,
     isInteractive: true,
     zPosition: 'under3'
   },
@@ -130,20 +114,17 @@ const hexXl = [
     column: 8,
     row: 4,
     iconId: 'shiny-i18n',
-    isDetached: true,
     isInteractive: true,
     zPosition: 'under3'
   },
   {
     column: 9,
     row: 4,
-    isDetached: true,
     zPosition: 'under4'
   },
   {
     column: 10,
     row: 4,
-    isDetached: true,
     zPosition: 'under4'
   },
   ////////////////////////////////////////////////////////////////////// 5th row
@@ -155,25 +136,21 @@ const hexXl = [
   {
     column: 6,
     row: 5,
-    isDetached: true,
     zPosition: 'under2'
   },
   {
     column: 7,
     row: 5,
-    isDetached: true,
     zPosition: 'under3'
   },
   {
     column: 8,
     row: 5,
-    isDetached: true,
     zPosition: 'under4'
   },
   {
     column: 9,
     row: 5,
-    isDetached: true,
     zPosition: 'under4'
   },
   ////////////////////////////////////////////////////////////////////// 6th row
@@ -186,25 +163,21 @@ const hexXl = [
   {
     column: 7,
     row: 6,
-    isDetached: true,
     zPosition: 'under2'
   },
   {
     column: 8,
     row: 6,
-    isDetached: true,
     zPosition: 'under3'
   },
   {
     column: 9,
     row: 6,
-    isDetached: true,
     zPosition: 'under4'
   },
   {
     column: 10,
     row: 6,
-    isDetached: true,
     zPosition: 'under4'
   },
   ////////////////////////////////////////////////////////////////////// 7th row
@@ -216,25 +189,21 @@ const hexXl = [
   {
     column: 6,
     row: 7,
-    isDetached: true,
     zPosition: 'under1'
   },
   {
     column: 7,
     row: 7,
-    isDetached: true,
     zPosition: 'under2'
   },
   {
     column: 8,
     row: 7,
-    isDetached: true,
     zPosition: 'under3'
   },
   {
     column: 9,
     row: 7,
-    isDetached: true,
     zPosition: 'under3'
   },
   ////////////////////////////////////////////////////////////////////// 8th row
@@ -246,31 +215,26 @@ const hexXl = [
   {
     column: 6,
     row: 8,
-    isDetached: true,
     zPosition: 'under1'
   },
   {
     column: 7,
     row: 8,
-    isDetached: true,
     zPosition: 'under2'
   },
   {
     column: 8,
     row: 8,
-    isDetached: true,
     zPosition: 'under3'
   },
   {
     column: 9,
     row: 8,
-    isDetached: true,
     zPosition: 'under4'
   },
   {
     column: 10,
     row: 8,
-    isDetached: true,
     zPosition: 'under4'
   }
 ];
