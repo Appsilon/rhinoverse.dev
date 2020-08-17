@@ -2,8 +2,6 @@
 //import { mobileHexData } from './mobileHexData.js';
 //import * as packagesData from './packages';
 
-const MAX_GAP = 50;
-const BASE_WIDTH = 10;
 const BREAKPOINT = 768;
 const hexGrid = document.getElementById('hex-grid');
 const menu = document.getElementById('menu');
@@ -11,14 +9,40 @@ const infoWrapper = document.getElementById('wrapper-info');
 const burgerButton = document.getElementById('burger-button');
 let isMobile = window.innerWidth < BREAKPOINT;
 
+// calculate hex cell width as css calc() function
 const getCellWidth = (total) => `calc(${1 / (total) * 100}% + 2px)`;
 const getSpannedTitle = (title) => {
   return title.split('.').map(span => `<span>${span}</span>`).join('.');
 }
+const getSvgIcon = (type, iconId, className, width, height) => {
+  return `
+    <svg
+      class=${className}
+      viewBox="0 0 ${width} ${height}"
+      ${iconId ? ` data-id=${iconId}` : ''}
+    >
+      ${type === 'blank' && '<path d="M100 28.867v57.735L50 115.47 0 86.602V28.867L50 0z"/>'}
+      ${type === 'label' && `<use href="svg/vectors.svg#${iconId}"></use>`}
+      ${type === 'logo' && `
+        <polyline class="logo__triangle" points="88.971,27.5 50,95 11.029,27.5 88.971,27.5" />
+        <polyline class="logo__outer" points="88.971,27.5 88.971,72.5 50,95" />
+        <polyline class="logo__outer" points="50,95 11.029,72.5 11.029,27.5 " />
+        <polyline class="logo__outer" points="11.029,27.5 50,5 88.971,27.5" />
+        <polyline class="logo__inner" points="88.971,27.5 50,50" />
+        <polyline class="logo__inner" points="50,95 50,50" />
+        <polyline class="logo__inner" points="11.029,27.5 50,50" />
+        <circle class="logo__circle" cx="88.971" cy="27.5" r="5" />
+        <circle class="logo__circle" cx="11.029" cy="27.5" r="5" />
+        <circle class="logo__circle" cx="50" cy="95" r="5" />
+        <circle class="logo__circle" cx="50" cy="50" r="5" />
+      `}      
+    </svg>
+  `
+}
 
 // get one hexagonal cell ------------------------------------------------------
-const getCell = (hex, totalInBigRow, totalInSmallRow) => {
-  const { row, gap, iconId, isDetached, isInteractive, zPosition } = hex;
+const getCell = (hex) => {
+  const { iconId, isDetached, isInteractive, zPosition } = hex;
   const cell = document.createElement('div');
   const cellTitle = iconId ? iconId.replace('-', '.') : '';
   const blankCellClass = `"
@@ -29,57 +53,22 @@ const getCell = (hex, totalInBigRow, totalInSmallRow) => {
     ${isDetached ? 'cell__blank--detached' : 'cell__blank--attached'}
     ${zPosition ? `cell__blank--${zPosition}` : ''}
   "`;
-
   cell.className = `cell${isInteractive ? ' cell--interactive' : ''}`;
-  //cell.style.padding = `${MAX_GAP * gap}px`;
-  cell.innerHTML = `
-    <svg
-      class=${blankCellClass}
-      ${iconId ? ` data-id=${iconId}` : ''}
-      viewBox="0 0 100 115.47"
-    >
-      <path d="M100 28.867v57.735L50 115.47 0 86.602V28.867L50 0z"/>
-    </svg>
-  `;
+  cell.innerHTML = getSvgIcon('blank', iconId, blankCellClass, 100, 115.47);
 
-  // svg logo with a title
+  // add labels as cell children if icon id is specified
   if (iconId) {
-    if (iconId === 'shiny-tools-logo') {
-      cell.innerHTML += `
-        <div class="cell__label">
-          <svg class="logo" viewBox="0 0 100 100">
-            <polyline class="logo__triangle" points="88.971,27.5 50,95 11.029,27.5 88.971,27.5" />
-            <polyline class="logo__outer" points="88.971,27.5 88.971,72.5 50,95" />
-            <polyline class="logo__outer" points="50,95 11.029,72.5 11.029,27.5 " />
-            <polyline class="logo__outer" points="11.029,27.5 50,5 88.971,27.5" />
-            <polyline class="logo__inner" points="88.971,27.5 50,50" />
-            <polyline class="logo__inner" points="50,95 50,50" />
-            <polyline class="logo__inner" points="11.029,27.5 50,50" />
-            <circle class="logo__circle" cx="88.971" cy="27.5" r="5" />
-            <circle class="logo__circle" cx="11.029" cy="27.5" r="5" />
-            <circle class="logo__circle" cx="50" cy="95" r="5" />
-            <circle class="logo__circle" cx="50" cy="50" r="5" />
-          </svg>
-        </div>
-      `;
-    } else {
-      cell.innerHTML += `
-        <div class="cell__label">
-          <svg class="cell__logo" viewBox="0 0 200 100">
-            <use href="svg/vectors.svg#${iconId}"></use>
-          </svg>
+    cell.innerHTML += `
+      <div class="cell__label">
+        ${iconId === 'shiny-tools-logo'
+        ? getSvgIcon('logo', '', 'logo', 100, 100)
+        : `
+          ${getSvgIcon('label', iconId, 'cell__logo', 200, 100)}
           <p class="cell__title">${getSpannedTitle(cellTitle)}</p>
-        </div>
-      `;
-    }
-    const labelWidth = `${(1 - gap) * (100 - BASE_WIDTH) + BASE_WIDTH}%`;
-    cell.lastElementChild.style.height = labelWidth;
+        `}
+      </div>
+    `;
   }
-
-  cell.style.width = row % 2 === 0
-  ? getCellWidth(totalInBigRow)
-  : getCellWidth(totalInSmallRow);
-
   return cell;
 }
 
@@ -113,7 +102,11 @@ const generateHexGrid = (data) => {
     }
   
     const lastRow = hexGrid.lastElementChild;
-    lastRow.appendChild(getCell(hex, totalInBigRow, totalInSmallRow));
+    const newCell = getCell(hex);
+    newCell.style.width = row % 2 === 0
+    ? getCellWidth(totalInBigRow)
+    : getCellWidth(totalInSmallRow);
+    lastRow.appendChild(newCell);
   });
 }
 
@@ -268,23 +261,3 @@ burgerButton.addEventListener('click', function() {
   const infoSection = this.parentNode.parentNode;
   infoSection.classList.remove('info--visible');
 }));
-
-
-
-/* [...allCells].forEach(cell => {
-  cell.addEventListener('mouseover', function() {
-    //this.firstElementChild.style.padding = '10px';
-    this.style.transform = 'scale(0.9)';
-  });
-  cell.addEventListener('mouseout', function() {
-    //this.firstElementChild.style.padding = '';
-    this.firstElementChild.style.padding = '';
-    this.style.transform = '';
-  });
-}); */
-
-//${iconId ? ` cell__blank--${iconId}` : ''}
-
-/* window.addEventListener('click', function(e) {
-  console.log(e.target);
-}); */
