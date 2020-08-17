@@ -1,4 +1,5 @@
-const desktopHexData = [
+const hexXl = [
+  ////////////////////////////////////////////////////////////////////// 1st row
   {
     column: 1,
     row: 1,
@@ -58,6 +59,7 @@ const desktopHexData = [
     isInteractive: false,
     isDetached: false
   },
+  ////////////////////////////////////////////////////////////////////// 2nd row
   {
     column: 1,
     row: 2,
@@ -127,6 +129,7 @@ const desktopHexData = [
     isInteractive: false,
     isDetached: false
   },
+  ////////////////////////////////////////////////////////////////////// 3rd row
   {
     column: 1,
     row: 3,
@@ -187,6 +190,7 @@ const desktopHexData = [
     isInteractive: false,
     zPosition: 'under2'
   },
+  ////////////////////////////////////////////////////////////////////// 4th row
   {
     column: 1,
     row: 4,
@@ -255,6 +259,7 @@ const desktopHexData = [
     isInteractive: false,
     zPosition: 'under4'
   },
+  ////////////////////////////////////////////////////////////////////// 5th row
   {
     column: 1,
     row: 5,
@@ -314,6 +319,7 @@ const desktopHexData = [
     isInteractive: false,
     zPosition: 'under4'
   },
+  ////////////////////////////////////////////////////////////////////// 6th row
   {
     column: 1,
     row: 6,
@@ -381,6 +387,7 @@ const desktopHexData = [
     isInteractive: false,
     zPosition: 'under4'
   },
+  ////////////////////////////////////////////////////////////////////// 7th row
   {
     column: 1,
     row: 7,
@@ -440,6 +447,7 @@ const desktopHexData = [
     isInteractive: false,
     zPosition: 'under3'
   },
+  ////////////////////////////////////////////////////////////////////// 8th row
   {
     column: 1,
     row: 8,

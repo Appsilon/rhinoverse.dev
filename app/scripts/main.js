@@ -2,17 +2,26 @@
 //import { mobileHexData } from './mobileHexData.js';
 //import * as packagesData from './packages';
 
-const BREAKPOINT = 768;
+const media = [
+  { breakpoint: 0, data: hexXs },
+  { breakpoint: 480, data: hexSm },
+  { breakpoint: 768, data: hexMd },
+  { breakpoint: 1024, data: hexLg },
+  { breakpoint: 1200, data: hexXl }
+];
 const hexGrid = document.getElementById('hex-grid');
 const menu = document.getElementById('menu');
 const infoWrapper = document.getElementById('wrapper-info');
 const burgerButton = document.getElementById('burger-button');
-let isMobile = window.innerWidth < BREAKPOINT;
 
 // calculate hex cell width as css calc() function
 const getCellWidth = (total) => `calc(${1 / (total) * 100}% + 2px)`;
 const getSpannedTitle = (title) => {
   return title.split('.').map(span => `<span>${span}</span>`).join('.');
+}
+const getMediaData = (width) => {
+  return media.reduce((prev, curr) => 
+  width >= curr.breakpoint ? curr : prev, media[0]).data;
 }
 const getSvgIcon = (type, iconId, className, width, height) => {
   return `
@@ -112,9 +121,9 @@ const generateHexGrid = (data) => {
 
 const handleInfoVisibility = () => {
   const firstInfoSection = document.querySelector('.info');
-  isMobile
+/*   isMobile
   ? firstInfoSection.classList.remove('info--visible')
-  : firstInfoSection.classList.add('info--visible');
+  : firstInfoSection.classList.add('info--visible'); */
 }
 
 // generate info sections ------------------------------------------------------
@@ -196,8 +205,9 @@ const generateInfo = () => {
   });
 }
 
-// generate hexagonal grid on page load
-isMobile ? generateHexGrid(mobileHexData) : generateHexGrid(desktopHexData);
+// generate hexagonal grid on page load ----------------------------------------
+const data = getMediaData(window.innerWidth);
+generateHexGrid(data);
 generateInfo();
 handleInfoVisibility()
 
