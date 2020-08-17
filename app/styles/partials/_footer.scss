@@ -1,0 +1,44 @@
+.footer {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  left: 0;
+  padding: 10px;
+  position: absolute;
+  right: 0;
+
+  @media only screen and (min-width: $media-lg) {
+    border-top: 1px solid $navy;
+    left: $info-left-offset;
+    max-width: $info-max-width;
+    margin-bottom: 10px;
+    position: fixed;
+  }
+
+  &__link {
+    @include flex-center;
+    fill: $navy;
+    height: 30px;
+    transition: fill $hover-transition;
+
+    &:hover {
+      fill: #fff;
+    }
+  }
+
+  &__svg {
+    height: 100%;
+  }
+
+  &__text {
+    font-size: 0.7rem;
+    color: $navy;
+    flex-grow: 1;
+    text-align: right;
+  }
+
+  & > *:not(:last-child) {
+    margin-right: 10px;
+  }
+}
