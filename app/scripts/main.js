@@ -7,9 +7,9 @@ const getCellWidth = (total) => `calc(${1 / (total) * 100}% + 2px)`;
 const getSpannedTitle = (title) => {
   return title.split('.').map(span => `<span>${span}</span>`).join('.');
 }
-const getMedia = (width) => {
+const getMedia = () => {
   return media.reduce((prev, curr) => 
-  width >= curr.breakpoint ? curr : prev, media[0]);
+  window.innerWidth >= curr.breakpoint ? curr : prev, media[0]);
 }
 const getSvgIcon = (type, iconId, className, width, height) => {
   return `
@@ -48,9 +48,10 @@ const hexGrid = document.getElementById('hex-grid');
 const menu = document.getElementById('menu');
 const infoWrapper = document.getElementById('wrapper-info');
 const burgerButton = document.getElementById('burger-button');
-const currentMedia = getMedia(window.innerWidth);
+const currentMedia = getMedia();
 const currentMediaData = currentMedia.data;
 let currentMediaBreakpoint = currentMedia.breakpoint;
+const mobileBreakpoint = 800;
 
 // get one hexagonal cell ------------------------------------------------------
 const getCell = (hexCell) => {
@@ -123,85 +124,66 @@ const generateHexGrid = (data) => {
 }
 
 const handleInfoVisibility = () => {
-  const firstInfoSection = document.querySelector('.info');
-/*   isMobile
-  ? firstInfoSection.classList.remove('info--visible')
-  : firstInfoSection.classList.add('info--visible'); */
+  const infoSections = document.querySelectorAll('.info');
+  infoSections.forEach((section, index) => {
+    if (currentMediaBreakpoint >= mobileBreakpoint && index === 0) {
+      section.classList.add('info--visible');
+    } else {
+      section.classList.remove('info--visible');
+    }
+  });
+}
+
+const createElement = (className = '', type = 'div', content = '') => {
+  const element = document.createElement(type);
+  element.className = className;
+  element.innerHTML = content;
+  if (type === 'a') {
+    element.target = '_blank';
+    element.rel = 'noopener noreferrer';
+  }
+  return element;
 }
 
 // generate info sections ------------------------------------------------------
-const generateInfo = () => {
-  
+const generateInfo = () => {  
   libraries.forEach(library => {
-    const { id, heading, paragraphs, repoLink, demoLink } = library;
-    
-    const section = document.createElement('section');
-    section.className = `info info--${id}`
-
-    // hero section
-    const hero = document.createElement('div');
-    hero.className = `info__hero info__hero--${id}`;
-    const svg = document.createElement('svg');
-    svg.innerHTML = `
-      <svg class="cell__logo" viewBox="0 0 200 100">
-        <use href="svg/vectors.svg#${id}"></use>
-      </svg>
-    `;
-    svg.className = 'info__svg';
-    const title = document.createElement('h3');
-    title.className = 'info__heading';
-    title.textContent = heading;
-    hero.append(svg, title);
-
-    // description section
-    const description = document.createElement('div');
-    description.className = 'info__description';
-
-    // text section
-    const texts = document.createElement('div');
-    texts.className = 'info__texts';
-
+    const { id, heading, paragraphs, repoLink, demoLink } = library;    
+    const section = createElement(`info info--${id}`, 'section');
+    const hero = createElement(`info__hero info__hero--${id}`);
+    const svg = createElement('info__svg', 'svg', getSvgIcon('label', id, 'cell__logo', 200, 100));
+    const title = createElement('info__heading', 'h3', heading);
+    const description = createElement('info__description');
+    const texts = createElement('info__texts');
     paragraphs.forEach(paragraph => {
-      const text = document.createElement('p');
-      text.className = 'info__text';
-      text.textContent = paragraph;
+      const text = createElement('info__text', 'p', paragraph);
       texts.appendChild(text);
     });
+    const stars = createElement(`stars stars--${id}`, 'div', getSvgIcon('label', 'star', 'stars__svg', 100, 100));
+    const starsLabel = createElement('stars__label', 'p', 'Github Stars');
+    const starsOutput = createElement('stars__output', 'p');
 
-    // github stars section
-    const stars = document.createElement('div');
-    const starsLabel = document.createElement('p');
-    const starsOutput = document.createElement('p');
-    const starsSvg = document.createElement('svg');
-    starsSvg.innerHTML = `
-      <svg class="stars__svg" viewBox="0 0 100 100">
-        <use href="svg/vectors.svg#star"></use>
-      </svg>
-    `;
-    stars.className = `stars stars--${id}`;
-    starsLabel.className = 'stars__label';
-    starsOutput.className = 'stars__output';
-    starsLabel.textContent = 'Github Stars';
-
-    const repoButton = document.createElement('a');
-    repoButton.className = `info__button info__button--${id} info__button--github`;
+    const repoButton = createElement(
+      `info__button info__button--${id} info__button--github`,
+      'a',
+      'Github'
+    );
     repoButton.href = repoLink;
-    repoButton.target = '_black';
-    repoButton.rel = 'noopener noreferrer';
-    repoButton.textContent = 'Github';
 
-    const demoButton = document.createElement('a');
-    demoButton.className = `info__button info__button--${id} info__button--demo`;
+    const demoButton = createElement(
+      `info__button info__button--${id} info__button--demo`,
+      'a',
+      'Demo'
+    );
     demoButton.href = demoLink;
-    demoButton.target = '_black';
-    demoButton.rel = 'noopener noreferrer';
-    demoButton.textContent = 'Demo';
 
-    const backButton = document.createElement('button');
-    backButton.className = `info__button info__button--${id} info__button--back`;
-    backButton.textContent = 'Back';
-
-    stars.append(starsLabel, starsOutput, starsSvg);
+    const backButton = createElement(
+      `info__button info__button--${id} info__button--back`,
+      'button',
+      'Back'
+    );
+    hero.append(svg, title);
+    stars.append(starsLabel, starsOutput);
     description.append(texts, stars, repoButton, demoButton, backButton);
     section.append(hero, description);
     infoWrapper.appendChild(section);
@@ -223,7 +205,7 @@ const addMediaEvents = () => {
         const currentInfo = document.querySelector(`.info--${id}`);
     
         // handle cells appearance on desktop
-        if (!isMobile) {
+        if (currentMediaBreakpoint >= mobileBreakpoint) {
           [...allInteractiveCells].forEach(cell => cell.classList.remove('active'));
           cell.classList.add('active');
         }
