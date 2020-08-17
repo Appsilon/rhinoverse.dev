@@ -121,23 +121,32 @@ $packages: (
         }
       }
     }
+
+    &__text {
+      color: rgba($color: #fff, $alpha: 0.7);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 20px;
+      position: absolute;
+      text-align: center;
+    }
   }
 }
 
 .logo {
-  animation: logo 5s infinite alternate ease-in-out;
+  animation: logo 3s infinite alternate ease-in-out;
   fill: none;
   stroke: white;
   stroke-width: 2;
   width: 50%;
 
   &__triangle {
-    animation: triangle 5s infinite alternate ease-in-out;
+    animation: triangle 3s infinite alternate ease-in-out;
     stroke-width: 3;    
   }
 
   &__outer {
-    animation: outer 5s infinite alternate ease-in-out;
+    animation: outer 3s infinite alternate ease-in-out;
   }
 
   &__circle {

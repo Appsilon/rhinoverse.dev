@@ -74,7 +74,7 @@ const hexLg = [
   {
     column: 5,
     row: 3,
-    iconId: 'shiny-router',
+    iconId: 'shiny-info',
     isDetached: true,
     isInteractive: true,
     zPosition: 'under2'
@@ -99,15 +99,13 @@ const hexLg = [
   {
     column: 5,
     row: 4,
-    iconId: 'shiny-info',
     isDetached: true,
-    isInteractive: true,
     zPosition: 'under2'
   },
   {
     column: 6,
     row: 4,
-    iconId: 'shiny-i18n',
+    iconId: 'shiny-router',
     isDetached: true,
     isInteractive: true,
     zPosition: 'under3'
@@ -115,7 +113,9 @@ const hexLg = [
   {
     column: 7,
     row: 4,
+    iconId: 'shiny-i18n',
     isDetached: true,
+    isInteractive: true,
     zPosition: 'under3'
   },
   {

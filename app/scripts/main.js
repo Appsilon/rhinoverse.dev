@@ -57,6 +57,7 @@ const mobileBreakpoint = 800;
 const getCell = (hexCell) => {
   const {
     iconId = null,
+    text = null,
     isDetached = false,
     isInteractive = false,
     zPosition = null
@@ -87,6 +88,8 @@ const getCell = (hexCell) => {
       </div>
     `;
   }
+  // add text as cell's only content
+  else if (text) cell.innerHTML += `<p class="cell__text">${text}</p>`;
   return cell;
 }
 
@@ -102,6 +105,8 @@ const generateHexGrid = (data) => {
   const newBigRowWidth = `${(totalInBigRow) / totalInSmallRow * 100}%`;
   const newBigRowLeftMargin = `${-1 / (totalInSmallRow * 2) * 100}%`;
   const lastRowIndex = getMaxOf(data, 'row');
+  const isEvenRowBigger = data.find(row =>
+    row.column === totalInBigRow).row % 2 === 0;
   
   // clean container's node structure
   hexGrid.innerHTML = '';
@@ -113,8 +118,9 @@ const generateHexGrid = (data) => {
       const newRow = document.createElement('div');
       newRow.className = 'hex-grid__row';
       newRow.style.marginTop = newRowMargin;
-      // set width and margin of even rows
-      if (row % 2 === 0) {
+
+      // set width and margin of bigger rows
+      if ((isEvenRowBigger && row % 2 === 0) || (!isEvenRowBigger && row % 2 !== 0)) {
         newRow.style.width = newBigRowWidth;
         newRow.style.marginLeft = newBigRowLeftMargin;
       }
@@ -125,7 +131,7 @@ const generateHexGrid = (data) => {
     // create new cell
     const lastRow = hexGrid.lastElementChild;
     const newCell = getCell(hex);
-    newCell.style.width = row % 2 === 0
+    newCell.style.width = row % 2 === 0 && isEvenRowBigger
     ? getCellWidth(totalInBigRow)
     : getCellWidth(totalInSmallRow);
     lastRow.appendChild(newCell);

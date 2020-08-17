@@ -1,12 +1,9 @@
 @keyframes logo {
   0% {
     opacity: 0;
-  }
-  35% {
-    opacity: 0;
     transform: rotate3d(0,0,1,0) scale(0);
   }
-  40% {
+  5% {
     opacity: 1;
     transform: rotate3d(0,0,1,0) scale(1);
   }

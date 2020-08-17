@@ -58,7 +58,9 @@ const hexXl = [
   {
     column: 6,
     row: 2,
+    iconId: 'semantic-dashboard',
     isDetached: true,
+    isInteractive: true,
     zPosition: 'under1'
   },
   {
@@ -86,7 +88,7 @@ const hexXl = [
   {
     column: 6,
     row: 3,
-    iconId: 'semantic-dashboard',
+    iconId: 'shiny-info',
     isDetached: true,
     isInteractive: true,
     zPosition: 'under2'
@@ -119,7 +121,7 @@ const hexXl = [
   {
     column: 7,
     row: 4,
-    iconId: 'shiny-info',
+    iconId: 'shiny-router',
     isDetached: true,
     isInteractive: true,
     zPosition: 'under3'
@@ -127,7 +129,7 @@ const hexXl = [
   {
     column: 8,
     row: 4,
-    iconId: 'shiny-router',
+    iconId: 'shiny-i18n',
     isDetached: true,
     isInteractive: true,
     zPosition: 'under3'
@@ -165,9 +167,7 @@ const hexXl = [
   {
     column: 8,
     row: 5,
-    iconId: 'shiny-i18n',
     isDetached: true,
-    isInteractive: true,
     zPosition: 'under4'
   },
   {
