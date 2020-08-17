@@ -55,7 +55,12 @@ const mobileBreakpoint = 800;
 
 // get one hexagonal cell ------------------------------------------------------
 const getCell = (hexCell) => {
-  const { iconId, isDetached, isInteractive, zPosition } = hexCell;
+  const {
+    iconId = null,
+    isDetached = false,
+    isInteractive = false,
+    zPosition = null
+  } = hexCell;
   const cell = document.createElement('div');
   const cellTitle = iconId ? iconId.replace('-', '.') : '';
   const blankCellClass = `"
@@ -85,14 +90,18 @@ const getCell = (hexCell) => {
   return cell;
 }
 
+const getMaxOf = (data, type) => {
+  return data.reduce((max, curr) => curr[type] > max[type] ? curr : max)[type];
+}
+
 // generate hexagonal grid -----------------------------------------------------
 const generateHexGrid = (data) => {
-  const totalInBigRow = data.reduce((max, curr) =>
-  curr.column > max.column ? curr : max).column;
+  const totalInBigRow = getMaxOf(data, 'column');
   const totalInSmallRow = totalInBigRow - 1;
   const newRowMargin = `${-1 / (totalInSmallRow  * 2) / Math.sqrt(3) * 100 - 0.2}%`;
   const newBigRowWidth = `${(totalInBigRow) / totalInSmallRow * 100}%`;
   const newBigRowLeftMargin = `${-1 / (totalInSmallRow * 2) * 100}%`;
+  const lastRowIndex = getMaxOf(data, 'row');
   
   // clean container's node structure
   hexGrid.innerHTML = '';
@@ -110,7 +119,7 @@ const generateHexGrid = (data) => {
         newRow.style.marginLeft = newBigRowLeftMargin;
       }
       // set bottom margin of the last row
-      if (row === 8) newRow.style.marginBottom = newRowMargin; // to refactor !!
+      if (row === lastRowIndex) newRow.style.marginBottom = newRowMargin;
       hexGrid.appendChild(newRow);
     }
     // create new cell
