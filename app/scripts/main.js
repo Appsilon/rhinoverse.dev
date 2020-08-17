@@ -41,8 +41,8 @@ const getSvgIcon = (type, iconId, className, width, height) => {
 }
 
 // get one hexagonal cell ------------------------------------------------------
-const getCell = (hex) => {
-  const { iconId, isDetached, isInteractive, zPosition } = hex;
+const getCell = (hexCell) => {
+  const { iconId, isDetached, isInteractive, zPosition } = hexCell;
   const cell = document.createElement('div');
   const cellTitle = iconId ? iconId.replace('-', '.') : '';
   const blankCellClass = `"
@@ -72,7 +72,7 @@ const getCell = (hex) => {
   return cell;
 }
 
-// generate hexagonal grid on desktop ------------------------------------------
+// generate hexagonal grid -----------------------------------------------------
 const generateHexGrid = (data) => {
   const totalInBigRow = data.reduce((max, curr) =>
   curr.column > max.column ? curr : max).column;
@@ -81,26 +81,26 @@ const generateHexGrid = (data) => {
   const newBigRowWidth = `${(totalInBigRow) / totalInSmallRow * 100}%`;
   const newBigRowLeftMargin = `${-1 / (totalInSmallRow * 2) * 100}%`;
   
+  // clean container's node structure
   hexGrid.innerHTML = '';
   
   data.forEach(hex => {
     const { column, row } = hex;
-  
     // create new row wrapping hexagonal cells
     if (column === 1) {
       const newRow = document.createElement('div');
       newRow.className = 'hex-grid__row';
       newRow.style.marginTop = newRowMargin;
-
+      // set width and margin of even rows
       if (row % 2 === 0) {
         newRow.style.width = newBigRowWidth;
         newRow.style.marginLeft = newBigRowLeftMargin;
       }
-
+      // set bottom margin of the last row
       if (row === 8) newRow.style.marginBottom = newRowMargin; // to refactor !!
       hexGrid.appendChild(newRow);
     }
-  
+    // create new cell
     const lastRow = hexGrid.lastElementChild;
     const newCell = getCell(hex);
     newCell.style.width = row % 2 === 0
