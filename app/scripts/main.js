@@ -1,8 +1,4 @@
-import { hexXs } from './hexXs';
-import { hexSm } from './hexSm';
-import { hexMd } from './hexMd';
-import { hexLg } from './hexLg';
-import { hexXl } from './hexXl';
+import { hexXs, hexSm, hexMd, hexLg, hexXl } from './hexData';
 import { libraries } from './libraries';
 import '@babel/polyfill';
 
@@ -40,7 +36,20 @@ const getSvgIcon = (type, iconId, className, width, height) => {
     </svg>
   `
 }
+const getTotalColumns = (data) => {
+  return data.reduce((max, curr) => curr.length > max.length ? curr : max).length;
+}
 
+const createElement = (className = '', type = 'div', content = '') => {
+  const element = document.createElement(type);
+  element.className = className;
+  element.innerHTML = content;
+  if (type === 'a') {
+    element.target = '_blank';
+    element.rel = 'noopener noreferrer';
+  }
+  return element;
+}
 const media = [
   { breakpoint: 0, data: hexXs },
   { breakpoint: 480, data: hexSm },
@@ -58,86 +67,86 @@ let currentMediaBreakpoint = currentMedia.breakpoint;
 const mobileBreakpoint = 700;
 
 // get one hexagonal cell ------------------------------------------------------
-const getCell = (hexCell) => {
-  const {
-    iconId = null,
-    text = null,
-    isInteractive = false,
-    zPosition = null
-  } = hexCell;
-  const cell = document.createElement('div');
-  const cellTitle = iconId ? iconId.replace('-', '.') : '';
+const getCell = (cell) => {
+  const [
+    level,
+    {
+      iconId = null,
+      title = '',
+      isInteractive = false,
+      text = null
+    }] = cell;
+
+  const cellNode = document.createElement('div');
   const blankCellClass = `"
     cell__blank
     ${isInteractive ? 'cell__blank--interactive' : ''}
     ${iconId ? `cell__blank--${iconId}` : ''}
     ${iconId === 'shiny-semantic' ? 'cell__blank--shiny-semantic active' : ''}
-    ${zPosition ? 'cell__blank--detached' : 'cell__blank--attached'}
-    ${zPosition ? `cell__blank--${zPosition}` : ''}
+    ${level ? 'cell__blank--detached' : 'cell__blank--attached'}
+    ${level ? `cell__blank--${level}` : ''}
   "`;
-  cell.className = `cell${isInteractive ? ' cell--interactive' : ''}`;
-  cell.innerHTML = getSvgIcon('blank', iconId, blankCellClass, 100, 115.47);
+  cellNode.className = `cell${isInteractive ? ' cell--interactive' : ''}`;
+  cellNode.innerHTML = getSvgIcon('blank', iconId, blankCellClass, 100, 115.47);
 
   // add labels as cell children if icon id is specified
   if (iconId) {
-    cell.innerHTML += `
+    cellNode.innerHTML += `
       <div class="cell__label">
         ${iconId === 'shiny-tools-logo'
         ? getSvgIcon('logo', '', 'logo', 100, 100)
         : `
           ${getSvgIcon('label', iconId, 'cell__logo', 200, 100)}
-          <p class="cell__title">${getSpannedTitle(cellTitle)}</p>
+          <p class="cell__title">${getSpannedTitle(title)}</p>
         `}
       </div>
     `;
   }
   // add text as cell's only content
   else if (text) cell.innerHTML += `<p class="cell__text">${text}</p>`;
-  return cell;
-}
-
-const getMaxOf = (data, type) => {
-  return data.reduce((max, curr) => curr[type] > max[type] ? curr : max)[type];
+  return cellNode;
 }
 
 // generate hexagonal grid -----------------------------------------------------
 const generateHexGrid = (data) => {
-  const totalInBigRow = getMaxOf(data, 'column');
+  
+  const totalInBigRow = getTotalColumns(data);
   const totalInSmallRow = totalInBigRow - 1;
   const newRowMargin = `${-1 / (totalInSmallRow  * 2) / Math.sqrt(3) * 100 - 0.2}%`;
   const newBigRowWidth = `${(totalInBigRow) / totalInSmallRow * 100}%`;
   const newBigRowLeftMargin = `${-1 / (totalInSmallRow * 2) * 100}%`;
-  const lastRowIndex = getMaxOf(data, 'row');
-  const isEvenRowBigger = data.find(row =>
-    row.column === totalInBigRow).row % 2 === 0;
+  const lastRow = data.length;
+  const isEvenRowBigger = data.findIndex(row => row.length === totalInBigRow);
+    
+    console.log('isEvenRowBigger', isEvenRowBigger);
   
   // clean container's node structure
   hexGrid.innerHTML = '';
   
-  data.forEach(hex => {
-    const { column, row } = hex;
-    // create new row wrapping hexagonal cells
-    if (column === 1) {
-      const newRow = document.createElement('div');
-      newRow.className = 'hex-grid__row';
-      newRow.style.marginTop = newRowMargin;
+  data.forEach((row, index) => {
+    const newRow = document.createElement('div');
+    const rowNumber = index + 1;
+    newRow.className = 'hex-grid__row';
+    newRow.style.marginTop = newRowMargin;
 
-      // set width and margin of bigger rows
-      if ((isEvenRowBigger && row % 2 === 0) || (!isEvenRowBigger && row % 2 !== 0)) {
-        newRow.style.width = newBigRowWidth;
-        newRow.style.marginLeft = newBigRowLeftMargin;
-      }
-      // set bottom margin of the last row
-      if (row === lastRowIndex) newRow.style.marginBottom = newRowMargin;
-      hexGrid.appendChild(newRow);
+    // set width and margin of bigger rows
+    if ((isEvenRowBigger && rowNumber % 2 === 0) || (!isEvenRowBigger && rowNumber % 2 !== 0)) {
+      newRow.style.width = newBigRowWidth;
+      newRow.style.marginLeft = newBigRowLeftMargin;
     }
-    // create new cell
-    const lastRow = hexGrid.lastElementChild;
-    const newCell = getCell(hex);
-    newCell.style.width = row % 2 === 0 && isEvenRowBigger
-    ? getCellWidth(totalInBigRow)
-    : getCellWidth(totalInSmallRow);
-    lastRow.appendChild(newCell);
+    // set bottom margin of the last row
+    if (rowNumber === lastRow) newRow.style.marginBottom = newRowMargin;
+    hexGrid.appendChild(newRow);
+
+    row.forEach(cell => {
+      // create new cell
+      const lastRow = hexGrid.lastElementChild;
+      const newCell = getCell(cell);
+      newCell.style.width = row % 2 === 0 && isEvenRowBigger
+      ? getCellWidth(totalInBigRow)
+      : getCellWidth(totalInSmallRow);
+      lastRow.appendChild(newCell);
+    });
   });
 }
 
@@ -150,17 +159,6 @@ const handleInfoVisibility = () => {
       section.classList.remove('info--visible');
     }
   });
-}
-
-const createElement = (className = '', type = 'div', content = '') => {
-  const element = document.createElement(type);
-  element.className = className;
-  element.innerHTML = content;
-  if (type === 'a') {
-    element.target = '_blank';
-    element.rel = 'noopener noreferrer';
-  }
-  return element;
 }
 
 // generate info sections ------------------------------------------------------
