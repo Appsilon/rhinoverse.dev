@@ -1,56 +1,15 @@
 import { hexXs, hexSm, hexMd, hexLg, hexXl } from './hexData';
 import { libraries } from './libraries';
 import { getGithubStars } from './github';
+import {
+  getCellWidth,
+  getSpannedTitle,
+  getMedia,
+  getSvgIcon,
+  getTotalColumns,
+  createElement } from './utils';
 import '@babel/polyfill';
 
-// calculate hex cell width as css calc() function
-const getCellWidth = (total) => `calc(${1 / (total) * 100}% + 2px)`;
-const getSpannedTitle = (title) => {
-  return title.split('.').map(span => `<span>${span}</span>`).join('.');
-}
-const getMedia = () => {
-  return media.reduce((prev, curr) => 
-  window.innerWidth >= curr.breakpoint ? curr : prev, media[0]);
-}
-const getSvgIcon = (type, iconId, className, width, height) => {
-  return `
-    <svg
-      class=${className}
-      viewBox="0 0 ${width} ${height}"
-      ${iconId ? ` data-id=${iconId}` : ''}
-    >
-      ${type === 'blank' && '<path d="M100 28.867v57.735L50 115.47 0 86.602V28.867L50 0z"/>'}
-      ${type === 'label' && `<use href="svg/vectors.svg#${iconId}"></use>`}
-      ${type === 'logo' && `
-        <polyline class="logo__triangle" points="88.971,27.5 50,95 11.029,27.5 88.971,27.5" />
-        <polyline class="logo__outer" points="88.971,27.5 88.971,72.5 50,95" />
-        <polyline class="logo__outer" points="50,95 11.029,72.5 11.029,27.5 " />
-        <polyline class="logo__outer" points="11.029,27.5 50,5 88.971,27.5" />
-        <polyline class="logo__inner" points="88.971,27.5 50,50" />
-        <polyline class="logo__inner" points="50,95 50,50" />
-        <polyline class="logo__inner" points="11.029,27.5 50,50" />
-        <circle class="logo__circle" cx="88.971" cy="27.5" r="5" />
-        <circle class="logo__circle" cx="11.029" cy="27.5" r="5" />
-        <circle class="logo__circle" cx="50" cy="95" r="5" />
-        <circle class="logo__circle" cx="50" cy="50" r="5" />
-      `}      
-    </svg>
-  `
-}
-const getTotalColumns = (data) => {
-  return data.reduce((max, curr) => curr.length > max.length ? curr : max).length;
-}
-
-const createElement = (className = '', type = 'div', content = '') => {
-  const element = document.createElement(type);
-  element.className = className;
-  element.innerHTML = content;
-  if (type === 'a') {
-    element.target = '_blank';
-    element.rel = 'noopener noreferrer';
-  }
-  return element;
-}
 const media = [
   { breakpoint: 0, data: hexXs },
   { breakpoint: 480, data: hexSm },
@@ -62,7 +21,7 @@ const hexGrid = document.getElementById('hex-grid');
 const infoWrapper = document.getElementById('wrapper-info');
 //const menu = document.getElementById('menu');
 //const burgerButton = document.getElementById('burger-button');
-const currentMedia = getMedia();
+const currentMedia = getMedia(media);
 const currentMediaData = currentMedia.data;
 let currentMediaBreakpoint = currentMedia.breakpoint;
 const mobileBreakpoint = 700;
@@ -104,7 +63,7 @@ const getCell = (cell) => {
     `;
   }
   // add text as cell's only content
-  else if (text) cell.innerHTML += `<p class="cell__text">${text}</p>`;
+  else if (text) cellNode.innerHTML += `<p class="cell__text">${text}</p>`;
   return cellNode;
 }
 
@@ -118,8 +77,6 @@ const generateHexGrid = (data) => {
   const newBigRowLeftMargin = `${-1 / (totalInSmallRow * 2) * 100}%`;
   const lastRow = data.length;
   const isEvenRowBigger = data.findIndex(row => row.length === totalInBigRow);
-    
-    console.log('isEvenRowBigger', isEvenRowBigger);
   
   // clean container's node structure
   hexGrid.innerHTML = '';
@@ -260,12 +217,12 @@ const addContent = (data) => {
 // generate hexagonal grid on page load
 addContent(currentMediaData);
 // fetch github api
-const test = fetch('https://api.github.com/orgs/Appsilon/repos')
+fetch('https://api.github.com/orgs/Appsilon/repos')
   .then(resp => resp.json())
   .then(resp => getGithubStars(resp));
 
 window.addEventListener('resize', function() {
-  const currentMedia = getMedia(window.innerWidth);
+  const currentMedia = getMedia(media);
   if (currentMedia.breakpoint !== currentMediaBreakpoint) {
     currentMediaBreakpoint = currentMedia.breakpoint;
     const currentMediaData = currentMedia.data;
@@ -273,6 +230,7 @@ window.addEventListener('resize', function() {
   }
 });
 
+// temporarily hidden - no menu items
 /* burgerButton.addEventListener('click', function() {
   menu.classList.toggle('menu--visible');
   burgerButton.classList.toggle('burger-button--active');
