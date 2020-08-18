@@ -6,6 +6,7 @@ import {
   getSpannedTitle,
   getMedia,
   getSvgIcon,
+  getSvgAsImg,
   getTotalColumns,
   createElement } from './utils';
 import '@babel/polyfill';
@@ -56,7 +57,7 @@ const getCell = (cell) => {
         ${iconId === 'shiny-tools-logo'
         ? getSvgIcon('logo', '', 'logo', 100, 100)
         : `
-          ${getSvgIcon('label', iconId, 'cell__logo', 200, 100)}
+          ${getSvgAsImg(iconId, 'cell__logo')}
           <p class="cell__title">${getSpannedTitle(title)}</p>
         `}
       </div>

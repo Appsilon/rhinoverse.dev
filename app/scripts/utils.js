@@ -36,6 +36,10 @@ export const getSvgIcon = (type, iconId, className, width, height) => {
   `
 }
 
+export const getSvgAsImg = (id, className) => {
+  return `<img class='${className}' src='svg/${id}.svg' alt='${id} icon'>`;
+}
+
 export const getTotalColumns = (data) => {
   return data.reduce((max, curr) => curr.length > max.length ? curr : max).length;
 }
