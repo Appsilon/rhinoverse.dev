@@ -1,5 +1,6 @@
 import { hexXs, hexSm, hexMd, hexLg, hexXl } from './hexData';
 import { libraries } from './libraries';
+import { getGithubStars } from './github';
 import '@babel/polyfill';
 
 // calculate hex cell width as css calc() function
@@ -256,8 +257,12 @@ const addContent = (data) => {
   addMediaEvents();
 }
 
-// generate hexagonal grid on page load ----------------------------------------
+// generate hexagonal grid on page load
 addContent(currentMediaData);
+// fetch github api
+const test = fetch('https://api.github.com/orgs/Appsilon/repos')
+  .then(resp => resp.json())
+  .then(resp => getGithubStars(resp));
 
 window.addEventListener('resize', function() {
   const currentMedia = getMedia(window.innerWidth);

@@ -1,4 +1,4 @@
-const getStarsTotal = (repos) => {
+export const getGithubStars = (repos) => {
   
   const libs = [
     'shiny.semantic',
@@ -24,8 +24,3 @@ const getStarsTotal = (repos) => {
     }
   });
 }
-
-// fetch github api
-const test = fetch('https://api.github.com/orgs/Appsilon/repos')
-  .then(resp => resp.json())
-  .then(resp => getStarsTotal(resp));

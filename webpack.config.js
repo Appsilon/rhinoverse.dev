@@ -1,6 +1,7 @@
 const path = require('path');
 const outputDir = path.resolve(__dirname, 'dist/scripts/');
 module.exports = {
+  //devtool: 'eval-source-map',
   entry: path.resolve(__dirname, 'app/scripts/main.js'),
   mode: 'production',
   module: {
