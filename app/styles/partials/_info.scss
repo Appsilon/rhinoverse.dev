@@ -30,7 +30,7 @@ $packages: (
     visibility: visible;
   }
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-md) {
     & {
       align-items: flex-start;
       background: none;
@@ -70,7 +70,7 @@ $packages: (
     &--shiny-router { background-color: $color-shiny-router; }
     &--shiny-i18n { background-color: $color-shiny-i18n; }
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $media-md) {
       background: none;
       padding: 0;
     }
@@ -85,7 +85,7 @@ $packages: (
     padding: 30px;
     width: 100%;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $media-md) {
       padding: 0;
     }
   }
@@ -95,7 +95,7 @@ $packages: (
     max-width: 250px;
     width: 100%;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $media-md) {
       display: none;
     }
   }
@@ -104,7 +104,7 @@ $packages: (
     font-size: 1.3rem;
     font-weight: 500;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $media-md) {
       align-self: stretch;
       border-bottom: 2px solid #fff;
       font-size: 2.5rem;
@@ -121,7 +121,7 @@ $packages: (
     padding-bottom: 2rem;
     text-align: left;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $media-md) {
       color: #fff;
     }
   }
@@ -148,7 +148,7 @@ $packages: (
     text-transform: uppercase;
     transition: background-color $hover-transition, border-color $hover-transition;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $media-md) {
       padding: 0.8rem 2rem;
 
       &--demo {
@@ -165,12 +165,12 @@ $packages: (
       &--#{$name}.info__button--github {
         background-color: $color;
 
-        @media only screen and (min-width: 768px) {
+        @media only screen and (min-width: $media-md) {
           background-color: $color;
         }
       }
 
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: $media-md) {
         &--#{$name}.info__button--demo {
           border-color: $color;
           color: $color;
@@ -190,7 +190,7 @@ $packages: (
       background-color: $navy;
     }
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $media-md) {
       &--back {
         display: none;
       }
@@ -221,7 +221,7 @@ $packages: (
     margin-right: 0.7rem;
     text-transform: uppercase;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $media-md) {
       color: white;
     }
   }

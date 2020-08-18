@@ -11,7 +11,7 @@
   width: 100%;
   z-index: 4;
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-md) {
     height: $header-height-desktop;
     padding: 0 40px;
   }
@@ -23,7 +23,7 @@
     pointer-events: all;
     transition: fill $hover-transition;
 
-    @media only screen and (min-width: $media-lg) {
+    @media only screen and (min-width: $media-md) {
       height: 40px;
     }
 
@@ -59,7 +59,7 @@
     visibility: visible;
   }
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-md) {
     background: none;
     flex-direction: row;
     min-height: auto;
@@ -95,7 +95,7 @@
     fill: $blue;
   }
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-md) {
     display: none;
   }
 
@@ -114,7 +114,7 @@
   height: $header-height-mobile;
   z-index: 3;
 
-  @media only screen and (min-width: $media-lg) {
+  @media only screen and (min-width: $media-md) {
     display: none;
   }
 }

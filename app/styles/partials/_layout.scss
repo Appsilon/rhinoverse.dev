@@ -45,7 +45,7 @@ body {
   position: relative;
   width: 100%;
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $media-md) {
     & {
       overflow-y: hidden;
     }
@@ -63,7 +63,7 @@ body {
     text-align: center;
     z-index: 2;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $media-md) {
       & {
         display: none;
       }
