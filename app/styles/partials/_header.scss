@@ -11,7 +11,7 @@
   width: 100%;
   z-index: 4;
 
-  @media only screen and (min-width: $media-breakpoint) {
+  @media only screen and (min-width: $media-md) {
     height: $header-height-desktop;
     padding: 0 40px;
   }
@@ -23,7 +23,7 @@
     pointer-events: all;
     transition: fill $hover-transition;
 
-    @media only screen and (min-width: $media-breakpoint) {
+    @media only screen and (min-width: $media-md) {
       height: 40px;
     }
 
@@ -59,7 +59,7 @@
     visibility: visible;
   }
 
-  @media only screen and (min-width: $media-breakpoint) {
+  @media only screen and (min-width: $media-md) {
     background: none;
     flex-direction: row;
     min-height: auto;
@@ -77,6 +77,11 @@
     padding: 10px 20px;
     pointer-events: all;
     text-decoration: none;
+    transition: color $hover-transition;
+
+    &:hover {
+      color: $navy;
+    }
   }
 }
 
@@ -90,7 +95,7 @@
     fill: $blue;
   }
 
-  @media only screen and (min-width: $media-breakpoint) {
+  @media only screen and (min-width: $media-md) {
     display: none;
   }
 
@@ -104,11 +109,12 @@
   position: fixed;
   top: 0;
   left: 0;
+  opacity: 0.5;
   width: 100%;
   height: $header-height-mobile;
   z-index: 3;
 
-  @media only screen and (min-width: $media-breakpoint) {
+  @media only screen and (min-width: $media-md) {
     display: none;
   }
 }

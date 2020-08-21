@@ -30,7 +30,7 @@ html {
 }
 
 body {
-  background: #000;
+  background: $blue;
   color: #fff;
   font-family: 'Maven Pro', Arial, sans-serif;
   font-size: 16px;
@@ -41,12 +41,11 @@ body {
 
 .wrapper {
   background: $blue;
-  height: 100%;
   overflow-x: hidden;
-  width: 100%;
   position: relative;
+  width: 100%;
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $media-md) {
     & {
       overflow-y: hidden;
     }
@@ -58,13 +57,13 @@ body {
     left: 0;
     position: absolute;
     padding: 0 30px;
-    top: 27vw;
+    top: 55vw;
     opacity: 0.8;
     width: 100%;
     text-align: center;
     z-index: 2;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $media-md) {
       & {
         display: none;
       }

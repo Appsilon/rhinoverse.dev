@@ -1,6 +1,7 @@
 // generated on 2020-08-04 using generator-webapp 4.0.0-8
 const { src, dest, watch, series, parallel, lastRun } = require('gulp');
 const terser = require('gulp-terser');
+const webpack = require('webpack-stream');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const browserSync = require('browser-sync');
 const del = require('del');
@@ -50,6 +51,7 @@ function scripts() {
   })
     .pipe($.plumber())
     .pipe($.babel())
+    .pipe(webpack(require('./webpack.config.js')))
     .pipe(dest('.tmp/scripts', {
       sourcemaps: !isProd ? '.' : false,
     }))

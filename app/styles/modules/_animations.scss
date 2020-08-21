@@ -1,0 +1,49 @@
+@keyframes logo {
+  0% {
+    opacity: 0;
+    transform: rotate3d(0,0,1,0) scale(0);
+  }
+  5% {
+    opacity: 1;
+    transform: rotate3d(0,0,1,0) scale(1);
+  }
+  60% {
+    transform: rotate3d(0,0,1,0);
+  }
+  80% {
+    transform: rotate3d(0,0,1,390deg);
+  }
+  100% {
+    transform: rotate3d(0,0,1,390deg);
+  }
+}
+
+@keyframes triangle {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }  
+}
+
+@keyframes outer {
+  0% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }  
+}

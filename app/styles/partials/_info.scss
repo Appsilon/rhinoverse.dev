@@ -1,3 +1,11 @@
+$packages: (
+  'shiny-semantic': $color-shiny-semantic,
+  'semantic-dashboard': $color-semantic-dashboard,
+  'shiny-info': $color-shiny-info,
+  'shiny-router': $color-shiny-router,
+  'shiny-i18n': $color-shiny-i18n
+);
+
 .info {
   align-items: flex-start;
   background-color: #fff;
@@ -22,11 +30,11 @@
     visibility: visible;
   }
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: $media-md) {
     & {
       align-items: flex-start;
       background: none;
-      bottom: 100px;
+      bottom: 80px;
       display: flex;
       flex-direction: column;
       height: auto;
@@ -62,7 +70,7 @@
     &--shiny-router { background-color: $color-shiny-router; }
     &--shiny-i18n { background-color: $color-shiny-i18n; }
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $media-md) {
       background: none;
       padding: 0;
     }
@@ -72,12 +80,12 @@
     display: grid;
     column-gap: 15px;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: repeat(3, auto) 1fr;
     height: 100%;
     padding: 30px;
     width: 100%;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $media-md) {
       padding: 0;
     }
   }
@@ -87,7 +95,7 @@
     max-width: 250px;
     width: 100%;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $media-md) {
       display: none;
     }
   }
@@ -96,9 +104,9 @@
     font-size: 1.3rem;
     font-weight: 500;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $media-md) {
       align-self: stretch;
-      border-bottom: 3px solid #fff;
+      border-bottom: 2px solid #fff;
       font-size: 2.5rem;
       padding-bottom: 1rem;
       margin-bottom: 1.5rem;      
@@ -113,7 +121,7 @@
     padding-bottom: 2rem;
     text-align: left;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $media-md) {
       color: #fff;
     }
   }
@@ -140,42 +148,34 @@
     text-transform: uppercase;
     transition: background-color $hover-transition, border-color $hover-transition;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $media-md) {
       padding: 0.8rem 2rem;
+
+      &--demo {
+        border-color: #fff;
+        color: #fff;        
+      }
     }
 
-    $packages: (
-      'shiny-semantic': $color-shiny-semantic,
-      'semantic-dashboard': $color-semantic-dashboard,
-      'shiny-info': $color-shiny-info,
-      'shiny-router': $color-shiny-router,
-      'shiny-i18n': $color-shiny-i18n
-    );
+    &--github {
+      border-color: transparent;
+    }
 
     @each $name, $color in $packages {
       &--#{$name}.info__button--github {
         background-color: $color;
-        border-color: transparent;
 
-        @media only screen and (min-width: 768px) {
+        @media only screen and (min-width: $media-md) {
           background-color: $color;
         }
       }
 
-      &--#{$name}.info__button--demo {
-        border-color: $color;
-        color: $color;
-
-        @media only screen and (min-width: 768px) {
-          border-color: #fff;
-          color: #fff;
+      @media only screen and (max-width: $media-md) {
+        &--#{$name}.info__button--demo {
+          border-color: $color;
+          color: $color;
         }
       }
-
-      /* &--#{$name}.info__button--back {
-        border-bottom-color: $color;
-        color: $color;
-      } */
     }
 
     &--back {
@@ -186,14 +186,56 @@
     }
 
     &:hover {
-      border: none;
+      border-color: transparent;
       background-color: $navy;
     }
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $media-md) {
       &--back {
         display: none;
       }
     }
+  }
+}
+
+.stars {
+  align-items: center;
+  display: flex;
+  grid-column: 1 / span 2;
+  justify-content: flex-start;
+
+  &--hidden {
+    display: none;
+  }
+
+  @each $name, $color in $packages {
+    &--#{$name} {
+      color: $color;
+      fill: $color;
+    }
+  }
+
+  &__label {
+    color: $gray-light;
+    font-weight: 500;
+    margin-right: 0.7rem;
+    text-transform: uppercase;
+
+    @media only screen and (min-width: $media-md) {
+      color: white;
+    }
+  }
+
+  &__output {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-right: 0.3rem;
+
+
+  }
+
+  &__svg {
+    width: 30px;
+    order: 1;
   }
 }

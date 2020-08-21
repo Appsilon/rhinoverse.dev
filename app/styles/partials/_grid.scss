@@ -1,39 +1,52 @@
+$packages: (
+  'shiny-semantic': $color-shiny-semantic,
+  'semantic-dashboard': $color-semantic-dashboard,
+  'shiny-info': $color-shiny-info,
+  'shiny-router': $color-shiny-router,
+  'shiny-i18n': $color-shiny-i18n
+);
+
 .hex-grid {
   background: $navy;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   position: relative;
+  z-index: 0;
+
+  @media only screen and (min-width: $media-md) {
+    max-height: 1080px;
+  }
 
   &__row {
     display: flex;
     width: 100%;
     margin: 0;
+    pointer-events: none;
   }
 
   .cell {
     @include flex-center;
+    margin: -1px;
     pointer-events: none;
     position: relative;
 
-    &--labelled:hover {
+    &--interactive:hover {
       transform: scale(1.05);
       z-index: 2;
     }
 
     &__blank {
+      @include flex-center;
       fill: $blue;
+      overflow: hidden;
       pointer-events: none;
       transition: fill 0.2s;
       width: 100%;
       position: relative;
 
-      &--labelled {
+      &--interactive {
         cursor: pointer;
-      }
-
-      &--attached {
-        
       }
 
       &--detached {
@@ -45,26 +58,23 @@
         pointer-events: all;
       }
 
-      $packages: (
-        'shiny-semantic': $color-shiny-semantic,
-        'semantic-dashboard': $color-semantic-dashboard,
-        'shiny-info': $color-shiny-info,
-        'shiny-router': $color-shiny-router,
-        'shiny-i18n': $color-shiny-i18n
-      );
+      &--4 { fill: mix($navy, $blue, 60%); z-index: -4; }
+      &--3 { fill: mix($navy, $blue, 45%); z-index: -3; }
+      &--2 { fill: mix($navy, $blue, 30%); z-index: -2; }
+      &--1 { fill: mix($navy, $blue, 15%); z-index: -1; }
 
-      @each $name, $color in $packages {        
+      @each $name, $color in $packages {
         &--#{$name} {
-          fill: $color;
-  
-          @media only screen and (min-width: $media-breakpoint) {
-            & {
-              fill: $blue;
-              &.active,
-              &.hovered {
-                fill: $color;
-              }
-            }
+
+          &.active,
+          &.hovered {
+            fill: $color;
+            z-index: 1;
+          }
+
+          @media only screen and (max-width: $media-lg) {
+            
+            fill: $color;
           }
         }
       }
@@ -101,11 +111,54 @@
         display: inline-block;
       }
   
-      @media only screen and (min-width: $media-breakpoint) {
+      @media only screen and (min-width: $media-sm) {
+        & {
+          font-size: 2.5vw;
+        }
+      }
+  
+      @media only screen and (min-width: $media-md) {
         & {
           display: none;
         }
       }
     }
+
+    &__text {
+      color: rgba($color: #fff, $alpha: 0.9);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 20px;
+      position: absolute;
+      text-align: center;
+  
+      @media only screen and (min-width: $media-sm) {
+        & {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.logo {
+  animation: logo 3s infinite alternate ease-in-out;
+  fill: none;
+  stroke: white;
+  stroke-width: 2;
+  width: 50%;
+
+  &__triangle {
+    animation: triangle 3s infinite alternate ease-in-out;
+    stroke-width: 3;    
+  }
+
+  &__outer {
+    animation: outer 3s infinite alternate ease-in-out;
+  }
+
+  &__circle {
+    stroke: none;
+    fill: #fff;
   }
 }

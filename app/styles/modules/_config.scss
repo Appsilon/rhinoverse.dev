@@ -19,14 +19,18 @@ $color-shiny-info: #FFC41D;
 $color-shiny-router: #E24D55;
 $color-shiny-i18n: #A04291;
 
-$media-breakpoint: 768px;
-
 $menu-transition: 0.3s;
 $hover-transition: 0.15s;
 $info-transition: 0.3s;
 
-$info-left-offset: 150px;
+$info-left-offset: 6%;
 $info-max-width: 400px;
 
 $header-height-mobile: 60px;
 $header-height-desktop: 120px;
+
+// Media
+$media-sm: 480px;
+$media-md: 768px;
+$media-lg: 1024px;
+$media-xl: 1200px;

@@ -1,251 +1,243 @@
-//import { desktopHexData } from './desktopHexData.js';
-//import { mobileHexData } from './mobileHexData.js';
-//import * as packagesData from './packages';
+import { hexXs, hexSm, hexMd, hexLg, hexXl } from './hexData';
+import { libraries } from './libraries';
+import { getGithubStars } from './github';
+import {
+  getCellWidth,
+  getSpannedTitle,
+  getMedia,
+  getSvgIcon,
+  getTotalColumns,
+  createElement } from './utils';
+import '@babel/polyfill';
 
-const MAX_GAP = 50;
-const BASE_WIDTH = 10;
-const BREAKPOINT = 768;
+const media = [
+  { breakpoint: 0, data: hexXs },
+  { breakpoint: 480, data: hexSm },
+  { breakpoint: 768, data: hexMd },
+  { breakpoint: 1024, data: hexLg },
+  { breakpoint: 1200, data: hexXl }
+];
 const hexGrid = document.getElementById('hex-grid');
-const menu = document.getElementById('menu');
 const infoWrapper = document.getElementById('wrapper-info');
-const burgerButton = document.getElementById('burger-button');
-let isMobile = window.innerWidth < BREAKPOINT;
-
-const getCellWidth = (total) => `${1 / (total) * 100}%`
-const getSpannedTitle = (title) => {
-  return title.split('.').map(span => `<span>${span}</span>`).join('.');
-}
+//const menu = document.getElementById('menu');
+//const burgerButton = document.getElementById('burger-button');
+const currentMedia = getMedia(media);
+const currentMediaData = currentMedia.data;
+let currentMediaBreakpoint = currentMedia.breakpoint;
+const mobileBreakpoint = 700;
 
 // get one hexagonal cell ------------------------------------------------------
-const getCell = (hex, totalInBigRow, totalInSmallRow) => {
-  const { column, row, gap, isAnimated, iconId, isDetached } = hex;
-  const cell = document.createElement('div');
-  const cellTitle = iconId ? iconId.replace('-', '.') : '';
+const getCell = (cell) => {
+  const [
+    level,
+    {
+      iconId = null,
+      title = '',
+      isInteractive = false,
+      text = null
+    }] = cell;
+
+  const cellNode = document.createElement('div');
   const blankCellClass = `"
     cell__blank
-    ${iconId ? ` cell__blank--labelled cell__blank--${iconId}` : ''}
+    ${isInteractive ? 'cell__blank--interactive' : ''}
+    ${iconId ? `cell__blank--${iconId}` : ''}
     ${iconId === 'shiny-semantic' ? 'cell__blank--shiny-semantic active' : ''}
-    ${isDetached ? 'cell__blank--detached' : 'cell__blank--attached'}
+    ${level ? 'cell__blank--detached' : 'cell__blank--attached'}
+    ${level ? `cell__blank--${level}` : ''}
   "`;
+  cellNode.className = `cell${isInteractive ? ' cell--interactive' : ''}`;
+  cellNode.innerHTML = getSvgIcon('blank', iconId, blankCellClass, 100, 115.47);
 
-  cell.className = `cell${iconId ? ' cell--labelled' : ''}`;
-  //cell.style.padding = `${MAX_GAP * gap}px`;
-  cell.innerHTML = `
-    <svg
-      class=${blankCellClass}
-      ${iconId ? ` data-id=${iconId}` : ''}
-      viewBox="0 0 100 115.47"
-    >
-      <path d="M100 28.867v57.735L50 115.47 0 86.602V28.867L50 0z"/>
-    </svg>
-  `;
-
-  // svg logo with a title
+  // add labels as cell children if icon id is specified
   if (iconId) {
-    cell.innerHTML += `
+    cellNode.innerHTML += `
       <div class="cell__label">
-        <svg class="cell__logo" viewBox="0 0 200 100">
-          <use href="svg/vectors.svg#${iconId}"></use>
-        </svg>
-        <p class="cell__title">${getSpannedTitle(cellTitle)}</p>
+        ${iconId === 'shiny-tools-logo'
+        ? getSvgIcon('logo', '', 'logo', 100, 100)
+        : `
+          ${getSvgIcon('label', iconId, 'cell__logo', 200, 100)}
+          <p class="cell__title">${getSpannedTitle(title)}</p>
+        `}
       </div>
     `;
-    const labelWidth = `${(1 - gap) * (100 - BASE_WIDTH) + BASE_WIDTH}%`;
-    cell.lastElementChild.style.height = labelWidth;
   }
-
-  cell.style.width = row % 2 === 0
-  ? getCellWidth(totalInBigRow)
-  : getCellWidth(totalInSmallRow);
-  return cell;
+  // add text as cell's only content
+  else if (text) cellNode.innerHTML += `<p class="cell__text">${text}</p>`;
+  return cellNode;
 }
 
-// generate hexagonal grid on desktop ------------------------------------------
+// generate hexagonal grid -----------------------------------------------------
 const generateHexGrid = (data) => {
-  const totalInBigRow = data.reduce((max, curr) =>
-  curr.column > max.column ? curr : max).column;
+  
+  const totalInBigRow = getTotalColumns(data);
   const totalInSmallRow = totalInBigRow - 1;
   const newRowMargin = `${-1 / (totalInSmallRow  * 2) / Math.sqrt(3) * 100 - 0.2}%`;
   const newBigRowWidth = `${(totalInBigRow) / totalInSmallRow * 100}%`;
   const newBigRowLeftMargin = `${-1 / (totalInSmallRow * 2) * 100}%`;
+  const lastRow = data.length;
+  const isEvenRowBigger = data.findIndex(row => row.length === totalInBigRow);
   
+  // clean container's node structure
   hexGrid.innerHTML = '';
   
-  data.forEach((hex, index) => {
-    const { column, row } = hex;
-  
-    // create new row wrapping hexagonal cells
-    if (column === 1) {
-      const newRow = document.createElement('div');
-      newRow.className = 'hex-grid__row';
-      newRow.style.marginTop = newRowMargin;
+  data.forEach((row, index) => {
+    const newRow = document.createElement('div');
+    const rowNumber = index + 1;
+    newRow.className = 'hex-grid__row';
+    newRow.style.marginTop = newRowMargin;
 
-      if (row % 2 === 0) {
-        newRow.style.width = newBigRowWidth;
-        newRow.style.marginLeft = newBigRowLeftMargin;
-      }
-
-      if (row === 8) newRow.style.marginBottom = newRowMargin; // to refactor !!
-      hexGrid.appendChild(newRow);
+    // set width and margin of bigger rows
+    if ((isEvenRowBigger && rowNumber % 2 === 0) || (!isEvenRowBigger && rowNumber % 2 !== 0)) {
+      newRow.style.width = newBigRowWidth;
+      newRow.style.marginLeft = newBigRowLeftMargin;
     }
-  
-    const lastRow = hexGrid.lastElementChild;
-    lastRow.appendChild(getCell(hex, totalInBigRow, totalInSmallRow));
+    // set bottom margin of the last row
+    if (rowNumber === lastRow) newRow.style.marginBottom = newRowMargin;
+    hexGrid.appendChild(newRow);
+
+    row.forEach(cell => {
+      // create new cell
+      const lastRow = hexGrid.lastElementChild;
+      const newCell = getCell(cell);
+      newCell.style.width = row % 2 === 0 && isEvenRowBigger
+      ? getCellWidth(totalInBigRow)
+      : getCellWidth(totalInSmallRow);
+      lastRow.appendChild(newCell);
+    });
   });
 }
 
 const handleInfoVisibility = () => {
-  const firstInfoSection = document.querySelector('.info');
-  isMobile
-  ? firstInfoSection.classList.remove('info--visible')
-  : firstInfoSection.classList.add('info--visible');
+  const infoSections = document.querySelectorAll('.info');
+  [...infoSections].forEach((section, index) => {
+    if (currentMediaBreakpoint >= mobileBreakpoint && index === 0) {
+      section.classList.add('info--visible');
+    } else {
+      section.classList.remove('info--visible');
+    }
+  });
 }
 
 // generate info sections ------------------------------------------------------
-const generateInfo = () => {
-  
+const generateInfo = () => {  
   libraries.forEach(library => {
-    const { id, heading, paragraphs, repoLink, demoLink } = library;
-    
-    const section = document.createElement('section');
-    section.className = `info info--${id}`
-
-    // hero section
-    const hero = document.createElement('div');
-    hero.className = `info__hero info__hero--${id}`;
-    const svg = document.createElement('svg');
-    svg.innerHTML = `
-      <svg class="cell__logo" viewBox="0 0 200 100">
-        <use href="svg/vectors.svg#${id}"></use>
-      </svg>
-    `;
-    svg.className = 'info__svg';
-    const title = document.createElement('h3');
-    title.className = 'info__heading';
-    title.textContent = heading;
-    hero.append(svg, title);
-
-    // description section
-    const description = document.createElement('div');
-    description.className = 'info__description';
-
-    // text section
-    const texts = document.createElement('div');
-    texts.className = 'info__texts';
-
+    const { id, heading, paragraphs, repoLink, demoLink } = library;    
+    const section = createElement(`info info--${id}`, 'section');
+    const hero = createElement(`info__hero info__hero--${id}`);
+    const svg = createElement('info__svg', 'svg', getSvgIcon('label', id, 'cell__logo', 200, 100));
+    const title = createElement('info__heading', 'h3', heading);
+    const description = createElement('info__description');
+    const texts = createElement('info__texts');
     paragraphs.forEach(paragraph => {
-      const text = document.createElement('p');
-      text.className = 'info__text';
-      text.textContent = paragraph;
+      const text = createElement('info__text', 'p', paragraph);
       texts.appendChild(text);
     });
+    const stars = createElement(`stars stars--${id}`, 'div', getSvgIcon('label', 'star', 'stars__svg', 100, 100));
+    const starsLabel = createElement('stars__label', 'p', 'Github Stars');
+    const starsOutput = createElement('stars__output', 'p');
 
-    const repoButton = document.createElement('a');
-    repoButton.className = `info__button info__button--${id} info__button--github`;
+    const repoButton = createElement(
+      `info__button info__button--${id} info__button--github`,
+      'a',
+      'Github'
+    );
     repoButton.href = repoLink;
-    repoButton.target = '_black';
-    repoButton.rel = 'noopener noreferrer';
-    repoButton.textContent = 'Github';
 
-    const demoButton = document.createElement('a');
-    demoButton.className = `info__button info__button--${id} info__button--demo`;
+    const demoButton = createElement(
+      `info__button info__button--${id} info__button--demo`,
+      'a',
+      'Demo'
+    );
     demoButton.href = demoLink;
-    demoButton.target = '_black';
-    demoButton.rel = 'noopener noreferrer';
-    demoButton.textContent = 'Demo';
 
-    const backButton = document.createElement('button');
-    backButton.className = `info__button info__button--${id} info__button--back`;
-    backButton.textContent = 'Back';
-
-    description.append(texts, repoButton, demoButton, backButton);
-    section.append(hero, description);
+    const backButton = createElement(
+      `info__button info__button--${id} info__button--back`,
+      'button',
+      'Back'
+    );
+    hero.appendChild(svg);
+    hero.appendChild(title);
+    stars.appendChild(starsLabel);
+    stars.appendChild(starsOutput);
+    description.appendChild(texts);
+    description.appendChild(stars);
+    description.appendChild(repoButton);
+    description.appendChild(demoButton);
+    description.appendChild(backButton);
+    section.appendChild(hero);
+    section.appendChild(description);
     infoWrapper.appendChild(section);
   });
 }
 
-// generate hexagonal grid on page load
-isMobile ? generateHexGrid(mobileHexData) : generateHexGrid(desktopHexData);
-generateInfo();
-handleInfoVisibility()
-
-// create variables after grid generation
-let hexPaths = document.querySelectorAll('.cell__blank--labelled path');
-let allCells = document.querySelectorAll('.cell');
-let infoSections = document.querySelectorAll('.info');
-let allLabelledCells = document.querySelectorAll('.cell__blank--labelled');
-const backButtons = document.querySelectorAll('.info__button--back');
-
-// Events ----------------------------------------------------------------------
-
-[...hexPaths].forEach(path => {
-  // on click event
-  path.addEventListener('click', function(e) {
-    if (this.tagName === 'path') {
-      const cell = this.parentNode;
-      const { id } = cell.dataset;
-      const currentInfo = document.querySelector(`.info--${id}`);
+// add events to newly generated DOM nodes based on media data
+const addMediaEvents = () => {
+  let hexPaths = document.querySelectorAll('.cell__blank--interactive path');
+  let infoSections = document.querySelectorAll('.info');
+  let allInteractiveCells = document.querySelectorAll('.cell__blank--interactive');
   
-      // handle cells appearance on desktop
-      if (!isMobile) {
-        [...allLabelledCells].forEach(cell => cell.classList.remove('active'));
-        cell.classList.add('active');
+  [...hexPaths].forEach(path => {
+    // on click event
+    path.addEventListener('click', function(e) {
+      if (this.tagName === 'path') {
+        const cell = this.parentNode;
+        const { id } = cell.dataset;
+        const currentInfo = document.querySelector(`.info--${id}`);
+    
+        // handle cells appearance on desktop
+        if (currentMediaBreakpoint >= mobileBreakpoint) {
+          [...allInteractiveCells].forEach(cell => cell.classList.remove('active'));
+          cell.classList.add('active');
+        }
+    
+        // handle info section appearance
+        [...infoSections].forEach(section => section.classList.remove('info--visible'));
+        currentInfo.classList.add('info--visible');
       }
-  
-      // handle info section appearance
-      [...infoSections].forEach(section => section.classList.remove('info--visible'));
-      currentInfo.classList.add('info--visible');
-    }
+    });
+    // on mouse over event
+    path.addEventListener('mouseover', function(e) {
+      if (this.tagName === 'path') this.parentNode.classList.add('hovered');
+    });
+    // on mouse out event
+    path.addEventListener('mouseout', function(e) {
+      if (this.tagName === 'path') this.parentNode.classList.remove('hovered');
+    });
   });
-  // on mouse over event
-  path.addEventListener('mouseover', function(e) {
-    if (this.tagName === 'path') this.parentNode.classList.add('hovered');
-  });
-  // on mouse out event
-  path.addEventListener('mouseout', function(e) {
-    if (this.tagName === 'path') this.parentNode.classList.remove('hovered');
-  });
-});
+}
+
+const addContent = (data) => {
+  generateHexGrid(data);
+  generateInfo();
+  handleInfoVisibility();
+  addMediaEvents();
+}
+
+// generate hexagonal grid on page load
+addContent(currentMediaData);
+// fetch github api
+fetch('https://api.github.com/orgs/Appsilon/repos')
+  .then(resp => resp.json())
+  .then(resp => getGithubStars(resp));
 
 window.addEventListener('resize', function() {
-  if (window.innerWidth < BREAKPOINT && !isMobile) {
-    isMobile = true;
-    generateHexGrid(mobileHexData);
-    handleInfoVisibility();
-  }
-  if (window.innerWidth >= BREAKPOINT && isMobile) {
-    isMobile = false;
-    generateHexGrid(desktopHexData);
-    handleInfoVisibility();
+  const currentMedia = getMedia(media);
+  if (currentMedia.breakpoint !== currentMediaBreakpoint) {
+    currentMediaBreakpoint = currentMedia.breakpoint;
+    const currentMediaData = currentMedia.data;
+    addContent(currentMediaData);
   }
 });
 
-burgerButton.addEventListener('click', function() {
+// temporarily hidden - no menu items
+/* burgerButton.addEventListener('click', function() {
   menu.classList.toggle('menu--visible');
   burgerButton.classList.toggle('burger-button--active');
-});
+}); */
 
+const backButtons = document.querySelectorAll('.info__button--back');
 [...backButtons].forEach(button => button.addEventListener('click', function() {
   const infoSection = this.parentNode.parentNode;
   infoSection.classList.remove('info--visible');
 }));
-
-
-
-/* [...allCells].forEach(cell => {
-  cell.addEventListener('mouseover', function() {
-    //this.firstElementChild.style.padding = '10px';
-    this.style.transform = 'scale(0.9)';
-  });
-  cell.addEventListener('mouseout', function() {
-    //this.firstElementChild.style.padding = '';
-    this.firstElementChild.style.padding = '';
-    this.style.transform = '';
-  });
-}); */
-
-//${iconId ? ` cell__blank--${iconId}` : ''}
-
-/* window.addEventListener('click', function(e) {
-  console.log(e.target);
-}); */
