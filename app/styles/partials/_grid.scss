@@ -7,7 +7,7 @@ $packages: (
 );
 
 .hex-grid {
-  background: $navy;
+  background: $blue;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -15,7 +15,9 @@ $packages: (
   z-index: 0;
 
   @media only screen and (min-width: $media-md) {
-    max-height: 1080px;
+    max-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   &__row {
