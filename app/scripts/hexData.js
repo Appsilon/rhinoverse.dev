@@ -9,39 +9,38 @@
 
 // Blank cell representing coloured hexagon shape
 const __ = {};
+// Appsilon Logo
+const _A = {
+  link: 'appsilon-logo'
+};
 // Shiny.tools animated SVG logo
 const _L = {
-  iconId: 'shiny-tools-logo'
+  appLogo: 'logo'
 };
 // Shiny.semantic cell
 const _S = {
-  iconId: 'shiny-semantic',
-  title: 'shiny.semantic',
-  isInteractive: true
+  library: 'shiny-semantic',
+  title: 'shiny.semantic'
 };
 //Semantic.dashboard cell
 const _D = {
-  iconId: 'semantic-dashboard',
-  title: 'semantic.dashboard',
-  isInteractive: true
+  library: 'semantic-dashboard',
+  title: 'semantic.dashboard'
 };
 // Shiny.info cell
 const _I = {
-  iconId: 'shiny-info',
-  title: 'shiny.info',
-  isInteractive: true
+  library: 'shiny-info',
+  title: 'shiny.info'
 };
 // Shiny.router cell
 const _R = {
-  iconId: 'shiny-router',
-  title: 'shiny.router',
-  isInteractive: true
+  library: 'shiny-router',
+  title: 'shiny.router'
 };
 // Shiny.i18n cell
 const _N = {
-  iconId: 'shiny-i18n',
-  title: 'shiny.i18n',
-  isInteractive: true
+  library: 'shiny-i18n',
+  title: 'shiny.i18n'
 };
 // Text cell
 const _W = {

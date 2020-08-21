@@ -32,6 +32,7 @@ $packages: (
     position: relative;
 
     &--interactive:hover {
+      cursor: pointer;
       transform: scale(1.05);
       z-index: 2;
     }
@@ -44,10 +45,6 @@ $packages: (
       transition: fill 0.2s;
       width: 100%;
       position: relative;
-
-      &--interactive {
-        cursor: pointer;
-      }
 
       &--detached {
         filter: drop-shadow( 0 0 15px rgba(0,0,0,0.3));
@@ -72,7 +69,7 @@ $packages: (
             z-index: 1;
           }
 
-          @media only screen and (max-width: $media-lg) {
+          @media only screen and (max-width: $media-md) {
             
             fill: $color;
           }
@@ -100,7 +97,8 @@ $packages: (
     &__title {
       color: #fff;
       font-weight: 400;
-      font-size: 3.5vw;
+      font-size: 3vw;
+      font-weight: bold;
       margin-top: 0.5rem;
       text-align: center;
       width: 80%;
@@ -112,7 +110,7 @@ $packages: (
   
       @media only screen and (min-width: $media-sm) {
         & {
-          font-size: 2.5vw;
+          font-size: 2.2vw;
         }
       }
   
@@ -124,7 +122,7 @@ $packages: (
     }
 
     &__text {
-      color: rgba($color: #fff, $alpha: 0.9);
+      color: rgba($color: $blue-light, $alpha: 1);
       font-size: 0.8rem;
       font-weight: 700;
       padding: 20px;
@@ -137,27 +135,5 @@ $packages: (
         }
       }
     }
-  }
-}
-
-.logo {
-  animation: logo 3s infinite alternate ease-in-out;
-  fill: none;
-  stroke: white;
-  stroke-width: 2;
-  width: 50%;
-
-  &__triangle {
-    animation: triangle 3s infinite alternate ease-in-out;
-    stroke-width: 3;    
-  }
-
-  &__outer {
-    animation: outer 3s infinite alternate ease-in-out;
-  }
-
-  &__circle {
-    stroke: none;
-    fill: #fff;
   }
 }

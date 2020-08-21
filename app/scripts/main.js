@@ -5,7 +5,7 @@ import {
   getCellWidth,
   getSpannedTitle,
   getMedia,
-  getSvgIcon,
+  getSvg,
   getSvgAsImg,
   getTotalColumns,
   createElement } from './utils';
@@ -32,39 +32,45 @@ const getCell = (cell) => {
   const [
     level,
     {
-      iconId = null,
+      appLogo = null,
+      link = null,
+      library = '',
       title = '',
-      isInteractive = false,
       text = null
     }] = cell;
 
   const cellNode = document.createElement('div');
   const blankCellClass = `"
     cell__blank
-    ${isInteractive ? 'cell__blank--interactive' : ''}
-    ${iconId ? `cell__blank--${iconId}` : ''}
-    ${iconId === 'shiny-semantic' ? 'cell__blank--shiny-semantic active' : ''}
+    ${library ? 'cell__blank--library' : ''}
+    ${library ? `cell__blank--${library}` : ''}
+    ${library === 'shiny-semantic' ? 'cell__blank--shiny-semantic active' : ''}
+    ${appLogo ? `cell__blank--${appLogo}` : ''}
     ${level ? 'cell__blank--detached' : 'cell__blank--attached'}
     ${level ? `cell__blank--${level}` : ''}
   "`;
-  cellNode.className = `cell${isInteractive ? ' cell--interactive' : ''}`;
-  cellNode.innerHTML = getSvgIcon('blank', iconId, blankCellClass, 100, 115.47);
-
+  cellNode.className = `cell${library || link ? ' cell--interactive' : ''}`;
+  // apply plain svg hexagonal shape
+  cellNode.innerHTML = getSvg('blank', library, blankCellClass, 100, 115.47);
+  
+  // add content to hexagonal cell
   // add labels as cell children if icon id is specified
-  if (iconId) {
-    cellNode.innerHTML += `
-      <div class="cell__label">
-        ${iconId === 'shiny-tools-logo'
-        ? getSvgIcon('logo', '', 'logo', 100, 100)
-        : `
-          ${getSvgAsImg(iconId, 'cell__logo')}
-          <p class="cell__title">${getSpannedTitle(title)}</p>
-        `}
-      </div>
-    `;
-  }
-  // add text as cell's only content
-  else if (text) cellNode.innerHTML += `<p class="cell__text">${text}</p>`;
+  const content = library
+  ? `
+    <div class="cell__label">
+      ${getSvgAsImg(library, 'cell__logo')}
+      <p class="cell__title">${getSpannedTitle(title)}</p>
+    </div>
+  `
+  : appLogo
+  ? `${getSvg('appLogo', null, appLogo, 100, 100)}`
+  : link
+  ? `${getSvg(null, link, link, 100, 29)}`
+  : text
+  ? `<p class="cell__text">${text}</p>`
+  : '';
+  
+  cellNode.innerHTML += content;
   return cellNode;
 }
 
@@ -126,7 +132,7 @@ const generateInfo = () => {
     const { id, heading, paragraphs, repoLink, demoLink } = library;    
     const section = createElement(`info info--${id}`, 'section');
     const hero = createElement(`info__hero info__hero--${id}`);
-    const svg = createElement('info__svg', 'svg', getSvgIcon('label', id, 'cell__logo', 200, 100));
+    const svg = createElement('info__svg', 'svg', getSvgAsImg(id, 'cell__logo'));
     const title = createElement('info__heading', 'h3', heading);
     const description = createElement('info__description');
     const texts = createElement('info__texts');
@@ -134,7 +140,11 @@ const generateInfo = () => {
       const text = createElement('info__text', 'p', paragraph);
       texts.appendChild(text);
     });
-    const stars = createElement(`stars stars--${id}`, 'div', getSvgIcon('label', 'star', 'stars__svg', 100, 100));
+    const stars = createElement(
+      `stars stars--${id}`,
+      'div',
+      getSvg('label', 'star', 'stars__svg', 100, 100)
+    );
     const starsLabel = createElement('stars__label', 'p', 'Github Stars');
     const starsOutput = createElement('stars__output', 'p');
 
@@ -174,13 +184,13 @@ const generateInfo = () => {
 
 // add events to newly generated DOM nodes based on media data
 const addMediaEvents = () => {
-  let hexPaths = document.querySelectorAll('.cell__blank--interactive path');
+  let libraryCells = document.querySelectorAll('.cell__blank--library');
+  let hexPaths = document.querySelectorAll('.cell__blank--library path');
   let infoSections = document.querySelectorAll('.info');
-  let allInteractiveCells = document.querySelectorAll('.cell__blank--interactive');
   
   [...hexPaths].forEach(path => {
     // on click event
-    path.addEventListener('click', function(e) {
+    path.addEventListener('click', function() {
       if (this.tagName === 'path') {
         const cell = this.parentNode;
         const { id } = cell.dataset;
@@ -188,7 +198,7 @@ const addMediaEvents = () => {
     
         // handle cells appearance on desktop
         if (currentMediaBreakpoint >= mobileBreakpoint) {
-          [...allInteractiveCells].forEach(cell => cell.classList.remove('active'));
+          [...libraryCells].forEach(cell => cell.classList.remove('active'));
           cell.classList.add('active');
         }
     
@@ -198,11 +208,11 @@ const addMediaEvents = () => {
       }
     });
     // on mouse over event
-    path.addEventListener('mouseover', function(e) {
+    path.addEventListener('mouseover', function() {
       if (this.tagName === 'path') this.parentNode.classList.add('hovered');
     });
     // on mouse out event
-    path.addEventListener('mouseout', function(e) {
+    path.addEventListener('mouseout', function() {
       if (this.tagName === 'path') this.parentNode.classList.remove('hovered');
     });
   });

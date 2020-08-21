@@ -10,28 +10,33 @@ export const getMedia = (media) => {
   window.innerWidth >= curr.breakpoint ? curr : prev, media[0]);
 }
 
-export const getSvgIcon = (type, iconId, className, width, height) => {
+export const getSvg = (type, id, className, width, height) => {
   return `
     <svg
       class=${className}
       viewBox="0 0 ${width} ${height}"
-      ${iconId ? ` data-id=${iconId}` : ''}
+      ${id ? ` data-id=${id}` : ''}
     >
-      ${type === 'blank' && '<path d="M100 28.867v57.735L50 115.47 0 86.602V28.867L50 0z"/>'}
-      ${type === 'label' && `<use href="svg/vectors.svg#${iconId}"></use>`}
-      ${type === 'logo' && `
-        <polyline class="logo__triangle" points="88.971,27.5 50,95 11.029,27.5 88.971,27.5" />
-        <polyline class="logo__outer" points="88.971,27.5 88.971,72.5 50,95" />
-        <polyline class="logo__outer" points="50,95 11.029,72.5 11.029,27.5 " />
-        <polyline class="logo__outer" points="11.029,27.5 50,5 88.971,27.5" />
-        <polyline class="logo__inner" points="88.971,27.5 50,50" />
-        <polyline class="logo__inner" points="50,95 50,50" />
-        <polyline class="logo__inner" points="11.029,27.5 50,50" />
-        <circle class="logo__circle" cx="88.971" cy="27.5" r="5" />
-        <circle class="logo__circle" cx="11.029" cy="27.5" r="5" />
-        <circle class="logo__circle" cx="50" cy="95" r="5" />
-        <circle class="logo__circle" cx="50" cy="50" r="5" />
-      `}      
+      ${
+        type === 'blank'
+        ? '<path d="M100 28.867v57.735L50 115.47 0 86.602V28.867L50 0z"/>'
+        :
+        type === 'appLogo'
+        ? `
+          <polyline class="logo__triangle" points="88.971,27.5 50,95 11.029,27.5 88.971,27.5" />
+          <polyline class="logo__outer" points="88.971,27.5 88.971,72.5 50,95" />
+          <polyline class="logo__outer" points="50,95 11.029,72.5 11.029,27.5 " />
+          <polyline class="logo__outer" points="11.029,27.5 50,5 88.971,27.5" />
+          <polyline class="logo__inner" points="88.971,27.5 50,50" />
+          <polyline class="logo__inner" points="50,95 50,50" />
+          <polyline class="logo__inner" points="11.029,27.5 50,50" />
+          <circle class="logo__circle" cx="88.971" cy="27.5" r="5" />
+          <circle class="logo__circle" cx="11.029" cy="27.5" r="5" />
+          <circle class="logo__circle" cx="50" cy="95" r="5" />
+          <circle class="logo__circle" cx="50" cy="50" r="5" />
+        `
+        : `<use href="svg/vectors.svg#${id}"></use>`
+      }
     </svg>
   `
 }
