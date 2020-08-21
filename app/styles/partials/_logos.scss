@@ -1,0 +1,46 @@
+.logo {
+  animation: logo 3s infinite alternate ease-in-out;
+  fill: none;
+  position: absolute;
+  stroke: #fff;
+  stroke-width: 2;
+  width: 50%;
+
+  &__triangle {
+    animation: triangle 3s infinite alternate ease-in-out;
+    stroke-width: 3;    
+  }
+
+  &__outer {
+    animation: outer 3s infinite alternate ease-in-out;
+  }
+
+  &__circle {
+    fill: #fff;
+    stroke: none;
+  }
+}
+
+.appsilon-logo {
+  @include flex-center;
+  fill: $blue-light;
+  height: 100%;
+  padding: 20px;
+  pointer-events: all;
+  position: absolute;
+  transition: fill $hover-transition;
+  width: 100%;
+
+  &__svg {
+    pointer-events: none;
+    width: 100%;
+  }
+
+  @media only screen and (min-width: $media-md) {
+    
+  }
+
+  &:hover {
+    fill: #fff;
+  }
+}

@@ -41,16 +41,17 @@ The file contains nested arrays for each media query breakpoint. It represents t
 3. Each **cell's** first element is a number related to its appearance (css class)
 4. Each cell's second element is an object with optional keys:
 
-- `iconId` - string to be used to create css classes and find SVG icon file with exactly the same name
-- `title` - string displayed if iconId is provided, below SVG icon on mobile devices
-- `text` - string displayed if iconId is not specified
-- `isInteractive`- if true it has hover effect applied
+- `library` - name of the library matching SVG file name and library id in libraries.js
+- `title` - string displayed below SVG icon on mobile devices, if `library` is provided
+- `logo` - id of logo SVG symbol
+- `url` - url specified for a link element
+- `text` - string displayed within the cell
 
 To have more clear visual representiation of hexagonal grid in code, it's recommended to assign an object to one-letter variable prefixed by `_` sign, e.g. `_A`. This way it's easier to modify and add new cells to existing layouts.
 
 ### SVG file
 
-If you are adding a new package, please provide SVG file with a logo and place it in `app/svg/` directory. SVG file name should be the same as the `id` specified in `libraries.js` and `iconId` specified in `hexData.js`, in order to be displayed correctly. 
+If you are adding a new package, please provide SVG file with a logo and place it in `app/svg/` directory. SVG file name should be the same as the `id` specified in `libraries.js` and `library` specified in `hexData.js`, in order to be displayed correctly. 
 
 ## <u>Deployment</u>
 First, you need to build the app for production to the `dist` folder by running:
