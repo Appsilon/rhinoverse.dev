@@ -40,13 +40,18 @@ export const getTotalColumns = (data) => {
   return data.reduce((max, curr) => curr.length > max.length ? curr : max).length;
 }
 
-export const createElement = (className = '', type = 'div', content = '') => {
+export const createElement = (
+  className = '',
+  type = 'div',
+  content = '',
+  isLinkInternal = false ) => {
+
   const element = document.createElement(type);
   element.className = className;
   element.innerHTML = content;
-  if (type === 'a') {
+  if (type === 'a' && !isLinkInternal) {
     element.target = '_blank';
-    element.rel = 'noopener noreferrer';
+    element.rel = 'noopener';
   }
   return element;
 }
