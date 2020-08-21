@@ -16,20 +16,25 @@
   }
 
   &__circle {
-    stroke: none;
     fill: #fff;
+    stroke: none;
   }
 }
 
 .appsilon-logo {
   @include flex-center;
   fill: $blue-light;
-  width: 100%;
   height: 100%;
   padding: 20px;
-  position: absolute;
   pointer-events: all;
+  position: absolute;
   transition: fill $hover-transition;
+  width: 100%;
+
+  &__svg {
+    pointer-events: none;
+    width: 100%;
+  }
 
   @media only screen and (min-width: $media-md) {
     

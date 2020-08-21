@@ -32,10 +32,10 @@ const getCell = (cell) => {
   const [
     level,
     {
-      appLogo = null,
-      link = null,
+      logo = null,
       library = '',
       title = '',
+      url = null,
       text = null
     }] = cell;
 
@@ -45,32 +45,37 @@ const getCell = (cell) => {
     ${library ? 'cell__blank--library' : ''}
     ${library ? `cell__blank--${library}` : ''}
     ${library === 'shiny-semantic' ? 'cell__blank--shiny-semantic active' : ''}
-    ${appLogo ? `cell__blank--${appLogo}` : ''}
+    ${logo ? `cell__blank--${logo}` : ''}
     ${level ? 'cell__blank--detached' : 'cell__blank--attached'}
     ${level ? `cell__blank--${level}` : ''}
   "`;
-  cellNode.className = `cell${library || link ? ' cell--interactive' : ''}`;
+  cellNode.className = `cell${library || url ? ' cell--interactive' : ''}`;
   // apply plain svg hexagonal shape
   cellNode.innerHTML = getSvg('blank', library, blankCellClass, 100, 115.47);
   
   // add content to hexagonal cell
-  // add labels as cell children if icon id is specified
-  const content = library
-  ? `
-    <div class="cell__label">
-      ${getSvgAsImg(library, 'cell__logo')}
-      <p class="cell__title">${getSpannedTitle(title)}</p>
-    </div>
-  `
-  : appLogo
-  ? `${getSvg('appLogo', null, appLogo, 100, 100)}`
-  : link
-  ? `${getSvg(null, link, link, 100, 29)}`
-  : text
-  ? `<p class="cell__text">${text}</p>`
-  : '';
-  
-  cellNode.innerHTML += content;
+  if (library) {
+    cellNode.innerHTML += `
+      <div class="cell__label">
+        ${getSvgAsImg(library, 'cell__logo')}
+        <p class="cell__title">${getSpannedTitle(title)}</p>
+      </div>
+    `
+  } else if (url) {
+    const link = createElement(
+      logo,
+      'a',
+      logo ? getSvg(null, logo, `${logo}__svg`, 100, 29) : 'Link'
+    );
+    link.href = url;
+    cellNode.appendChild(link);
+
+  } else if (logo) {
+    cellNode.innerHTML += getSvg('appLogo', null, logo, 100, 100);
+
+  } else if (text) {
+    cellNode.innerHTML += `<p class="cell__text">${text}</p>`
+  }
   return cellNode;
 }
 
