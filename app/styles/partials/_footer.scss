@@ -1,51 +1,78 @@
+$icon-size: 36px;
+
 .footer {
-  align-items: center;
+  @include flex-center;
   bottom: 0;
-  display: flex;
-  justify-content: center;
+  flex-direction: column;
   left: 0;
-  margin-bottom: 10px;
   padding: 10px;
   position: absolute;
   right: 0;
 
   @media only screen and (min-width: $media-md) {
+    bottom: 20px;
+    flex-direction: row;
     justify-content: flex-end;
     left: auto;
-    margin-bottom: 20px;
-    margin-right: 20px;
-    position: absolute;
+    right: 20px;
     width: auto;
+  }
+
+  &__social {
+    display: flex;
+    margin-bottom: 10px;
+
+    & > *:not(:last-child) {
+      margin-right: 20px;
+    }
   }
 
   &__link {
     @include flex-center;
     fill: $blue;
-    width: 30px;
+    width: $icon-size;
     transition: fill $hover-transition;
+
+    &--rstudio {
+      fill: $navy;
+      height: $icon-size;
+      width: auto;
+    }
 
     &:hover {
       fill: #fff;
     }
 
-    @media only screen and (min-width: $media-sm) {
+    @media only screen and (min-width: $media-md) {
       fill: $navy;
-      width: 40px;
     }
   }
 
   &__svg {
     width: 100%;
+
+    &--rstudio {
+      height: $icon-size;
+      width: auto;
+    }
   }
 
   &__text {
-    font-size: 0.7rem;
+    border-top: 1px solid $navy;
     color: $navy;
-    flex-grow: 1;
+    font-size: 0.7rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-top: 10px;
     text-align: right;
-  }
 
-  & > *:not(:last-child) {
-    margin-right: 20px;
+    @media only screen and (min-width: $media-md) {
+      border: none;
+      border-right: 1px solid $navy;
+      font-size: 0.8rem;
+      margin: 0 10px 0 0;
+      max-width: 160px;
+      padding: 0 10px 0 0;
+    }
   }
 }
