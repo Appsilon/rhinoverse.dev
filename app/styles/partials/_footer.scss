@@ -64,15 +64,16 @@ $icon-size: 36px;
     font-weight: bold;
     margin-bottom: 10px;
     padding-top: 10px;
-    text-align: right;
+    text-align: center;
 
     @media only screen and (min-width: $media-md) {
       border: none;
       border-right: 1px solid $navy;
       font-size: 0.8rem;
-      margin: 0 10px 0 0;
-      max-width: 160px;
+      margin: 0 10px;
+      max-width: 200px;
       padding: 0 10px 0 0;
+      text-align: right;
     }
   }
 }
