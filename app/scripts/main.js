@@ -65,7 +65,7 @@ const getCell = (cell) => {
     const link = createElement(
       logo,
       'a',
-      logo ? getSvg(null, logo, `${logo}__svg`, 100, 29) : 'Link'
+      logo ? getSvg(null, logo, `${logo}__svg`, 139, 40) : 'Link'
     );
     link.href = url;
     cellNode.appendChild(link);
