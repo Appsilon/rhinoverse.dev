@@ -26,7 +26,7 @@ export const libraries = [
       'Display simple information of the shiny project in the user interface of the app.'
     ],
     'repoLink': 'https://github.com/Appsilon/shiny.info',
-    'demoLink': 'https://demo.appsilon.ai/apps/shiny-worker/'
+    'demoLink': 'https://demo.appsilon.ai/apps/shiny_info_demo/'
   },
   {
     'id': 'shiny-router',
