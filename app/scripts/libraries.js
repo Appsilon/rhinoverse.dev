@@ -35,7 +35,7 @@ export const libraries = [
       'A minimalistic router for your Shiny apps.'
     ],
     'repoLink': 'https://github.com/Appsilon/shiny.router',
-    'demoLink': 'https://demo.appsilon.ai/apps/ports_analytics/'
+    'demoLink': 'https://demo.appsilon.ai/apps/router2/'
   },
   {
     'id': 'shiny-i18n',

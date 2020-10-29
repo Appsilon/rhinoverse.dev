@@ -54,12 +54,8 @@ To have more clear visual representiation of hexagonal grid in code, it's recomm
 If you are adding a new package, please provide SVG file with a logo and place it in `app/svg/` directory. SVG file name should be the same as the `id` specified in `libraries.js` and `library` specified in `hexData.js`, in order to be displayed correctly. 
 
 ## <u>Deployment</u>
-First, you need to build the app for production to the `dist` folder by running:
+To deploy a newer version of the webpage simply run:
 ```
-gulp build
-```
-Then, deploy the app to github pages:
-```
-gulp deploy
+npm run deploy
 ```
 Webpage under [shiny.tools](https://shiny.tools/) domain will be automatically updated.
