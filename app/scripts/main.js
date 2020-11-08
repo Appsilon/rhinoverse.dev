@@ -3,6 +3,7 @@ import { libraries } from './libraries';
 import { getGithubStars } from './github';
 import {
   getCellWidth,
+  getRowHeight,
   getSpannedTitle,
   getMedia,
   getSvg,
@@ -14,7 +15,7 @@ import '@babel/polyfill';
 const media = [
   { breakpoint: 0, data: hexXs },
   { breakpoint: 480, data: hexSm },
-  { breakpoint: 768, data: hexMd },
+  { breakpoint: 800, data: hexMd },
   { breakpoint: 1024, data: hexLg },
   { breakpoint: 1200, data: hexXl }
 ];
@@ -25,7 +26,7 @@ const infoWrapper = document.getElementById('wrapper-info');
 const currentMedia = getMedia(media);
 const currentMediaData = currentMedia.data;
 let currentMediaBreakpoint = currentMedia.breakpoint;
-const mobileBreakpoint = 700;
+const mobileBreakpoint = 799;
 
 // get one hexagonal cell ------------------------------------------------------
 const getCell = (cell) => {
@@ -89,6 +90,7 @@ const generateHexGrid = (data) => {
   const newBigRowLeftMargin = `${-1 / (totalInSmallRow * 2) * 100}%`;
   const lastRow = data.length;
   const isEvenRowBigger = data.findIndex(row => row.length === totalInBigRow);
+  const rowHeight = getRowHeight(hexGrid.clientWidth, totalInSmallRow);
   
   // clean container's node structure
   hexGrid.innerHTML = '';
@@ -98,6 +100,7 @@ const generateHexGrid = (data) => {
     const rowNumber = index + 1;
     newRow.className = 'hex-grid__row';
     newRow.style.marginTop = newRowMargin;
+    newRow.style.height = rowHeight;
 
     // set width and margin of bigger rows
     if ((isEvenRowBigger && rowNumber % 2 === 0) || (!isEvenRowBigger && rowNumber % 2 !== 0)) {
@@ -108,8 +111,8 @@ const generateHexGrid = (data) => {
     if (rowNumber === lastRow) newRow.style.marginBottom = newRowMargin;
     hexGrid.appendChild(newRow);
 
+    // create new cell
     row.forEach(cell => {
-      // create new cell
       const lastRow = hexGrid.lastElementChild;
       const newCell = getCell(cell);
       newCell.style.width = row % 2 === 0 && isEvenRowBigger
@@ -244,6 +247,16 @@ window.addEventListener('resize', function() {
     const currentMediaData = currentMedia.data;
     addContent(currentMediaData);
   }
+});
+
+window.addEventListener('resize', function() {
+  const gridRows = document.querySelectorAll('.hex-grid__row');
+  const cellsInRow = [...gridRows].reduce((a, b) => a < b.children.length
+    ? a
+    : b.children.length, gridRows[0].children.length);
+  [...gridRows].forEach(
+    row => row.style.height = getRowHeight(hexGrid.clientWidth, cellsInRow)
+  );
 });
 
 // temporarily hidden - no menu items

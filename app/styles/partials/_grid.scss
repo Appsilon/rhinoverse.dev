@@ -29,6 +29,7 @@ $packages: (
 
   .cell {
     @include flex-center;
+    height: 100%;
     margin: -1px;
     pointer-events: none;
     position: relative;
