@@ -60,6 +60,8 @@ $packages: (
     @include flex-center;
     background-color: #fff;
     flex-direction: column;
+    min-height: 250px;
+    height: 100%;
     padding: 50px 30px;
     width: 100%;
 
@@ -71,6 +73,7 @@ $packages: (
 
     @media only screen and (min-width: $media-md) {
       background: none;
+      min-height: auto;
       padding: 0;
     }
   }
@@ -80,7 +83,6 @@ $packages: (
     column-gap: 15px;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, auto) 1fr;
-    height: 100%;
     padding: 30px;
     width: 100%;
 
