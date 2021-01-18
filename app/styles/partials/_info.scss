@@ -1,6 +1,7 @@
 $packages: (
   'shiny-semantic': $color-shiny-semantic,
   'semantic-dashboard': $color-semantic-dashboard,
+  'shiny-worker': $color-shiny-worker,
   'shiny-info': $color-shiny-info,
   'shiny-router': $color-shiny-router,
   'shiny-i18n': $color-shiny-i18n
@@ -67,6 +68,7 @@ $packages: (
 
     &--shiny-semantic { background-color: $color-shiny-semantic; }
     &--semantic-dashboard { background-color: $color-semantic-dashboard; }
+    &--shiny-worker { background-color: $color-shiny-worker; }
     &--shiny-info { background-color: $color-shiny-info; }
     &--shiny-router { background-color: $color-shiny-router; }
     &--shiny-i18n { background-color: $color-shiny-i18n; }
