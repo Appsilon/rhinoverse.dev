@@ -20,22 +20,34 @@ export const libraries = [
     'demoLink': 'https://appsilon.github.io/semantic.dashboard/'
   },
   {
+    'id': 'shiny-worker',
+    'heading': 'shiny.worker',
+    'paragraphs': [
+      '',
+      'Shiny.worker allows you to delegate heavy computation tasks to a separate process, such that it does not freeze your Shiny app.'
+    ],
+    'repoLink': 'https://github.com/Appsilon/shiny.worker',
+    'demoLink': 'https://demo.appsilon.ai/apps/shiny-worker/'
+  },
+  {
     'id': 'shiny-info',
     'heading': 'shiny.info',
     'paragraphs': [
+      '',
       'Display simple information of the shiny project in the user interface of the app.'
     ],
     'repoLink': 'https://github.com/Appsilon/shiny.info',
-    'demoLink': 'https://demo.appsilon.ai/apps/shiny-worker/'
+    'demoLink': 'https://demo.appsilon.ai/apps/shiny_info_demo/'
   },
   {
     'id': 'shiny-router',
     'heading': 'shiny.router',
     'paragraphs': [
+      '',
       'A minimalistic router for your Shiny apps.'
     ],
     'repoLink': 'https://github.com/Appsilon/shiny.router',
-    'demoLink': 'https://demo.appsilon.ai/apps/ports_analytics/'
+    'demoLink': 'https://demo.appsilon.ai/apps/router2/'
   },
   {
     'id': 'shiny-i18n',

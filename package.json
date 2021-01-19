@@ -49,7 +49,8 @@
     "start": "gulp serve",
     "build": "cross-env NODE_ENV=production gulp",
     "test": "npm run serve:test",
-    "tasks": "gulp --tasks"
+    "tasks": "gulp --tasks",
+    "deploy": "rm -rf dist && gulp build && cd dist && git init && git add . && git commit -m 'update' && git remote add origin git@github.com:Appsilon/shiny.tools.git && git push --force origin master:gh-pages"
   },
   "browserslist": [
     "> 1%",

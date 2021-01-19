@@ -3,6 +3,7 @@ export const getGithubStars = (repos) => {
   const libs = [
     'shiny.semantic',
     'semantic.dashboard',
+    'shiny.worker',
     'shiny.info',
     'shiny.router',
     'shiny.i18n'

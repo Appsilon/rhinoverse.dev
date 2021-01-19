@@ -1,6 +1,12 @@
 // calculate hex cell width as css calc() function
 export const getCellWidth = (total) => `calc(${1 / (total) * 100}% + 2px)`;
 
+export const getRowHeight = (rowWidth, cellsInRow) => {
+  const cellWidth = rowWidth / cellsInRow;
+  const rowHeight = cellWidth * 2/ Math.sqrt(3);
+  return `${rowHeight}px`;
+}
+
 export const getSpannedTitle = (title) => {
   return title.split('.').map(span => `<span>${span}</span>`).join('.');
 }

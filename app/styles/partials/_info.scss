@@ -1,6 +1,7 @@
 $packages: (
   'shiny-semantic': $color-shiny-semantic,
   'semantic-dashboard': $color-semantic-dashboard,
+  'shiny-worker': $color-shiny-worker,
   'shiny-info': $color-shiny-info,
   'shiny-router': $color-shiny-router,
   'shiny-i18n': $color-shiny-i18n
@@ -60,17 +61,21 @@ $packages: (
     @include flex-center;
     background-color: #fff;
     flex-direction: column;
+    min-height: 250px;
+    height: 100%;
     padding: 50px 30px;
     width: 100%;
 
     &--shiny-semantic { background-color: $color-shiny-semantic; }
     &--semantic-dashboard { background-color: $color-semantic-dashboard; }
+    &--shiny-worker { background-color: $color-shiny-worker; }
     &--shiny-info { background-color: $color-shiny-info; }
     &--shiny-router { background-color: $color-shiny-router; }
     &--shiny-i18n { background-color: $color-shiny-i18n; }
 
     @media only screen and (min-width: $media-md) {
       background: none;
+      min-height: auto;
       padding: 0;
     }
   }
@@ -80,7 +85,6 @@ $packages: (
     column-gap: 15px;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, auto) 1fr;
-    height: 100%;
     padding: 30px;
     width: 100%;
 
