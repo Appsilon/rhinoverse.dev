@@ -4,7 +4,10 @@ $packages: (
   'shiny-worker': $color-shiny-worker,
   'shiny-info': $color-shiny-info,
   'shiny-router': $color-shiny-router,
-  'shiny-i18n': $color-shiny-i18n
+  'shiny-i18n': $color-shiny-i18n,
+  'shiny-react': $color-shiny-react,
+  'shiny-fluent': $color-shiny-fluent,
+  'data-validator': $color-data-validator
 );
 
 .info {
@@ -72,6 +75,9 @@ $packages: (
     &--shiny-info { background-color: $color-shiny-info; }
     &--shiny-router { background-color: $color-shiny-router; }
     &--shiny-i18n { background-color: $color-shiny-i18n; }
+    &--shiny-react { background-color: $color-shiny-react; }
+    &--shiny-fluent { background-color: $color-shiny-fluent; }
+    &--data-validator { background-color: $color-data-validator; }
 
     @media only screen and (min-width: $media-md) {
       background: none;
