@@ -15,7 +15,7 @@
     "babel-loader": "^8.2.2",
     "babel-preset-env": "^1.7.0",
     "bl": "^4.0.3",
-    "browser-sync": "^2.26.13",
+    "browser-sync": "^2.26.14",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
     "cssnano": "^4.1.10",
