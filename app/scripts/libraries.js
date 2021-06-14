@@ -67,7 +67,7 @@ export const libraries = [
       'This R package enables using React in Shiny apps and is used e.g. by the shiny.fluent package. It contains R and JS code which is independent from the React library (e.g. Fluent UI) that is being wrapped.'
     ],
     'repoLink': 'https://github.com/Appsilon/shiny.react',
-    'demoLink': ''
+    'demoLink': 'https://demo.appsilon.com/apps/fluentui/'
   },
   {
     'id': 'shiny-fluent',
