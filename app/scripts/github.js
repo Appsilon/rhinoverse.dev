@@ -6,7 +6,10 @@ export const getGithubStars = (repos) => {
     'shiny.worker',
     'shiny.info',
     'shiny.router',
-    'shiny.i18n'
+    'shiny.i18n',
+    'shiny.react',
+    'shiny.fluent',
+    'data.validator'
   ];
 
   // get an array of repositories specified above
