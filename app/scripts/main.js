@@ -148,9 +148,8 @@ const generateInfo = () => {
       const text = createElement('info__text', 'p', paragraph);
       texts.appendChild(text);
     });
-    const stars = createElement(`stars stars--${id}`, 'div');
-    const starsLabel = createElement('stars__label', 'p', 'Contributors');
     const contributors = createElement(`contributors contributors--${id}`, 'div');
+    const contributorsLabel = createElement('contributors__label', 'p', 'Contributors');
 
     const repoButton = createElement(
       `info__button info__button--${id} info__button--github`,
@@ -173,10 +172,9 @@ const generateInfo = () => {
     );
     hero.appendChild(svg);
     hero.appendChild(title);
-    stars.appendChild(starsLabel);
-    stars.appendChild(contributors);
+    contributors.appendChild(contributorsLabel);
     description.appendChild(texts);
-    description.appendChild(stars);
+    description.appendChild(contributors);
     description.appendChild(repoButton);
     description.appendChild(demoButton);
     description.appendChild(backButton);
