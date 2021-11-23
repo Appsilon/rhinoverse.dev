@@ -25,8 +25,7 @@ $packages: (
   height: 100%;
   left: 0;
   opacity: 0;
-  overflow: hidden;
-  overflow-y: auto;
+  overflow: visible;
   position: fixed;
   top: 0;
   transform: scale3d(0,0,0);
@@ -236,7 +235,7 @@ $packages: (
   &__label {
     color: $gray-light;
     font-weight: 500;
-    margin-right: 0.7rem;
+    margin-right: auto;
     text-transform: uppercase;
 
     @media only screen and (min-width: $media-md) {
@@ -273,6 +272,7 @@ $packages: (
     border-radius: 6px;
     font-size: 12px;
     padding: 7px 10px 8px;
+    white-space: nowrap;
     @include flex-center;
 
     /* Position the tooltip text */
