@@ -273,7 +273,7 @@ $packages: (
     border-radius: 6px;
     font-size: 12px;
     padding: 7px 10px 8px;
-    @include flex-center
+    @include flex-center;
 
     /* Position the tooltip text */
     position: absolute;
