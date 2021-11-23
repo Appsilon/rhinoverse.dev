@@ -1,6 +1,6 @@
 import { hexXs, hexSm, hexMd, hexLg, hexXl } from './hexData';
 import { libraries } from './libraries';
-import { getGithubStars } from './github';
+import { addContributors } from './contributors';
 import {
   getCellWidth,
   getRowHeight,
@@ -53,7 +53,7 @@ const getCell = (cell) => {
   cellNode.className = `cell${library || url ? ' cell--interactive' : ''}`;
   // apply plain svg hexagonal shape
   cellNode.innerHTML = getSvg('blank', library, blankCellClass, 100, 115.47);
-  
+
   // add content to hexagonal cell
   if (library) {
     cellNode.innerHTML += `
@@ -82,7 +82,7 @@ const getCell = (cell) => {
 
 // generate hexagonal grid -----------------------------------------------------
 const generateHexGrid = (data) => {
-  
+
   const totalInBigRow = getTotalColumns(data);
   const totalInSmallRow = totalInBigRow - 1;
   const newRowMargin = `${-1 / (totalInSmallRow  * 2) / Math.sqrt(3) * 100 - 0.2}%`;
@@ -91,10 +91,10 @@ const generateHexGrid = (data) => {
   const lastRow = data.length;
   const isEvenRowBigger = data.findIndex(row => row.length === totalInBigRow);
   const rowHeight = getRowHeight(hexGrid.clientWidth, totalInSmallRow);
-  
+
   // clean container's node structure
   hexGrid.innerHTML = '';
-  
+
   data.forEach((row, index) => {
     const newRow = document.createElement('div');
     const rowNumber = index + 1;
@@ -135,9 +135,9 @@ const handleInfoVisibility = () => {
 }
 
 // generate info sections ------------------------------------------------------
-const generateInfo = () => {  
+const generateInfo = () => {
   libraries.forEach(library => {
-    const { id, heading, paragraphs, repoLink, demoLink } = library;    
+    const { id, heading, paragraphs, repoLink, demoLink } = library;
     const section = createElement(`info info--${id}`, 'section');
     const hero = createElement(`info__hero info__hero--${id}`);
     const svg = createElement('info__svg', 'svg', getSvgAsImg(id, 'cell__logo'));
@@ -148,13 +148,8 @@ const generateInfo = () => {
       const text = createElement('info__text', 'p', paragraph);
       texts.appendChild(text);
     });
-    const stars = createElement(
-      `stars stars--${id}`,
-      'div',
-      getSvg('label', 'star', 'stars__svg', 100, 100)
-    );
-    const starsLabel = createElement('stars__label', 'p', 'Github Stars');
-    const starsOutput = createElement('stars__output', 'p');
+    const contributors = createElement(`contributors contributors--${id}`, 'div');
+    const contributorsLabel = createElement('contributors__label', 'p', 'Contributors');
 
     const repoButton = createElement(
       `info__button info__button--${id} info__button--github`,
@@ -177,10 +172,9 @@ const generateInfo = () => {
     );
     hero.appendChild(svg);
     hero.appendChild(title);
-    stars.appendChild(starsLabel);
-    stars.appendChild(starsOutput);
+    contributors.appendChild(contributorsLabel);
     description.appendChild(texts);
-    description.appendChild(stars);
+    description.appendChild(contributors);
     description.appendChild(repoButton);
     description.appendChild(demoButton);
     description.appendChild(backButton);
@@ -195,7 +189,7 @@ const addMediaEvents = () => {
   let libraryCells = document.querySelectorAll('.cell__blank--library');
   let hexPaths = document.querySelectorAll('.cell__blank--library path');
   let infoSections = document.querySelectorAll('.info');
-  
+
   [...hexPaths].forEach(path => {
     // on click event
     path.addEventListener('click', function() {
@@ -203,13 +197,13 @@ const addMediaEvents = () => {
         const cell = this.parentNode;
         const { id } = cell.dataset;
         const currentInfo = document.querySelector(`.info--${id}`);
-    
+
         // handle cells appearance on desktop
         if (currentMediaBreakpoint >= mobileBreakpoint) {
           [...libraryCells].forEach(cell => cell.classList.remove('active'));
           cell.classList.add('active');
         }
-    
+
         // handle info section appearance
         [...infoSections].forEach(section => section.classList.remove('info--visible'));
         currentInfo.classList.add('info--visible');
@@ -230,15 +224,12 @@ const addContent = (data) => {
   generateHexGrid(data);
   generateInfo();
   handleInfoVisibility();
+  addContributors();
   addMediaEvents();
 }
 
 // generate hexagonal grid on page load
 addContent(currentMediaData);
-// fetch github api
-fetch('https://api.github.com/orgs/Appsilon/repos')
-  .then(resp => resp.json())
-  .then(resp => getGithubStars(resp));
 
 window.addEventListener('resize', function() {
   const currentMedia = getMedia(media);
