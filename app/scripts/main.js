@@ -45,7 +45,7 @@ const getCell = (cell) => {
     cell__blank
     ${library ? 'cell__blank--library' : ''}
     ${library ? `cell__blank--${library}` : ''}
-    ${library === 'shiny-semantic' ? 'cell__blank--shiny-semantic active' : ''}
+    ${library === 'shiny-fluent' ? 'cell__blank--shiny-fluent active' : ''}
     ${logo ? `cell__blank--${logo}` : ''}
     ${level ? 'cell__blank--detached' : 'cell__blank--attached'}
     ${level ? `cell__blank--${level}` : ''}

@@ -18,10 +18,10 @@ const _A = {
 const _L = {
   logo: 'logo'
 };
-// Shiny.semantic cell
+// Shiny.fluent cell
 const _S = {
-  library: 'shiny-semantic',
-  title: 'shiny.semantic'
+  library: 'shiny-fluent',
+  title: 'shiny.fluent'
 };
 // Semantic.dashboard cell
 const _D = {
@@ -55,8 +55,8 @@ const _C = {
 };
 // Shiny.fluent
 const _F = {
-  library: 'shiny-fluent',
-  title: 'shiny.fluent'
+  library: 'shiny-semantic',
+  title: 'shiny.semantic'
 };
 // data.validator
 const _V = {
