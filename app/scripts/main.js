@@ -247,12 +247,6 @@ window.addEventListener('resize', function() {
   );
 });
 
-// temporarily hidden - no menu items
-/* burgerButton.addEventListener('click', function() {
-  menu.classList.toggle('menu--visible');
-  burgerButton.classList.toggle('burger-button--active');
-}); */
-
 const backButtons = document.querySelectorAll('.info__button--back');
 [...backButtons].forEach(button => button.addEventListener('click', function() {
   const infoSection = this.parentNode.parentNode;

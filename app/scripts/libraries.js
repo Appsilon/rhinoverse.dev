@@ -88,5 +88,15 @@ export const libraries = [
     ],
     'repoLink': 'https://github.com/Appsilon/data.validator',
     'demoLink': 'https://connect.prod.aws.appsilon.com/connect_validation_workflow/connect_workflow.html'
+  },
+  {
+    'id': 'rhino',
+    'heading': 'Rhino',
+    'paragraphs': [
+      'Build high quality, enterprise-grade Shiny apps at speed.',
+      'Rhino allows you to create Shiny apps The Appsilon Way - like a fullstack software engineer. Apply best software engineering practices, modularize your code, test it well, make UI beautiful, and think about user adoption from the very beginning. Rhino is an opinionated framework with a focus on software engineering practices and development tools.'
+    ],
+    'repoLink': 'https://github.com/Appsilon/rhino/',
+    'demoLink': 'https://connect.appsilon.com/source_electricity/'
   }
 ]
