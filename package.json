@@ -2,14 +2,22 @@
   "name": "shiny.tools",
   "private": true,
   "source": "app/index.html",
+  "version": "1.0.1",
+  "author": "Jakub Chojna <jakub.chojna@appsilon.com> (https://github.com/jchojna)",
+  "contributors": [
+    "Paweł Przytuła <pawel@appsilon.com> (https://github.com/przytu1)"
+  ],
+  "homepage": "https://shiny.tools/",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.2",
-    "parcel": "^2.6.2"
+    "parcel": "^2.6.2",
+    "parcel-reporter-static-files-copy": "^1.3.4",
+    "sass": "^1.53.0"
   },
   "scripts": {
-    "start": "parcel",
+    "start": "parcel --open",
     "build": "parcel build",
-    "deploy": "rm -rf dist && gulp build && cd dist && git init && git add . && git commit -m 'update' && git remote add origin git@github.com:Appsilon/shiny.tools.git && git push --force origin master:gh-pages"
+    "deploy": "rm -rf dist && yarn build && cd dist && git init && git add . && git commit -m 'update' && git remote add origin git@github.com:Appsilon/shiny.tools.git && git push --force origin master:gh-pages"
   },
   "browserslist": [
     "> 1%",
