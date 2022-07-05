@@ -20,8 +20,6 @@ const media = [
 ];
 const hexGrid = document.getElementById('hex-grid');
 const infoWrapper = document.getElementById('wrapper-info');
-//const menu = document.getElementById('menu');
-//const burgerButton = document.getElementById('burger-button');
 const currentMedia = getMedia(media);
 const currentMediaData = currentMedia.data;
 let currentMediaBreakpoint = currentMedia.breakpoint;
