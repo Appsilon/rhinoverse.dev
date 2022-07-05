@@ -1,17 +1,14 @@
 {
+  "name": "shiny.tools",
   "private": true,
-  "engines": {
-    "node": ">=4"
-  },
+  "source": "app/index.html",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.2",
     "parcel": "^2.6.2"
   },
   "scripts": {
-    "serve:test": "cross-env NODE_ENV=test gulp serve",
-    "serve:dist": "cross-env NODE_ENV=production gulp serve",
-    "start": "parcel app/index.html",
-    "build": "cross-env NODE_ENV=production gulp",
+    "start": "parcel",
+    "build": "parcel build",
     "deploy": "rm -rf dist && gulp build && cd dist && git init && git add . && git commit -m 'update' && git remote add origin git@github.com:Appsilon/shiny.tools.git && git push --force origin master:gh-pages"
   },
   "browserslist": [
