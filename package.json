@@ -3,53 +3,15 @@
   "engines": {
     "node": ">=4"
   },
-  "dependencies": {
-    "@babel/polyfill": "^7.12.1"
-  },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "@babel/runtime-corejs3": "^7.12.5",
-    "autoprefixer": "^9.5.1",
-    "babel-cli": "^6.26.0",
-    "babel-loader": "^8.2.2",
-    "babel-preset-env": "^1.7.0",
-    "bl": "^4.0.3",
-    "browser-sync": "^2.26.14",
-    "chai": "^4.2.0",
-    "cross-env": "^5.2.0",
-    "cssnano": "^4.1.10",
-    "del": "^4.1.1",
-    "gulp": "^4.0.2",
-    "gulp-babel": "^8.0.0",
-    "gulp-cli": "^2.2.0",
-    "gulp-eslint": "^5.0.0",
-    "gulp-filter": "^6.0.0",
-    "gulp-gh-pages": "^0.5.4",
-    "gulp-htmlmin": "^5.0.1",
-    "gulp-if": "^2.0.2",
-    "gulp-imagemin": "^6.0.0",
-    "gulp-load-plugins": "^1.6.0",
-    "gulp-plumber": "^1.2.1",
-    "gulp-postcss": "^8.0.0",
-    "gulp-sass": "^4.0.2",
-    "gulp-size": "^3.0.0",
-    "gulp-terser": "^1.4.1",
-    "gulp-uglify": "^3.0.2",
-    "gulp-useref": "^3.1.6",
-    "mocha": "^6.2.3",
-    "object-path": ">=0.11.5",
-    "webpack": "^4.46.0",
-    "webpack-stream": "^5.2.1",
-    "yargs": "13.2.4"
+    "@parcel/transformer-sass": "^2.6.2",
+    "parcel": "^2.6.2"
   },
   "scripts": {
     "serve:test": "cross-env NODE_ENV=test gulp serve",
     "serve:dist": "cross-env NODE_ENV=production gulp serve",
-    "start": "gulp serve",
+    "start": "parcel app/index.html",
     "build": "cross-env NODE_ENV=production gulp",
-    "test": "npm run serve:test",
-    "tasks": "gulp --tasks",
     "deploy": "rm -rf dist && gulp build && cd dist && git init && git add . && git commit -m 'update' && git remote add origin git@github.com:Appsilon/shiny.tools.git && git push --force origin master:gh-pages"
   },
   "browserslist": [

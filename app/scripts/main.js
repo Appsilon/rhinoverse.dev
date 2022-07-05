@@ -10,7 +10,6 @@ import {
   getSvgAsImg,
   getTotalColumns,
   createElement } from './utils';
-import '@babel/polyfill';
 
 const media = [
   { breakpoint: 0, data: hexXs },
