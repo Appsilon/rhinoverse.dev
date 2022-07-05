@@ -7,7 +7,8 @@ $packages: (
   'shiny-i18n': $color-shiny-i18n,
   'shiny-react': $color-shiny-react,
   'shiny-fluent': $color-shiny-fluent,
-  'data-validator': $color-data-validator
+  'data-validator': $color-data-validator,
+  'rhino': $color-rhino
 );
 
 .contributors img {
@@ -85,6 +86,7 @@ $packages: (
     &--shiny-react { background-color: $color-shiny-react; }
     &--shiny-fluent { background-color: $color-shiny-fluent; }
     &--data-validator { background-color: $color-data-validator; }
+    &--rhino { background-color: $color-rhino; }
 
     @media only screen and (min-width: $media-md) {
       background: none;
