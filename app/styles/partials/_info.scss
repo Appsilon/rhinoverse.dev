@@ -152,6 +152,20 @@ $packages: (
     margin-bottom: 1rem;
   }
 
+  &__link {
+    text-decoration: none;
+    transition: color $hover-transition;
+
+    &--shiny-fluent {
+      // adjust text color to be more contrasting
+      color: lighten(saturate($color-shiny-fluent, 20%), 15%);
+    }
+    
+    &:hover {
+      color: $navy;
+    }
+  }
+
   &__button {
     @include button;
     @include flex-center;

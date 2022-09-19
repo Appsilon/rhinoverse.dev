@@ -1,9 +1,18 @@
+import { createElement } from './utils';
+
+const shinyFluentLink = createElement(
+  'info__link info__link--shiny-fluent',
+  'a',
+  'Shiny application projects'
+);
+shinyFluentLink.href = 'https://demo.appsilon.com/';
+
 export const libraries = [
   {
     'id': 'shiny-fluent',
     'heading': 'shiny.fluent',
     'paragraphs': [
-      'We believe that a great UI plays a huge role in the success of application projects. shiny.fluent gives your apps a beautiful and professional look, rich set of easy-to-use components in Shiny, and fast speed of development that Shiny is famous for.',
+      `We believe that a great UI plays a huge role in the success of ${shinyFluentLink.outerHTML}. shiny.fluent gives your apps a beautiful and professional look, rich set of easy-to-use components in Shiny, and fast speed of development that Shiny is famous for.`,
       'As Fluent UI is built in React, shiny.fluent is based on another package called shiny.react, which allows for using React libraries in Shiny.'
     ],
     'repoLink': 'https://github.com/Appsilon/shiny.fluent',
