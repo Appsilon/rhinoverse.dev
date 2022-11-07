@@ -4,6 +4,5 @@
 /dist
 /design
 /.parcel-cache
-CNAME
 package-lock.json
 .DS_Store
