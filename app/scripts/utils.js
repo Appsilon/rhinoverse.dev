@@ -70,3 +70,5 @@ export const createElement = (
   }
   return element;
 }
+
+export const replaceDashesToDots = (string) => string.replace(/-/g, '.')

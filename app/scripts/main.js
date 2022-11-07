@@ -9,7 +9,9 @@ import {
   getSvg,
   getSvgAsImg,
   getTotalColumns,
-  createElement } from './utils';
+  createElement, 
+  replaceDashesToDots
+} from './utils';
 
 const media = [
   { breakpoint: 0, data: hexXs },
@@ -135,6 +137,7 @@ const handleInfoVisibility = () => {
 const generateInfo = () => {
   libraries.forEach(library => {
     const { id, heading, paragraphs, repoLink, demoLink, docsLink } = library;
+    const packageName = replaceDashesToDots(id);
     const section = createElement(`info info--${id}`, 'section');
     const hero = createElement(`info__hero info__hero--${id}`);
     const svg = createElement('info__svg', 'svg', getSvgAsImg(id, 'cell__logo'));
@@ -169,6 +172,13 @@ const generateInfo = () => {
     );
     docsButton.href = docsLink;
 
+    const starsButton = createElement('github-button', 'a', 'Star')
+    starsButton.href = `https://github.com/appsilon/${packageName}`;
+    starsButton.setAttribute('data-icon', 'octicon-star');
+    starsButton.setAttribute('data-size', 'large');
+    starsButton.setAttribute('data-show-count', 'true');
+    starsButton.setAttribute('aria-label', `Star appsilon/${packageName} on GitHub`);
+
     const backButton = createElement(
       `info__button info__button--${id} info__button--back`,
       'button',
@@ -182,6 +192,7 @@ const generateInfo = () => {
     description.appendChild(repoButton);
     description.appendChild(demoButton);
     description.appendChild(docsButton);
+    description.appendChild(starsButton);
     description.appendChild(backButton);
     section.appendChild(hero);
     section.appendChild(description);
