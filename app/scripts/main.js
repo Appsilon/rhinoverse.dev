@@ -134,7 +134,7 @@ const handleInfoVisibility = () => {
 // generate info sections ------------------------------------------------------
 const generateInfo = () => {
   libraries.forEach(library => {
-    const { id, heading, paragraphs, repoLink, demoLink } = library;
+    const { id, heading, paragraphs, repoLink, demoLink, docsLink } = library;
     const section = createElement(`info info--${id}`, 'section');
     const hero = createElement(`info__hero info__hero--${id}`);
     const svg = createElement('info__svg', 'svg', getSvgAsImg(id, 'cell__logo'));
@@ -162,6 +162,13 @@ const generateInfo = () => {
     );
     demoButton.href = demoLink;
 
+    const docsButton = createElement(
+      `info__button info__button--${id} info__button--docs`,
+      'a',
+      'Docs'
+    );
+    docsButton.href = docsLink;
+
     const backButton = createElement(
       `info__button info__button--${id} info__button--back`,
       'button',
@@ -174,6 +181,7 @@ const generateInfo = () => {
     description.appendChild(contributors);
     description.appendChild(repoButton);
     description.appendChild(demoButton);
+    description.appendChild(docsButton);
     description.appendChild(backButton);
     section.appendChild(hero);
     section.appendChild(description);
