@@ -237,12 +237,12 @@ const addContent = (data) => {
   generateHexGrid(data);
   generateInfo();
   handleInfoVisibility();
-  addContributors();
   addMediaEvents();
 }
 
 // generate hexagonal grid on page load
 addContent(currentMediaData);
+addContributors();
 
 window.addEventListener('resize', function() {
   const currentMedia = getMedia(media);
