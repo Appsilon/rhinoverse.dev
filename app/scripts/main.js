@@ -10,7 +10,8 @@ import {
   getSvgAsImg,
   getTotalColumns,
   createElement, 
-  replaceDashesToDots
+  replaceDashesToDots,
+  createGithubButton
 } from './utils';
 
 const media = [
@@ -172,12 +173,8 @@ const generateInfo = () => {
     );
     docsButton.href = docsLink;
 
-    const starsButton = createElement('github-button', 'a', 'Star')
-    starsButton.href = `https://github.com/appsilon/${packageName}`;
-    starsButton.setAttribute('data-icon', 'octicon-star');
-    starsButton.setAttribute('data-size', 'large');
-    starsButton.setAttribute('data-show-count', 'true');
-    starsButton.setAttribute('aria-label', `Star appsilon/${packageName} on GitHub`);
+    const starsButton = createElement('info__stars');
+    starsButton.innerHTML = createGithubButton(packageName, 'star');
 
     const backButton = createElement(
       `info__button info__button--${id} info__button--back`,
@@ -190,9 +187,9 @@ const generateInfo = () => {
     description.appendChild(texts);
     description.appendChild(contributors);
     description.appendChild(repoButton);
+    description.appendChild(starsButton);
     description.appendChild(demoButton);
     description.appendChild(docsButton);
-    description.appendChild(starsButton);
     description.appendChild(backButton);
     section.appendChild(hero);
     section.appendChild(description);

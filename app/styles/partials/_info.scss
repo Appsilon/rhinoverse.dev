@@ -231,6 +231,11 @@ $packages: (
       }
     }
   }
+
+  &__stars {
+    @include flex-center;
+    margin-top: 1rem;
+  }
 }
 
 .contributors {
