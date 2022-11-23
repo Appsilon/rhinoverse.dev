@@ -1,9 +1,18 @@
+import { createElement } from './utils';
+
+const shinyFluentLink = createElement(
+  'info__link info__link--shiny-fluent',
+  'a',
+  'Shiny application projects'
+);
+shinyFluentLink.href = 'https://demo.appsilon.com/';
+
 export const libraries = [
   {
     'id': 'shiny-fluent',
     'heading': 'shiny.fluent',
     'paragraphs': [
-      'We believe that a great UI plays a huge role in the success of application projects. shiny.fluent gives your apps a beautiful and professional look, rich set of easy-to-use components in Shiny, and fast speed of development that Shiny is famous for.',
+      `We believe that a great UI plays a huge role in the success of ${shinyFluentLink.outerHTML}. shiny.fluent gives your apps a beautiful and professional look, rich set of easy-to-use components in Shiny, and fast speed of development that Shiny is famous for.`,
       'As Fluent UI is built in React, shiny.fluent is based on another package called shiny.react, which allows for using React libraries in Shiny.'
     ],
     'repoLink': 'https://github.com/Appsilon/shiny.fluent',
@@ -88,5 +97,15 @@ export const libraries = [
     ],
     'repoLink': 'https://github.com/Appsilon/data.validator',
     'demoLink': 'https://connect.prod.aws.appsilon.com/connect_validation_workflow/connect_workflow.html'
+  },
+  {
+    'id': 'rhino',
+    'heading': 'Rhino',
+    'paragraphs': [
+      'Build high quality, enterprise-grade Shiny apps at speed.',
+      'Rhino allows you to create Shiny apps The Appsilon Way - like a fullstack software engineer. Apply best software engineering practices, modularize your code, test it well, make UI beautiful, and think about user adoption from the very beginning. Rhino is an opinionated framework with a focus on software engineering practices and development tools.'
+    ],
+    'repoLink': 'https://github.com/Appsilon/rhino/',
+    'demoLink': 'https://connect.appsilon.com/source_electricity/'
   }
 ]

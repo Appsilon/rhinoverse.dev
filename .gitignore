@@ -3,5 +3,6 @@
 /.publish
 /dist
 /design
-CNAME
+/.parcel-cache
 package-lock.json
+.DS_Store

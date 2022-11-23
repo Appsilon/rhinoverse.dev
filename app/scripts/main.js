@@ -10,7 +10,6 @@ import {
   getSvgAsImg,
   getTotalColumns,
   createElement } from './utils';
-import '@babel/polyfill';
 
 const media = [
   { breakpoint: 0, data: hexXs },
@@ -21,8 +20,6 @@ const media = [
 ];
 const hexGrid = document.getElementById('hex-grid');
 const infoWrapper = document.getElementById('wrapper-info');
-//const menu = document.getElementById('menu');
-//const burgerButton = document.getElementById('burger-button');
 const currentMedia = getMedia(media);
 const currentMediaData = currentMedia.data;
 let currentMediaBreakpoint = currentMedia.breakpoint;
@@ -249,12 +246,6 @@ window.addEventListener('resize', function() {
     row => row.style.height = getRowHeight(hexGrid.clientWidth, cellsInRow)
   );
 });
-
-// temporarily hidden - no menu items
-/* burgerButton.addEventListener('click', function() {
-  menu.classList.toggle('menu--visible');
-  burgerButton.classList.toggle('burger-button--active');
-}); */
 
 const backButtons = document.querySelectorAll('.info__button--back');
 [...backButtons].forEach(button => button.addEventListener('click', function() {
