@@ -70,3 +70,16 @@ export const createElement = (
   }
   return element;
 }
+
+export const replaceDashesToDots = (string) => string.replace(/-/g, '.')
+
+export const createGithubButton = (repo, type, count='true', size='large') => `
+  <iframe
+    src="https://ghbtns.com/github-btn.html?user=appsilon&repo=${repo}&type=${type}&count=${count}&size=${size}"
+    frameborder="0"
+    scrolling="0"
+    width="150"
+    height="30"
+    title="GitHub"
+  ></iframe>
+`;

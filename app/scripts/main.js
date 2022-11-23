@@ -9,7 +9,10 @@ import {
   getSvg,
   getSvgAsImg,
   getTotalColumns,
-  createElement } from './utils';
+  createElement, 
+  replaceDashesToDots,
+  createGithubButton
+} from './utils';
 
 const media = [
   { breakpoint: 0, data: hexXs },
@@ -134,7 +137,8 @@ const handleInfoVisibility = () => {
 // generate info sections ------------------------------------------------------
 const generateInfo = () => {
   libraries.forEach(library => {
-    const { id, heading, paragraphs, repoLink, demoLink } = library;
+    const { id, heading, paragraphs, repoLink, demoLink, docsLink } = library;
+    const packageName = replaceDashesToDots(id);
     const section = createElement(`info info--${id}`, 'section');
     const hero = createElement(`info__hero info__hero--${id}`);
     const svg = createElement('info__svg', 'svg', getSvgAsImg(id, 'cell__logo'));
@@ -162,6 +166,16 @@ const generateInfo = () => {
     );
     demoButton.href = demoLink;
 
+    const docsButton = createElement(
+      `info__button info__button--${id} info__button--docs`,
+      'a',
+      'Docs'
+    );
+    docsButton.href = docsLink;
+
+    const starsButton = createElement('info__stars');
+    starsButton.innerHTML = createGithubButton(packageName, 'star');
+
     const backButton = createElement(
       `info__button info__button--${id} info__button--back`,
       'button',
@@ -173,7 +187,9 @@ const generateInfo = () => {
     description.appendChild(texts);
     description.appendChild(contributors);
     description.appendChild(repoButton);
+    description.appendChild(starsButton);
     description.appendChild(demoButton);
+    description.appendChild(docsButton);
     description.appendChild(backButton);
     section.appendChild(hero);
     section.appendChild(description);
@@ -221,12 +237,12 @@ const addContent = (data) => {
   generateHexGrid(data);
   generateInfo();
   handleInfoVisibility();
-  addContributors();
   addMediaEvents();
 }
 
 // generate hexagonal grid on page load
 addContent(currentMediaData);
+addContributors();
 
 window.addEventListener('resize', function() {
   const currentMedia = getMedia(media);
