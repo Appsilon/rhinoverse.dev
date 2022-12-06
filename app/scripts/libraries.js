@@ -71,7 +71,7 @@ export const libraries = [
       'A minimalistic router for your Shiny apps.'
     ],
     'repoLink': 'https://github.com/Appsilon/shiny.router',
-    'demoLink': 'https://connect.appsilon.com/router/',
+    'demoLink': 'https://connect.appsilon.com/appsidex/',
     'docsLink': 'https://appsilon.github.io/shiny.router/'
   },
   {
