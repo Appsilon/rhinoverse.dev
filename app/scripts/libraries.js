@@ -117,5 +117,16 @@ export const libraries = [
     'repoLink': 'https://github.com/Appsilon/rhino/',
     'demoLink': 'https://connect.appsilon.com/source_electricity/',
     'docsLink': 'https://appsilon.github.io/rhino/'
+  },
+  {
+    'id': 'shiny-benchmark',
+    'heading': 'shiny.benchmark',
+    'paragraphs': [
+      'Tools to measure performance improvements in Shiny apps.',
+      'shiny.benchmark is a tool aimed to measure and compare the performance of different versions of a shiny application.'
+    ],
+    'repoLink': 'https://github.com/Appsilon/shiny.benchmark/',
+    'demoLink': '',
+    'docsLink': 'https://appsilon.github.io/shiny.benchmark/'
   }
 ]
