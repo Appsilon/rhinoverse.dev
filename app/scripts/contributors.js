@@ -81,6 +81,12 @@ export const addContributors = () => {
       {'img': '7279715', 'profile': 'jakubnowicki', 'credit': 'Contributor'},
       {'img': '38053499', 'profile': 'TymekDev', 'credit': 'Contributor'},
       {'img': '1421503', 'profile': 'marekrogala', 'credit': 'Contributor'}
+    ],
+    'shiny.benchmark': [
+      {'img': '13513569', 'profile': 'DouglasMesquita', 'credit': 'Creator & Maintainer'},
+      {'img': '7279715', 'profile': 'jakubnowicki', 'credit': 'Contributor'},
+      {'img': '211358', 'profile': 'averissimo', 'credit': 'Contributor'},
+      {'img': '1421503', 'profile': 'marekrogala', 'credit': 'Contributor'}
     ]
   };
 
