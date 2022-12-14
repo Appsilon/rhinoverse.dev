@@ -83,3 +83,11 @@ export const createGithubButton = (repo, type, count='true', size='large') => `
     title="GitHub"
   ></iframe>
 `;
+
+export const getDefaultLibrary = (libraries) => {
+  const urlParts = window.location.href.split('/#');
+  const lastUrlPart = urlParts[urlParts.length - 1];
+  const librariesIds = libraries.map(l => l.id);
+  const isLibraryInUrl = urlParts.length >= 2 && librariesIds.includes(lastUrlPart);
+  return isLibraryInUrl ? lastUrlPart : libraries[0].id;
+};
