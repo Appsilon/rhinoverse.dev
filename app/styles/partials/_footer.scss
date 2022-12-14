@@ -33,7 +33,7 @@ $icon-size: 36px;
     width: $icon-size;
     transition: fill $hover-transition;
 
-    &--rstudio {
+    &--posit {
       fill: $navy;
       height: $icon-size;
       width: auto;
@@ -51,7 +51,7 @@ $icon-size: 36px;
   &__svg {
     width: 100%;
 
-    &--rstudio {
+    &--posit {
       height: $icon-size;
       width: auto;
     }
