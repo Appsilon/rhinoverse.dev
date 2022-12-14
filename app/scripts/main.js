@@ -181,7 +181,7 @@ const generateInfo = () => {
     docsButton.href = docsLink;
 
     const starsButton = createElement('info__stars');
-    // starsButton.innerHTML = createGithubButton(packageName, 'star');
+    starsButton.innerHTML = createGithubButton(packageName, 'star');
 
     const backButton = createElement(
       `info__button info__button--${id} info__button--back`,
