@@ -9,6 +9,17 @@ shinyFluentLink.href = 'https://demo.appsilon.com/';
 
 export const libraries = [
   {
+    'id': 'rhino',
+    'heading': 'Rhino',
+    'paragraphs': [
+      'Build high quality, enterprise-grade Shiny apps at speed.',
+      'Rhino allows you to create Shiny apps The Appsilon Way - like a fullstack software engineer. Apply best software engineering practices, modularize your code, test it well, make UI beautiful, and think about user adoption from the very beginning. Rhino is an opinionated framework with a focus on software engineering practices and development tools.'
+    ],
+    'repoLink': 'https://github.com/Appsilon/rhino/',
+    'demoLink': 'https://connect.appsilon.com/source_electricity/',
+    'docsLink': 'https://appsilon.github.io/rhino/'
+  },
+  {
     'id': 'shiny-fluent',
     'heading': 'shiny.fluent',
     'paragraphs': [
@@ -108,14 +119,14 @@ export const libraries = [
     'docsLink': 'https://appsilon.github.io/data.validator/'
   },
   {
-    'id': 'rhino',
-    'heading': 'Rhino',
+    'id': 'shiny-benchmark',
+    'heading': 'shiny.benchmark',
     'paragraphs': [
-      'Build high quality, enterprise-grade Shiny apps at speed.',
-      'Rhino allows you to create Shiny apps The Appsilon Way - like a fullstack software engineer. Apply best software engineering practices, modularize your code, test it well, make UI beautiful, and think about user adoption from the very beginning. Rhino is an opinionated framework with a focus on software engineering practices and development tools.'
+      'Tools to measure performance improvements in Shiny apps.',
+      'shiny.benchmark is a tool aimed to measure and compare the performance of different versions of a shiny application.'
     ],
-    'repoLink': 'https://github.com/Appsilon/rhino/',
-    'demoLink': 'https://connect.appsilon.com/source_electricity/',
-    'docsLink': 'https://appsilon.github.io/rhino/'
+    'repoLink': 'https://github.com/Appsilon/shiny.benchmark/',
+    'demoLink': '',
+    'docsLink': 'https://appsilon.github.io/shiny.benchmark/'
   }
 ]

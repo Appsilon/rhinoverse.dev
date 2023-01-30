@@ -11,7 +11,8 @@ import {
   getTotalColumns,
   createElement, 
   replaceDashesToDots,
-  createGithubButton
+  createGithubButton,
+  getDefaultLibrary
 } from './utils';
 
 const media = [
@@ -27,6 +28,7 @@ const currentMedia = getMedia(media);
 const currentMediaData = currentMedia.data;
 let currentMediaBreakpoint = currentMedia.breakpoint;
 const mobileBreakpoint = 799;
+const defaultLibrary = getDefaultLibrary(libraries);
 
 // get one hexagonal cell ------------------------------------------------------
 const getCell = (cell) => {
@@ -40,17 +42,18 @@ const getCell = (cell) => {
       text = null
     }] = cell;
 
-  const cellNode = document.createElement('div');
+  const cellNode = document.createElement('a');
   const blankCellClass = `"
     cell__blank
     ${library ? 'cell__blank--library' : ''}
     ${library ? `cell__blank--${library}` : ''}
-    ${library === 'shiny-fluent' ? 'cell__blank--shiny-fluent active' : ''}
+    ${library === defaultLibrary ? 'active' : ''}
     ${logo ? `cell__blank--${logo}` : ''}
     ${level ? 'cell__blank--detached' : 'cell__blank--attached'}
     ${level ? `cell__blank--${level}` : ''}
   "`;
   cellNode.className = `cell${library || url ? ' cell--interactive' : ''}`;
+  if (library) cellNode.href = `#${library}`;
   // apply plain svg hexagonal shape
   cellNode.innerHTML = getSvg('blank', library, blankCellClass, 100, 115.47);
 
@@ -126,7 +129,10 @@ const generateHexGrid = (data) => {
 const handleInfoVisibility = () => {
   const infoSections = document.querySelectorAll('.info');
   [...infoSections].forEach((section, index) => {
-    if (currentMediaBreakpoint >= mobileBreakpoint && index === 0) {
+    if (
+      currentMediaBreakpoint >= mobileBreakpoint &&
+      section.id === defaultLibrary
+    ) {
       section.classList.add('info--visible');
     } else {
       section.classList.remove('info--visible');
@@ -140,6 +146,7 @@ const generateInfo = () => {
     const { id, heading, paragraphs, repoLink, demoLink, docsLink } = library;
     const packageName = replaceDashesToDots(id);
     const section = createElement(`info info--${id}`, 'section');
+    section.id = id;
     const hero = createElement(`info__hero info__hero--${id}`);
     const svg = createElement('info__svg', 'svg', getSvgAsImg(id, 'cell__logo'));
     const title = createElement('info__heading', 'h3', heading);
@@ -231,13 +238,20 @@ const addMediaEvents = () => {
       if (this.tagName === 'path') this.parentNode.classList.remove('hovered');
     });
   });
-}
+};
+
+const clickDefaultLibraryCell = () => {
+  if (!defaultLibrary) return;
+  const libraryCell = document.querySelector(`a[href='#${defaultLibrary}']`);
+  libraryCell.click();
+};
 
 const addContent = (data) => {
   generateHexGrid(data);
   generateInfo();
   handleInfoVisibility();
   addMediaEvents();
+  clickDefaultLibraryCell();
 }
 
 // generate hexagonal grid on page load
