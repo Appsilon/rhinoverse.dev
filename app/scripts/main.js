@@ -64,6 +64,7 @@ const getCell = (cell) => {
         ${getSvgAsImg(library, 'cell__logo')}
         <p class="cell__title">${getSpannedTitle(title)}</p>
       </div>
+      <div class="cell__tooltip cell__tooltip--${library}">${title}</div>
     `
   } else if (url) {
     const link = createElement(
