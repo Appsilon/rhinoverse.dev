@@ -143,6 +143,8 @@ const handleInfoVisibility = () => {
 
 // generate info sections ------------------------------------------------------
 const generateInfo = () => {
+  infoWrapper.innerHTML = '';
+
   libraries.forEach(library => {
     const { id, heading, paragraphs, repoLink, demoLink, docsLink } = library;
     const packageName = replaceDashesToDots(id);
