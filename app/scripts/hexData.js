@@ -19,7 +19,7 @@ const _B = {
   library: 'shiny-benchmark',
   title: 'shiny.benchmark'
 };
-// Shiny.tools animated SVG logo
+// Rhinoverse animated SVG logo
 const _L = {
   logo: 'logo'
 };
@@ -79,7 +79,7 @@ const _X = {
 }
 // Text cell
 const _T = {
-  text: '... shiny.tools'
+  text: '... Rhinoverse'
 }
 
 // Each constant below represents layout for specific screens.
