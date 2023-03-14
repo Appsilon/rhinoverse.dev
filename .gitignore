@@ -1,8 +1,7 @@
-/node_modules
-/.tmp
-/.publish
-/dist
-/design
-/.parcel-cache
-package-lock.json
 .DS_Store
+/.parcel-cache
+/.publish
+/.tmp
+/design
+/dist
+node_modules/
