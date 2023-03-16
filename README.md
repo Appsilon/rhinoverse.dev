@@ -1,7 +1,6 @@
-# shiny.tools by Appsilon
+# rhinoverse.dev
 
-This webpage is a landing page collecting Appsilon's opensource packages for Shiny framework
-
+The landing page for Rhinoverse: a collection of open-source R packages for enterprise Shiny apps.
 
 ## <u>Development</u>
 
@@ -51,11 +50,11 @@ To have more clear visual representiation of hexagonal grid in code, it's recomm
 
 ### SVG file
 
-If you are adding a new package, please provide SVG file with a logo and place it in `app/svg/` directory. SVG file name should be the same as the `id` specified in `libraries.js` and `library` specified in `hexData.js`, in order to be displayed correctly. 
+If you are adding a new package, please provide SVG file with a logo and place it in `static/svg/` directory. SVG file name should be the same as the `id` specified in `libraries.js` and `library` specified in `hexData.js`, in order to be displayed correctly.
 
 ## <u>Deployment</u>
 To deploy a newer version of the webpage simply run:
 ```
 npm run deploy
 ```
-Webpage under [shiny.tools](https://shiny.tools/) domain will be automatically updated.
+Webpage under [rhinoverse.dev](https://rhinoverse.dev/) domain will be automatically updated.
