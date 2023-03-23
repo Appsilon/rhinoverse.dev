@@ -16,8 +16,7 @@
   },
   "scripts": {
     "start": "parcel --open",
-    "build": "parcel build",
-    "deploy": "rm -rf dist && yarn build && cd dist && git init && git add . && git commit -m 'update' && git remote add origin git@github.com:Appsilon/rhinoverse.dev.git && git push --force origin master:gh-pages"
+    "build": "parcel build"
   },
   "browserslist": [
     "> 1%",
