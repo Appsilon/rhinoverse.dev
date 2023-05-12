@@ -9,7 +9,9 @@ $packages: (
   'shiny-fluent': $color-shiny-fluent,
   'data-validator': $color-data-validator,
   'rhino': $color-rhino,
-  'shiny-benchmark': $color-shiny-benchmark
+  'shiny-benchmark': $color-shiny-benchmark,
+  'shiny-blueprint': $color-shiny-blueprint,
+  'shiny-telemetry': $color-shiny-telemetry
 );
 
 .hex-grid {
@@ -57,7 +59,7 @@ $packages: (
 
       &--detached {
         filter: drop-shadow( 0 0 15px rgba(0,0,0,0.3));
-        z-index: 1;        
+        z-index: 1;
       }
 
       & path {
@@ -79,7 +81,7 @@ $packages: (
           }
 
           @media only screen and (max-width: $media-md) {
-            
+
             fill: $color;
           }
         }
@@ -107,7 +109,7 @@ $packages: (
       position: absolute;
       transform: translate(-50%, -100%) scale(0);
       transition: opacity 0.2s, transform 0.2s cubic-bezier(.11,.76,.52,1.31);
-  
+
       @media only screen and (max-width: $media-md) {
         display: none;
       }
@@ -146,13 +148,13 @@ $packages: (
       & > span {
         display: inline-block;
       }
-  
+
       @media only screen and (min-width: $media-sm) {
         & {
           font-size: 2.2vw;
         }
       }
-  
+
       @media only screen and (min-width: $media-md) {
         & {
           display: none;
@@ -167,7 +169,7 @@ $packages: (
       padding: 20px;
       position: absolute;
       text-align: center;
-  
+
       @media only screen and (min-width: $media-sm) {
         & {
           font-size: 1rem;

@@ -1,5 +1,5 @@
 export const getGithubStars = (repos) => {
-  
+
   const libs = [
     'shiny.semantic',
     'semantic.dashboard',
@@ -10,7 +10,9 @@ export const getGithubStars = (repos) => {
     'shiny.react',
     'shiny.fluent',
     'data.validator',
-    'rhino'
+    'rhino',
+    'shiny.blueprint',
+    'shiny.telemetry'
   ];
 
   // get an array of repositories specified above
