@@ -9,7 +9,9 @@ $packages: (
   'shiny-fluent': $color-shiny-fluent,
   'data-validator': $color-data-validator,
   'rhino': $color-rhino,
-  'shiny-benchmark': $color-shiny-benchmark
+  'shiny-benchmark': $color-shiny-benchmark,
+  'shiny-blueprint': $color-shiny-blueprint,
+  'shiny-telemetry': $color-shiny-telemetry
 );
 
 .contributors img {
@@ -89,6 +91,7 @@ $packages: (
     &--data-validator { background-color: $color-data-validator; }
     &--rhino { background-color: $color-rhino; }
     &--shiny-benchmark { background-color: $color-shiny-benchmark; }
+    &--shiny-blueprint { background-color: $color-shiny-blueprint; }
 
     @media only screen and (min-width: $media-md) {
       background: none;
@@ -161,7 +164,7 @@ $packages: (
       // adjust text color to be more contrasting
       color: lighten(saturate($color-shiny-fluent, 20%), 15%);
     }
-    
+
     &:hover {
       color: $navy;
     }

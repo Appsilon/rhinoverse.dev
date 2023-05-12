@@ -87,6 +87,18 @@ export const addContributors = () => {
       {'img': '7279715', 'profile': 'jakubnowicki', 'credit': 'Contributor'},
       {'img': '211358', 'profile': 'averissimo', 'credit': 'Contributor'},
       {'img': '1421503', 'profile': 'marekrogala', 'credit': 'Contributor'}
+    ],
+    'shiny.blueprint': [
+      {'img': '10000651', 'profile': 'kamilzyla', 'credit': 'Creator & Maintainer'},
+      {'img': '54677165', 'profile': 'filipakkad', 'credit': 'Contributor'},
+      {'img': '4673386', 'profile': 'filipstachura', 'credit': 'Contributor'},
+      {'img': '81753658', 'profile': 'pawelchabros', 'credit': 'Contributor'}
+    ],
+    'shiny.telemetry': [
+      {'img': '10000651', 'profile': 'kamilzyla', 'credit': 'Creator & Maintainer'},
+      {'img': '211358', 'profile': 'averissimo', 'credit': 'Contributor'},
+      {'img': '20457043', 'profile': 'krystian8207', 'credit': 'Contributor'},
+      {'img': '110383037', 'profile': 'vibalre', 'credit': 'Contributor'}
     ]
   };
 

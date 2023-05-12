@@ -128,5 +128,28 @@ export const libraries = [
     'repoLink': 'https://github.com/Appsilon/shiny.benchmark/',
     'demoLink': '',
     'docsLink': 'https://appsilon.github.io/shiny.benchmark/'
+  },
+  {
+    'id': 'shiny-blueprint',
+    'heading': 'shiny.blueprint',
+    'paragraphs': [
+      'Palantir’s Blueprint for Shiny Apps.',
+      'We believe that a great UI plays a huge role in the success of application projects. shiny.blueprint gives your apps a beautiful, professional look, a rich set of components easily usable in Shiny and a fast speed of development that Shiny is famous for.'
+    ],
+    'repoLink': 'https://github.com/Appsilon/shiny.blueprint/',
+    'demoLink': 'https://connect.appsilon.com/shiny-blueprint-showcase/',
+    'docsLink': 'https://appsilon.github.io/shiny.blueprint/'
+  },
+  {
+    'id': 'shiny-telemetry',
+    'heading': 'shiny.telemetry',
+    'paragraphs': [
+      'Easy logging of users activity and session events of your Shiny App.',
+      'The shiny.telemetry R package tracks events occurring on a user session, such as input changes and session duration, and stores them in a local or remote database.',
+      'It provides developers with the tools to help understand how users interact with Shiny dashboards and answer questions such as: which tabs/pages are more often visited, which inputs users are changing, what is the average length of a session, etc.'
+    ],
+    'repoLink': 'https://github.com/Appsilon/shiny.telemetry/',
+    'demoLink': '',
+    'docsLink': 'https://appsilon.github.io/shiny.telemetry/'
   }
 ]
