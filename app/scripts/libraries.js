@@ -151,5 +151,17 @@ export const libraries = [
     'repoLink': 'https://github.com/Appsilon/shiny.telemetry/',
     'demoLink': '',
     'docsLink': 'https://appsilon.github.io/shiny.telemetry/'
+  },
+  {
+    'id': 'shiny-emptystate',
+    'heading': 'shiny.emptystate',
+    'paragraphs': [
+      'Empty state components for Shiny.',
+      'It provides tools to create both default and customizable components for scenarios where data is absent or doesn\'t match user-defined filters.',
+      'The package prioritizes user experience, ensuring clarity and consistency even when data is not available to display.'
+    ],
+    'repoLink': 'https://github.com/Appsilon/shiny.emptystate/',
+    'demoLink': 'https://connect.appsilon.com/shiny-emptystate-demo/',
+    'docsLink': 'https://appsilon.github.io/shiny.emptystate/'
   }
 ]

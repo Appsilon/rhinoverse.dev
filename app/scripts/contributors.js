@@ -99,6 +99,12 @@ export const addContributors = () => {
       {'img': '211358', 'profile': 'averissimo', 'credit': 'Contributor'},
       {'img': '20457043', 'profile': 'krystian8207', 'credit': 'Contributor'},
       {'img': '110383037', 'profile': 'vibalre', 'credit': 'Contributor'}
+    ],
+    'shiny.emptystate': [
+      {'img': '83692505', 'profile': 'rszymanski', 'credit': 'Creator & Maintainer'},
+      {'img': '110383037', 'profile': 'vibalre', 'credit': 'Contributor'},
+      {'img': '125121920', 'profile': 'insightsurge', 'credit': 'Contributor'},
+      {'img': '49812166', 'profile': 'vedhav', 'credit': 'Contributor'}
     ]
   };
 
