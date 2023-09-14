@@ -9,102 +9,89 @@ export const addContributors = () => {
 
   const credits = {
     'shiny.semantic': [
-      {'img': '4673386', 'profile': 'filipstachura', 'credit': 'Creator'},
-      {'img': '4547289', 'profile': 'dokato', 'credit': 'Contributor'},
-      {'img': '20457043', 'profile': 'krystian8207', 'credit': 'Contributor'},
-      {'img': '4321346', 'profile': 'olgamie', 'credit': 'Contributor'},
-      {'img': '8420419', 'profile': 'ashbaldry', 'credit': 'Contributor'},
-      {'img': '47003650', 'profile': 'jchojna', 'credit': 'Contributor'},
+      {'img': '4673386', 'profile': 'filipstachura', 'credit': 'Author'},
+      {'img': '4669074', 'profile': 'przytu1', 'credit': 'Author'},
+      {'img': '47003650', 'profile': 'jchojna', 'credit': 'Author'},
+      {'img': '4321346', 'profile': 'olgamie', 'credit': 'Author'},
+      {'img': '4547289', 'profile': 'dokato', 'credit': 'Author'},
+      {'img': '20457043', 'profile': 'krystian8207', 'credit': 'Author'},
       {'img': '24652240', 'profile': 'Appsilon/shiny.semantic/graphs/contributors', 'credit': 'More Contributors'}
     ],
     'semantic.dashboard': [
-      {'img': '4673386', 'profile': 'filipstachura', 'credit': 'Creator'},
-      {'img': '4547289', 'profile': 'dokato', 'credit': 'Contributor'},
-      {'img': '26330688', 'profile': 'drzamich', 'credit': 'Contributor'},
-      {'img': '20457043', 'profile': 'krystian8207', 'credit': 'Contributor'},
-      {'img': '11685462', 'profile': 'maju116', 'credit': 'Contributor'},
-      {'img': '4296390', 'profile': 'galachad', 'credit': 'Contributor'},
+      {'img': '4673386', 'profile': 'filipstachura', 'credit': 'Author'},
+      {'img': '4547289', 'profile': 'dokato', 'credit': 'Author'},
+      {'img': '20457043', 'profile': 'krystian8207', 'credit': 'Author'},
       {'img': '24652240', 'profile': 'Appsilon/semantic.dashboard/graphs/contributors', 'credit': 'More Contributors'}
     ],
     'shiny.worker': [
-      {'img': '4669074', 'profile': 'przytu1', 'credit': 'Creator'},
-      {'img': '4547289', 'profile': 'dokato', 'credit': 'Creator'}
+      {'img': '4669074', 'profile': 'przytu1', 'credit': 'Author'},
+      {'img': '24652240', 'profile': 'Appsilon/shiny.worker/graphs/contributors', 'credit': 'More Contributors'}
     ],
     'shiny.info': [
-      {'img': '7279715', 'profile': 'jakubnowicki', 'credit': 'Creator & Maintainer'},
-      {'img': '4669074', 'profile': 'przytu1', 'credit': 'Creator'},
-      {'img': '4547289', 'profile': 'dokato', 'credit': 'Contributor'},
-      {'img': '19154385', 'profile': 'mdubel', 'credit': 'Contributor'},
-      {'img': '15175871', 'profile': 'rabiibouhestine', 'credit': 'Contributor'},
-      {'img': '43342554', 'profile': 'FractalPolarity', 'credit': 'Contributor'}
+      {'img': '7279715', 'profile': 'jakubnowicki', 'credit': 'Author & Maintainer'},
+      {'img': '4669074', 'profile': 'przytu1', 'credit': 'Author'},
+      {'img': '4547289', 'profile': 'dokato', 'credit': 'Author'}
     ],
     'shiny.router': [
-      {'img': '4673386', 'profile': 'filipstachura', 'credit': 'Creator'},
-      {'img': '4547289', 'profile': 'dokato', 'credit': 'Contributor'},
-      {'img': '20457043', 'profile': 'krystian8207', 'credit': 'Contributor'},
-      {'img': '3685123', 'profile': 'rstammer', 'credit': 'Contributor'},
-      {'img': '4090570', 'profile': 'KrzysztofWrobel', 'credit': 'Contributor'},
-      {'img': '265127', 'profile': 'agwells', 'credit': 'Contributor'},
+      {'img': '83692505', 'profile': 'rszymanski', 'credit': 'Author & Maintainer'},
+      {'img': '7279715', 'profile': 'jakubnowicki', 'credit': 'Author'},
+      {'img': '4673386', 'profile': 'filipstachura', 'credit': 'Author'},
+      {'img': '4547289', 'profile': 'dokato', 'credit': 'Author'},
+      {'img': '20457043', 'profile': 'krystian8207', 'credit': 'Author'},
       {'img': '24652240', 'profile': 'Appsilon/shiny.router/graphs/contributors', 'credit': 'More Contributors'}
     ],
     'shiny.i18n': [
-      {'img': '4547289', 'profile': 'dokato', 'credit': 'Creator'},
-      {'img': '37193264', 'profile': 'jakubsob', 'credit': 'Maintainer'},
-      {'img': '20457043', 'profile': 'krystian8207', 'credit': 'Contributor'},
-      {'img': '13157213', 'profile': 'krzyslom', 'credit': 'Contributor'},
-      {'img': '24652240', 'profile': 'Appsilon/shiny.i18n/graphs/contributors', 'credit': 'More Contributors'}
+      {'img': '7279715', 'profile': 'jakubnowicki', 'credit': 'Author & Maintainer'},
+      {'img': '37193264', 'profile': 'jakubsob', 'credit': 'Author'},
+      {'img': '4547289', 'profile': 'dokato', 'credit': 'Author'},
+      {'img': '20457043', 'profile': 'krystian8207', 'credit': 'Author'}
     ],
     'shiny.react': [
-      {'img': '10000651', 'profile': 'kamilzyla', 'credit': 'Creator & Maintainer'},
-      {'img': '1421503', 'profile': 'marekrogala', 'credit': 'Creator'},
-      {'img': '37193264', 'profile': 'jakubsob', 'credit': 'Maintainer'},
-      {'img': '4547289', 'profile': 'dokato', 'credit': 'Contributor'}
+      {'img': '10000651', 'profile': 'kamilzyla', 'credit': 'Author & Maintainer'},
+      {'img': '37193264', 'profile': 'jakubsob', 'credit': 'Author'},
+      {'img': '1421503', 'profile': 'marekrogala', 'credit': 'Author'}
     ],
     'shiny.fluent': [
-      {'img': '10000651', 'profile': 'kamilzyla', 'credit': 'Creator & Maintainer'},
-      {'img': '1421503', 'profile': 'marekrogala', 'credit': 'Creator'},
-      {'img': '37193264', 'profile': 'jakubsob', 'credit': 'Maintainer'},
-      {'img': '4673386', 'profile': 'filipstachura', 'credit': 'Contributor'},
-      {'img': '4547289', 'profile': 'dokato', 'credit': 'Contributor'},
-      {'img': '32652297', 'profile': 'jimbrig', 'credit': 'Contributor'}
+      {'img': '10000651', 'profile': 'kamilzyla', 'credit': 'Author & Maintainer'},
+      {'img': '37193264', 'profile': 'jakubsob', 'credit': 'Author'},
+      {'img': '1421503', 'profile': 'marekrogala', 'credit': 'Author'},
+      {'img': '24652240', 'profile': 'Appsilon/shiny.fluent/graphs/contributors', 'credit': 'More Contributors'}
     ],
     'data.validator': [
-      {'img': '20457043', 'profile': 'krystian8207', 'credit': 'Creator'},
-      {'img': '19154385', 'profile': 'mdubel', 'credit': 'Creator & Maintainer'},
-      {'img': '11685462', 'profile': 'maju116', 'credit': 'Contributor'},
-      {'img': '4547289', 'profile': 'dokato', 'credit': 'Contributor'},
-      {'img': '4669074', 'profile': 'przytu1', 'credit': 'Contributor'},
-      {'img': '4244169', 'profile': 'FrieseWoudloper', 'credit': 'Contributor'}
+      {'img': '19154385', 'profile': 'mdubel', 'credit': 'Author & Maintainer'},
+      {'img': '4669074', 'profile': 'przytu1', 'credit': 'Author'},
+      {'img': '7279715', 'profile': 'jakubnowicki', 'credit': 'Author'},
+      {'img': '20457043', 'profile': 'krystian8207', 'credit': 'Author'},
+      {'img': '24652240', 'profile': 'Appsilon/data.validator/graphs/contributors', 'credit': 'More Contributors'}
     ],
     'rhino': [
-      {'img': '10000651', 'profile': 'kamilzyla', 'credit': 'Creator & Maintainer'},
-      {'img': '7279715', 'profile': 'jakubnowicki', 'credit': 'Contributor'},
-      {'img': '38053499', 'profile': 'TymekDev', 'credit': 'Contributor'},
-      {'img': '1421503', 'profile': 'marekrogala', 'credit': 'Contributor'}
+      {'img': '10000651', 'profile': 'kamilzyla', 'credit': 'Author & Maintainer'},
+      {'img': '7279715', 'profile': 'jakubnowicki', 'credit': 'Author'},
+      {'img': '32634801', 'profile': 'Leszek-Sieminski', 'credit': 'Author'},
+      {'img': '1421503', 'profile': 'marekrogala', 'credit': 'Author'},
+      {'img': '110383037', 'profile': 'vibalre', 'credit': 'Author'},
+      {'img': '103684742', 'profile': 'tmakowski', 'credit': 'Author'},
+      {'img': '24652240', 'profile': 'Appsilon/rhino/graphs/contributors', 'credit': 'More Contributors'}
     ],
     'shiny.benchmark': [
-      {'img': '13513569', 'profile': 'DouglasMesquita', 'credit': 'Creator & Maintainer'},
-      {'img': '7279715', 'profile': 'jakubnowicki', 'credit': 'Contributor'},
-      {'img': '211358', 'profile': 'averissimo', 'credit': 'Contributor'},
-      {'img': '1421503', 'profile': 'marekrogala', 'credit': 'Contributor'}
+      {'img': '13513569', 'profile': 'DouglasMesquita', 'credit': 'Author & Maintainer'}
     ],
     'shiny.blueprint': [
-      {'img': '10000651', 'profile': 'kamilzyla', 'credit': 'Creator & Maintainer'},
-      {'img': '54677165', 'profile': 'filipakkad', 'credit': 'Contributor'},
-      {'img': '4673386', 'profile': 'filipstachura', 'credit': 'Contributor'},
-      {'img': '81753658', 'profile': 'pawelchabros', 'credit': 'Contributor'}
+      {'img': '10000651', 'profile': 'kamilzyla', 'credit': 'Author & Maintainer'},
+      {'img': '54677165', 'profile': 'filipakkad', 'credit': 'Author'},
+      {'img': '4673386', 'profile': 'filipstachura', 'credit': 'Author'},
+      {'img': '81753658', 'profile': 'pawelchabros', 'credit': 'Author'}
     ],
     'shiny.telemetry': [
-      {'img': '10000651', 'profile': 'kamilzyla', 'credit': 'Creator & Maintainer'},
-      {'img': '211358', 'profile': 'averissimo', 'credit': 'Contributor'},
-      {'img': '20457043', 'profile': 'krystian8207', 'credit': 'Contributor'},
-      {'img': '110383037', 'profile': 'vibalre', 'credit': 'Contributor'}
+      {'img': '211358', 'profile': 'averissimo', 'credit': 'Author & Maintainer'},
+      {'img': '10000651', 'profile': 'kamilzyla', 'credit': 'Author'},
+      {'img': '20457043', 'profile': 'krystian8207', 'credit': 'Author'},
+      {'img': '110383037', 'profile': 'vibalre', 'credit': 'Author'}
     ],
     'shiny.emptystate': [
-      {'img': '83692505', 'profile': 'rszymanski', 'credit': 'Creator & Maintainer'},
-      {'img': '110383037', 'profile': 'vibalre', 'credit': 'Contributor'},
-      {'img': '125121920', 'profile': 'insightsurge', 'credit': 'Contributor'},
-      {'img': '49812166', 'profile': 'vedhav', 'credit': 'Contributor'}
+      {'img': '83692505', 'profile': 'rszymanski', 'credit': 'Author & Maintainer'},
+      {'img': '110383037', 'profile': 'vibalre', 'credit': 'Author'},
+      {'img': '24652240', 'profile': 'Appsilon/shiny.emptystate/graphs/contributors', 'credit': 'More Contributors'}
     ]
   };
 
