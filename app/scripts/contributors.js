@@ -54,8 +54,7 @@ export const addContributors = () => {
     'shiny.fluent': [
       {'img': '10000651', 'profile': 'kamilzyla', 'credit': 'Author & Maintainer'},
       {'img': '37193264', 'profile': 'jakubsob', 'credit': 'Author'},
-      {'img': '1421503', 'profile': 'marekrogala', 'credit': 'Author'},
-      {'img': '24652240', 'profile': 'Appsilon/shiny.fluent/graphs/contributors', 'credit': 'More Contributors'}
+      {'img': '1421503', 'profile': 'marekrogala', 'credit': 'Author'}
     ],
     'data.validator': [
       {'img': '19154385', 'profile': 'mdubel', 'credit': 'Author & Maintainer'},
