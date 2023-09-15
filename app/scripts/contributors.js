@@ -77,15 +77,15 @@ export const addContributors = () => {
     ],
     'shiny.blueprint': [
       {'img': '10000651', 'profile': 'kamilzyla', 'credit': 'Author & Maintainer'},
-      {'img': '54677165', 'profile': 'filipakkad', 'credit': 'Author'},
       {'img': '4673386', 'profile': 'filipstachura', 'credit': 'Author'},
+      {'img': '54677165', 'profile': 'filipakkad', 'credit': 'Author'},
       {'img': '81753658', 'profile': 'pawelchabros', 'credit': 'Author'}
     ],
     'shiny.telemetry': [
       {'img': '211358', 'profile': 'averissimo', 'credit': 'Author & Maintainer'},
       {'img': '10000651', 'profile': 'kamilzyla', 'credit': 'Author'},
-      {'img': '20457043', 'profile': 'krystian8207', 'credit': 'Author'},
-      {'img': '110383037', 'profile': 'vibalre', 'credit': 'Author'}
+      {'img': '110383037', 'profile': 'vibalre', 'credit': 'Author'},
+      {'img': '20457043', 'profile': 'krystian8207', 'credit': 'Author'}
     ],
     'shiny.emptystate': [
       {'img': '83692505', 'profile': 'rszymanski', 'credit': 'Author & Maintainer'},
