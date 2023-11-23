@@ -91,6 +91,13 @@ export const addContributors = () => {
       {'img': '83692505', 'profile': 'github.com/rszymanski', 'credit': 'Author & Maintainer'},
       {'img': '110383037', 'profile': 'github.com/vibalre', 'credit': 'Author'},
       {'img': '24652240', 'profile': 'appsilon.github.io/shiny.emptystate/authors.html', 'credit': 'More Contributors'}
+    ],
+    'reactable.extras': [
+      {'img': '110383037', 'profile': 'github.com/vibalre', 'credit': 'Author & Maintainer'},
+      {'img': '26137289', 'profile': 'github.com/vanhry', 'credit': 'Author'},
+      {'img': '51521150', 'profile': 'github.com/andyquinterom', 'credit': 'Author'},
+      {'img': '44022548', 'profile': 'github.com/pedrocoutinhosilva', 'credit': 'Author'},
+      {'img': '24652240', 'profile': 'appsilon.github.io/reactable.extras/authors.html', 'credit': 'More Contributors'}
     ]
   };
 
