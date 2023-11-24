@@ -163,5 +163,16 @@ export const libraries = [
     'repoLink': 'https://github.com/Appsilon/shiny.emptystate/',
     'demoLink': 'https://connect.appsilon.com/shiny-emptystate-demo/',
     'docsLink': 'https://appsilon.github.io/shiny.emptystate/'
+  },
+  {
+    'id': 'reactable-extras',
+    'heading': 'reactable.extras',
+    'paragraphs': [
+      'Extra features for reactable package.',
+      'Enhances the functionality of the reactable package in Shiny applications. Reactable tables are interactive customizable, and reactable.extras extend their capabilities, allowing you to create dynamic and interactive data tables with ease.'
+    ],
+    'repoLink': 'https://github.com/Appsilon/reactable.extras/',
+    'demoLink': '',
+    'docsLink': 'https://appsilon.github.io/reactable.extras/'
   }
 ]
