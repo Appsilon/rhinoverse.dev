@@ -174,5 +174,16 @@ export const libraries = [
     'repoLink': 'https://github.com/Appsilon/reactable.extras/',
     'demoLink': '',
     'docsLink': 'https://appsilon.github.io/reactable.extras/'
+  },
+  {
+    'id': 'shiny-gosling',
+    'heading': 'shiny.gosling',
+    'paragraphs': [
+      'R Shiny wrapper for Gosling.js',
+      'Brings the ability to use Gosling.js - Grammar-based Toolkit for Scalable and Interactive Genomics Data Visualization in R Shiny apps.'
+    ],
+    'repoLink': 'https://github.com/Appsilon/shiny.gosling/',
+    'demoLink': '',
+    'docsLink': 'https://appsilon.github.io/shiny.gosling/'
   }
 ]

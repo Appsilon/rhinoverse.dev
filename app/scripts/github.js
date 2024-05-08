@@ -12,7 +12,8 @@ export const getGithubStars = (repos) => {
     'data.validator',
     'rhino',
     'shiny.blueprint',
-    'shiny.telemetry'
+    'shiny.telemetry',
+    'shiny.gosling'
   ];
 
   // get an array of repositories specified above
