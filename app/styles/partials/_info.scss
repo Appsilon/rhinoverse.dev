@@ -13,7 +13,8 @@ $packages: (
   'shiny-blueprint': $color-shiny-blueprint,
   'shiny-telemetry': $color-shiny-telemetry,
   'shiny-emptystate': $color-shiny-emptystate,
-  'reactable-extras': $color-reactable-extras
+  'reactable-extras': $color-reactable-extras,
+  'tapyr': $color-tapyr
 );
 
 .contributors img {
@@ -97,6 +98,7 @@ $packages: (
     &--shiny-telemetry { background-color: $color-shiny-telemetry; }
     &--shiny-emptystate { background-color: $color-shiny-emptystate; }
     &--reactable-extras { background-color: $color-reactable-extras; }
+    &--tapyr { background-color: $color-tapyr; }
 
     @media only screen and (min-width: $media-md) {
       background: none;

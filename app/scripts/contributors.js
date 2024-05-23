@@ -98,6 +98,9 @@ export const addContributors = () => {
       {'img': '51521150', 'profile': 'github.com/andyquinterom', 'credit': 'Author'},
       {'img': '44022548', 'profile': 'github.com/pedrocoutinhosilva', 'credit': 'Author'},
       {'img': '24652240', 'profile': 'appsilon.github.io/reactable.extras/authors.html', 'credit': 'More Contributors'}
+    ],
+    'tapyr': [
+      {'img': '9080845', 'profile': 'github.com/pstorozenko', 'credit': 'Author & Maintainer'}
     ]
   };
 
