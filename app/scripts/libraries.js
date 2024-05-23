@@ -174,5 +174,16 @@ export const libraries = [
     'repoLink': 'https://github.com/Appsilon/reactable.extras/',
     'demoLink': '',
     'docsLink': 'https://appsilon.github.io/reactable.extras/'
+  },
+  {
+    'id': 'tapyr',
+    'heading': 'tapyr',
+    'paragraphs': [
+      'A template for building high-quality, maintainable PyShiny applications.',
+      'Tapyr is designed as a lightweight template repository for PyShiny projects that offers tools similar to Rhino for R/Shiny.'
+    ],
+    'repoLink': 'https://github.com/Appsilon/tapyr-template',
+    'demoLink': '',
+    'docsLink': 'https://connect.appsilon.com/tapyr-docs/'
   }
 ]
